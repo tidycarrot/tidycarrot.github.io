@@ -48,6 +48,7 @@
 <marquee behavior="scroll" direction="left" scrollamount="10" >Marquee Going West</marquee>
 </div>
 <br>
+    
 <div id="wrap">
 <marquee behavior="scroll" direction="left" >Normal Marquee</marquee>
 <marquee behavior="alternate" scrollamount="10">Bouncing Marquee</marquee>
@@ -55,7 +56,9 @@
 <input type="button" value="Reset slide stop marquee" onclick="location.reload();"/>
 <!-- The button above just reloads the page -->
 </div>
+
 <br>
+
 <div id = "wrap">
     <h2>The border-style Property</h2>
 <p>This property specifies what kind of border to display:</p>
@@ -112,6 +115,19 @@
 <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
 <br>
 </div>
+<div id="wrap">
+    <button type="button" onclick=""></button>
+    <label>You have clicked this button</label>
+    <label id="hi">0</label>
+    <label>times</label>
+</div>
 
+<script>
+var x = 0;
+function MyFunction(){
+    x = x + 1
+    document.getElementById("hi").innerHTML= x;
+}
+</script>
 </body>
 </html>

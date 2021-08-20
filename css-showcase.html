@@ -94,6 +94,20 @@
         <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
         <br>
     </div>
+<div id="wrap">
+    <button type="button" onclick="">Click me!</button>
+    <label>You have clicked this button </label>
+    <label id="Hi">0</label>
+    <label> times</label>
+</div>
+
+<script>
+    var x = 0;
+    function MyFunction(){
+        x = x + 1;
+        document.getElementById("Hi").innerHTML= x ;
+    }
+</script>
 
 </body>
 

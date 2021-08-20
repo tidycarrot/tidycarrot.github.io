@@ -4,15 +4,24 @@
 <head>
     <title>Marquees!</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <script>
+        var x = 0;
+        function MyFunction() {
+            x = x + 1;
+            document.getElementById("Hi").innerHTML = x;
+        }
+    </script>
 </head>
 
-<body style="background: red;">
-    <h1>Slapdash CSS Showcase</h1>
+<body style="background: orange;">
+    <h1>The Tidy Carrot</h1>
 
     <ul class="navbar">
         <li><a href="index.html">Home</a></li>
         <li><a href="css-showcase.html">Slapdash CSS Showcase</a></li>
     </ul>
+
+    <h2>Slapdash CSS Showcase</h2>
 
     <div id="wrap">
         <h2>Marquees!</h2><br>
@@ -109,14 +118,6 @@
         <label> times</label>
         <button type="button" onclick="MyFunction()">Click me!</button>
     </div>
-
-    <script>
-        var x = 0;
-        function MyFunction() {
-            x = x + 1;
-            document.getElementById("Hi").innerHTML = x;
-        }
-    </script>
 
 </body>
 

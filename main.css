@@ -7,13 +7,6 @@ label {
     text-align: center;
 }
 
-#css-showcase-body {
-    background: red center center repeat;
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
-
 #wrap {
     width: 100%;
     margin: auto;

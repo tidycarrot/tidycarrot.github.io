@@ -7,7 +7,7 @@ label {
     text-align: center;
 }
 
-body {
+#css-showcase-body {
     background: red center center repeat;
     margin: auto;
     width: 50%;

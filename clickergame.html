@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Marquees!</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+    <button type="button" onclick="MyFunction()">Click me!</button>
+    <label>You have clicked the buttons </label>
+    <label id="Hi">0</label>
+    <label> times</label>
+    <button type="button" onclick="MyFunction()">Click me!</button>
+
+</body>
+<script>
+
+var x = 0;
+    function MyFunction(){
+        x = x + 1;
+        document.getElementById("Hi").innerHTML= x ;
+    }
+
+</script>
+</html>

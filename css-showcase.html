@@ -9,6 +9,11 @@
 <body>
 <h1>Slapdash CSS Showcase</h1>
 
+<ul class="navbar">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="css-showcase.html">Slapdash CSS Showcase</a></li>
+</ul>
+
     <div id="wrap">
         <h2>Marquees!</h2><br>
         <marquee behavior="scroll" direction="right" scrollamount="1" scrolldelay="500">Very Slow Marquee</marquee>
@@ -94,6 +99,24 @@
         <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
         <br>
     </div>
+
+    <br>
+
+<div id="wrap">
+    <button type="button" onclick="MyFunction()">Click me!</button>
+    <label>You have clicked the buttons </label>
+    <label id="Hi">0</label>
+    <label> times</label>
+    <button type="button" onclick="MyFunction()">Click me!</button>
+</div>
+
+<script>
+    var x = 0;
+    function MyFunction(){
+        x = x + 1;
+        document.getElementById("Hi").innerHTML= x ;
+    }
+</script>
 
 </body>
 

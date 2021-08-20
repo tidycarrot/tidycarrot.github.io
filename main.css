@@ -1,0 +1,23 @@
+marquee {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+label {
+    text-align: center;
+}
+
+body {
+    background: red center center repeat;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+#wrap {
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    overflow: hidden;
+    padding: 15px;
+}

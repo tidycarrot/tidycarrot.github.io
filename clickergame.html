@@ -2,26 +2,55 @@
 <html>
 
 <head>
-    <title>Marquees!</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Clicker game</title>
+<script src="clickergame.js" async defer></script>
 </head>
 
 <body>
 
-    <button type="button" onclick="MyFunction()">Click me!</button>
-    <label>You have clicked the buttons </label>
-    <label id="Hi">0</label>
-    <label> times</label>
-    <button type="button" onclick="MyFunction()">Click me!</button>
+    <b style="font-size: 25px;">Pencils: </b>
+    <b style="font-size: 25px;" id="totalpencil">0</b>
+    <br><br>
+    <button type="button" onclick="Make()" title="Make a pencil">Make pencil</button>
+    <br>
+    <br>
 
+    <!-- ------ Business tab ------ -->
+
+    <label>Business</label>
+    <hr>
+    <label>Available Funds: </label>
+    <label>$ </label>
+    <label>10</label>
+    <br>
+    <label>Unsold inventory: </label>
+    <label id="currentpencil">0</label>
+    <br>
+    <button type="button" onclick="lowerprice()">Lower</button>
+    <button type="button" onclick="raiseprice()">Raise</button>
+    <label>Price per pencil: </label>
+    <label id="priceofpen">10</label>
+    <label> cents</label>
+    <br>
+    <label>Public demand: </label>
+    <label>% </label>
+    <label id="demand">10</label>
+
+
+    <p> </p>
+    <button type="button" onclick="Getstorage()">Get more storage</button>
+    <br>
+
+    <label>You have: </label><br>
+    <div style="border: solid gray 1px;width: 150px;">
+
+        <label id="currentpencil">0</label>
+        <label> pencils</label><br>
+        <label>$<label>
+                <label id="money">10</label>
+
+    </div>
+    <label>Storage: </label>
+    <label id="MaxStorage">100</label>
 </body>
-<script>
-
-var x = 0;
-    function MyFunction(){
-        x = x + 1;
-        document.getElementById("Hi").innerHTML= x ;
-    }
-
-</script>
 </html>

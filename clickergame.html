@@ -2,26 +2,51 @@
 <html>
 
 <head>
-    <title>Marquees!</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Clicker game</title>
+    <style>
+
+    </style>
 </head>
 
 <body>
 
-    <button type="button" onclick="MyFunction()">Click me!</button>
-    <label>You have clicked the buttons </label>
-    <label id="Hi">0</label>
-    <label> times</label>
-    <button type="button" onclick="MyFunction()">Click me!</button>
+    <label>You have made </label>
+    <label id="totalpencil">0</label>
+    <label>&nbsp;pencils in total</label><br><br>
 
+    <button type="button" onclick="Make()">Make a pencil</button>
+    <button type="button" onclick="Sell()">Sell 20 pencils</button>
+    <br>
+
+    <label>You have: </label><br>
+    <div style="border: solid gray 1px;width: 150px;">
+
+        <label id="currentpencil">0</label>
+        <label> pencils</label><br>
+        <label>$<label>
+        <label id="money">0</label>
+
+    </div>
 </body>
 <script>
 
-var x = 0;
-    function MyFunction(){
+    var x = 0;
+    var totalpencil = 0;
+
+    function Make() {
         x = x + 1;
-        document.getElementById("Hi").innerHTML= x ;
+        totalpencil = totalpencil + 1;
+        document.getElementById("currentpencil").innerHTML = x;
+        document.getElementById("totalpencil").innerHTML = totalpencil;
+    }
+
+    function Sell() {
+        if (x>19) {
+            x = x - 20
+            document.getElementById("currentpencil").innerHTML = x;
+        }
     }
 
 </script>
+
 </html>

@@ -18,6 +18,7 @@
 
     <button type="button" onclick="Make()">Make a pencil</button>
     <button type="button" onclick="Sell()">Sell 20 pencils</button>
+    <button type="button" onclick="Getstorage()">Get more storage</button>
     <br>
 
     <label>You have: </label><br>
@@ -52,7 +53,19 @@
     function Sell() {
         if (x > 19) {
             x = x - 20
+            cash = cash + 2;
             document.getElementById("currentpencil").innerHTML = x;
+            document.getElementById("money").innerHTML = cash;
+        }
+    }
+
+    function Getstorage() {
+        if (cash >= 12) { 
+            cash = cash - 12;
+            maxpen = maxpen + maxpen / 2;
+            document.getElementById("money").innerHTML = cash;
+            document.getElementById("MaxStorage").innerHTML = maxpen;
+
         }
     }
 

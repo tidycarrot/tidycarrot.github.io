@@ -10,6 +10,8 @@
 
 <body>
 
+
+
     <label>You have made </label>
     <label id="totalpencil">0</label>
     <label>&nbsp;pencils in total</label><br><br>
@@ -24,24 +26,31 @@
         <label id="currentpencil">0</label>
         <label> pencils</label><br>
         <label>$<label>
-        <label id="money">0</label>
+                <label id="money">10</label>
 
     </div>
+    <label>Storage: </label>
+    <label id="MaxStorage">40</label>
 </body>
 <script>
 
     var x = 0;
     var totalpencil = 0;
+    var maxpen = 40;
+    var cash = 10;
 
     function Make() {
-        x = x + 1;
-        totalpencil = totalpencil + 1;
-        document.getElementById("currentpencil").innerHTML = x;
-        document.getElementById("totalpencil").innerHTML = totalpencil;
+        if (x < maxpen) {
+            x = x + 1;
+            totalpencil = totalpencil + 1;
+            document.getElementById("currentpencil").innerHTML = x;
+            document.getElementById("totalpencil").innerHTML = totalpencil;
+        }
+
     }
 
     function Sell() {
-        if (x>19) {
+        if (x > 19) {
             x = x - 20
             document.getElementById("currentpencil").innerHTML = x;
         }

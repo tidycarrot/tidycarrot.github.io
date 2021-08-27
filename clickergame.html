@@ -3,21 +3,41 @@
 
 <head>
     <title>Clicker game</title>
-    <style>
-
-    </style>
+<script src="clickergame.js" async defer></script>
 </head>
 
 <body>
 
+    <b style="font-size: 25px;">Pencils: </b>
+    <b style="font-size: 25px;" id="totalpencil">0</b>
+    <br><br>
+    <button type="button" onclick="Make()" title="Make a pencil">Make pencil</button>
+    <br>
+    <br>
+
+    <!-- ------ Business tab ------ -->
+
+    <label>Business</label>
+    <hr>
+    <label>Available Funds: </label>
+    <label>$ </label>
+    <label>10</label>
+    <br>
+    <label>Unsold inventory: </label>
+    <label id="currentpencil">0</label>
+    <br>
+    <button type="button" onclick="lowerprice()">Lower</button>
+    <button type="button" onclick="raiseprice()">Raise</button>
+    <label>Price per pencil: </label>
+    <label id="priceofpen">50</label>
+    <label> cents</label>
+    <br>
+    <label>Public demand: </label>
+    <label>% </label>
+    <label id="demand">25</label>
 
 
-    <label>You have made </label>
-    <label id="totalpencil">0</label>
-    <label>&nbsp;pencils in total</label><br><br>
-
-    <button type="button" onclick="Make()">Make a pencil</button>
-    <button type="button" onclick="Sell()">Sell 20 pencils</button>
+    <p> </p>
     <button type="button" onclick="Getstorage()">Get more storage</button>
     <br>
 
@@ -31,44 +51,6 @@
 
     </div>
     <label>Storage: </label>
-    <label id="MaxStorage">40</label>
+    <label id="MaxStorage">100</label>
 </body>
-<script>
-
-    var x = 0;
-    var totalpencil = 0;
-    var maxpen = 40;
-    var cash = 10;
-
-    function Make() {
-        if (x < maxpen) {
-            x = x + 1;
-            totalpencil = totalpencil + 1;
-            document.getElementById("currentpencil").innerHTML = x;
-            document.getElementById("totalpencil").innerHTML = totalpencil;
-        }
-
-    }
-
-    function Sell() {
-        if (x > 19) {
-            x = x - 20
-            cash = cash + 2;
-            document.getElementById("currentpencil").innerHTML = x;
-            document.getElementById("money").innerHTML = cash;
-        }
-    }
-
-    function Getstorage() {
-        if (cash >= 12) { 
-            cash = cash - 12;
-            maxpen = maxpen + maxpen / 2;
-            document.getElementById("money").innerHTML = cash;
-            document.getElementById("MaxStorage").innerHTML = maxpen;
-
-        }
-    }
-
-</script>
-
 </html>

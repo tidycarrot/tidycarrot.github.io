@@ -2,7 +2,8 @@ var x = 0;
 var totalpencil = 0;
 var maxpen = 100;
 var cash = 10;
-var price = 50;
+var price = 10;
+var y = 100;
 
 function Make() {
     if (x < maxpen) {
@@ -33,7 +34,7 @@ function Getstorage() {
     }
 }
 function raiseprice() {
-    if (price < 100000) {
+    if (price < 1000) {
         price = price + 1;
         document.getElementById("priceofpen").innerHTML = price;
         publicdemand(price);
@@ -41,7 +42,7 @@ function raiseprice() {
 }
 
 function lowerprice() {
-    if (price > 0) {
+    if (price > 1) {
         price = price - 1;
         document.getElementById("priceofpen").innerHTML = price;
         publicdemand(price);
@@ -49,7 +50,7 @@ function lowerprice() {
 }
 
 function publicdemand(x) {
-    var y = 1 - 1 / (1 + x);
+    y = 1 - 1 / (1 + (x - 1));
     y = y * 1000;
     y = 1000 - y
     y = Math.round(y)

@@ -3,7 +3,7 @@ var totalpencil = 0;
 var maxpen = 100;
 var cash = 10;
 var price = 10;
-var y = 100;
+var y = 10;
 
 function Make() {
     if (x < maxpen) {
@@ -51,8 +51,8 @@ function lowerprice() {
 
 function publicdemand(x) {
     y = 1 - 1 / (1 + (x - 1));
-    y = y * 1000;
-    y = 1000 - y
+    y = y * 100;
+    y = 100 - y
     y = Math.round(y)
     document.getElementById("demand").innerHTML = y;
 }

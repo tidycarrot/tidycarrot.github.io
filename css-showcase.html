@@ -4,22 +4,16 @@
 <head>
     <title>Slapdash CSS Showcase</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script>
-        var x = 0;
-        function MyFunction() {
-            x = x + 1;
-            document.getElementById("Hi").innerHTML = x;
-        }
-    </script>
+
 </head>
 
 <body style="background: orange;">
-    <h1>The Tidy Carrot</h1>
+    <h7>The Tidy Carrot</h1>
 
     <ul class="navbar">
         <li><a href="index.html">Home</a></li>
         <li><a href="css-showcase.html">Slapdash CSS Showcase</a></li>
-        <li><a href="coming-soon.html">Clicker Game</a></li>
+        <li><a href="coming-soon.html">Games</a></li>
     </ul>
 
     <h2>CSS Borders</h2>
@@ -96,6 +90,8 @@
     </div>
     <br>
     <div id="wrap">
+        <h2>The cursor property</h2>
+        <p>This property specifies what cursor your mouse will be to display</p><br>
         <p>Mouse over the words to change the cursor.</p>
         <p style="cursor: alias;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">alias<br></p>
         <p style="cursor:auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">auto<br></p>
@@ -105,6 +101,8 @@
         <p style="cursor:crosshair;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">crosshair<br></p>
         <p style="cursor:default;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">default<br></p>
         <p style="cursor:e-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">e-resize<br></p>
+        <p style="cursor:grab;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">grab<br></p>
+        <p style="cursor:grabbing;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">grabbing<br></p>
         <p style="cursor:help;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">help<br></p>
         <p style="cursor:move;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">move<br></p>
         <p style="cursor: none;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">none<br></p>
@@ -122,7 +120,45 @@
         <p style="cursor:vertical-text;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">vertical text<br>
         </p>
         <p style="cursor:w-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">w-resize<br></p>
-        <p style="cursor:pen;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">wait<br></p>
+        <p style="cursor:wait;border: solid black 1px;padding: 4px 30px;border-radius: 4px;">wait<br></p>
+    </div>
+    <br>
+    <div id="wrap">
+        <h1>The filter property</h1>
+        <p></p>
+        <br>
+        <label>No filters</label>
+        <br>
+        <a href="https://www.google.com/teapot">
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:none;">
+        </a>
+        <br>
+        <br>
+        <label>Blur filter</label>
+        <br>
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:blur(4px);">
+        <br>
+        <br>
+        <label>Brightness filter</label>
+        <br>
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:brightness(250%);">
+        <br>
+        <br>
+        <label>Contrast filter</label>
+        <br>
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:contrast(180%);">
+        <br>
+        <br>
+        <label>Grayscale filter</label>
+        <br>
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:grayscale(100%);">
+        <br>
+        <br>
+        <label>Inverted grayscale filter</label>
+        <br>
+        <img src="https://www.w3schools.com/css/pineapple.jpg" style="filter:grayscale(100%) invert(100%);">
+        <br>
+        <br>
     </div>
 
 </body>

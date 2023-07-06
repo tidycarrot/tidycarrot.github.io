@@ -1,8 +1,8 @@
-This is a website showcasing cool features of CSS
+#This is a website showcasing cool features of CSS
 
-( Also a prank as the "coming soon" in the games section is never coming ;) )
+#( Also a prank as the "coming soon" in the games section is never coming ;) )
 
-Favourite languages:
+#Favourite languages:
 
-C++
-HTML/Javascript/CSS
+#C++
+#HTML/Javascript/CSS

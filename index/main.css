@@ -1,0 +1,309 @@
+body {
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+marquee {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+label {
+    text-align: center;
+}
+
+.wrap {
+    margin: auto;
+    background: #fff;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.wrap-left {
+    flex: 1;
+    width: 49%;
+    display: inline-block;
+    padding-right: 1%;
+    vertical-align: top;
+}
+
+.wrap-right {
+    flex: 1;
+    width: 49%;
+    display: inline-block;
+    padding-left: 1%;
+    vertical-align: top;
+}
+
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+#red-square-width {
+    width: 100px;
+    height: 100px;
+    background: red;
+    margin-right: auto;
+    margin-left: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#red-square-width:active {
+    width: 200px;
+}
+
+#yellow-green-square-color {
+    width: 100px;
+    height: 100px;
+    background: yellow;
+    margin-right: auto;
+    margin-left: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#yellow-green-square-color:active {
+    background-color: green;
+}
+
+#pink-square-rotate {
+    width: 100px;
+    height: 100px;
+    background: pink;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#pink-square-rotate:active {
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+}
+
+#square-to-circle {
+    width: 100px;
+    height: 100px;
+    background: black;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+  
+#square-to-circle:active {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#square-translate {
+    width: 100px;
+    height: 100px;
+    background: peru;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+  
+#square-translate:active {
+    transform: translateX(-50px);
+}
+
+#square-all {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+  
+#square-all:active {
+    transform: rotate(540deg) translateX(-120px);
+    -ms-transform:rotate(540deg) translateX(-120px);
+    -webkit-transform:rotate(540deg) translateX(-120px);
+    width: 150px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+#timing-linear {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -ms-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-ease {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-ease-in {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s ease-in;
+    -moz-transition: all 1s ease-in;
+    -ms-transition: all 1s ease-in;
+    -o-transition: all 1s ease-in;
+    transition: all 1s ease-in;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-ease-out {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -ms-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-ease-in-out {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-custom {
+    width: 100px;
+    height: 100px;
+    background: #800080;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    -moz-transition: all 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    -ms-transition: all 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    -o-transition: all 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    transition: all 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    color: white;
+}
+
+#timing-linear:active, #timing-ease:active, #timing-ease-in:active, #timing-ease-out:active, #timing-ease-in-out:active, #timing-custom:active {
+    width: 200px;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }

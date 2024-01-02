@@ -4,7 +4,8 @@
 <head>
     <title>Slapdash CSS Showcase</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-
+    <script src="css-showcase.js"></script>
+    <meta charset="UTF-8">
 </head>
 
 <body style="background: orange;">
@@ -40,7 +41,8 @@
             <p style="border-style:dotted dashed solid double;">A mixed border.</p>
             <br>
 
-        </div><div id="wrap-right">
+        </div>
+        <div id="wrap-right">
 
             <h2>The border-width Property</h2>
             <p>This property specifies the thickness of the border to display:</p>
@@ -86,7 +88,8 @@
             <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
             <br>
 
-        </div><div id="wrap-right">
+        </div>
+        <div id="wrap-right">
 
             <h2>The border-radius Property</h2>
             <p>This property specifies how round the border will be to display</p>
@@ -184,7 +187,8 @@
             <div id="red-square-width"></div>
             <div id="square-to-circle"></div>
             <div id="square-all"></div>
-        </div><div id="wrap-right">
+        </div>
+        <div id="wrap-right">
             <h2>The transition-timing-function property</h2>
             <p>This property defines the timing of the transition</p>
             <br>
@@ -243,14 +247,6 @@
             title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
         <br>
         <br>
-        <label>Inverted grayscale filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:grayscale(100%) invert(100%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
         <label>Hue-rotate filter</label>
         <br>
         <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
@@ -301,13 +297,106 @@
         <br>
         <label>Change sliders to see the image filters in combinations</label>
         <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+        <img id="customImage" src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+            style="width: 50%;height: 50%;"
             alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
             title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-            <br>
-            <br>
-        <input type="range" id="blur_image" oninput="console.log(document.querySelector('#blur_image').value)"> 
-
+        <br>
+        <br>
+        <table style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
+            <tr>
+                <td>
+                    <label>Blur: </label><label id="blurAmount">0px</label>
+                </td>
+                <td>
+                    <input type="range" id="blurImage" min="0" max="25" oninput="changeImage()" value="0">
+                </td>
+                <td>
+                    <label> Brightness: </label><label id="brightAmount">100%</label>
+                </td>
+                <td>
+                    <input type="range" id="brightImage" min="0" max="250" oninput="changeImage()" value="100">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Contrast: </label><label id="grayscaleAmount">100%</label>
+                </td>
+                <td>
+                    <input type="range" id="contrastImage" min="0" max="250" oninput="changeImage()" value="100">
+                </td>
+                <td>
+                    <label>Grayscale: </label><label id="grayscaleAmount">0%</label>
+                </td>
+                <td>
+                    <input type="range" id="grayscaleImage" min="0" max="100" oninput="changeImage()" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Hue-rotate: </label><label id="huerotateAmount">100°</label>
+                </td>
+                <td>
+                    <input type="range" id="huerotateImage" min="0" max="360" oninput="changeImage()" value="100">
+                </td>
+                <td>
+                    <label>Invert: </label><label id="invertAmount">0%</label>
+                </td>
+                <td>
+                    <input type="range" id="invertImage" min="0" max="100" oninput="changeImage()" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Opacity: </label><label id="opacityAmount">100%</label>
+                </td>
+                <td>
+                    <input type="range" id="opacityImage" min="0" max="100" oninput="changeImage()" value="100">
+                </td>
+                <td>
+                    <label>Saturate: </label><label id="saturateAmount">0%</label>
+                </td>
+                <td>
+                    <input type="range" id="saturateImage" min="0" max="250" oninput="changeImage()" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Sepia: </label><label id="sepiaAmount">0%</label>
+                </td>
+                <td>
+                    <input type="range" id="sepiaImage" min="0" max="100" oninput="changeImage()" value="0">
+                </td>
+                <td>
+                    <label>Drop shadow blur: </label><label id="dropshadowblurAmount">5px</label>
+                </td>
+                <td>
+                    <input type="range" id="dropshadowblurImage" min="0" max="50" oninput="changeImage()" value="5">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Drop shadow width: </label><label id="dropshadowwidthAmount">8px</label>
+                </td>
+                <td>
+                    <input type="range" id="dropshadowwidthImage" min="-16" max="16" oninput="changeImage()" value="8">
+                </td>
+                <td>
+                    <label>Drop shadow height: </label><label id="dropshadowheightAmount">8px</label>
+                </td>
+                <td>
+                    <input type="range" id="dropshadowheightImage" min="-16" max="16" oninput="changeImage()" value="8">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Drop shadow colour: </label>
+                </td>
+                <td>
+                    <input type="color" id="dropshadowcolourImage" oninput="changeImage()" value="#FFA500">
+                </td>
+            </tr>
+        </table>
 
     </div>
 

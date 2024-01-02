@@ -20,10 +20,10 @@
 
     <!------------------------------------------------------------------------------------------>
 
-    <div id="wrap">
+    <div class="wrap">
         <h2>CSS Borders</h2><br>
 
-        <div id="wrap-left">
+        <div class="wrap-left">
 
             <h2>The border-style Property</h2>
             <p>This property specifies what kind of border to display:</p>
@@ -42,7 +42,7 @@
             <br>
 
         </div>
-        <div id="wrap-right">
+        <div class="wrap-right">
 
             <h2>The border-width Property</h2>
             <p>This property specifies the thickness of the border to display:</p>
@@ -77,7 +77,7 @@
         <p style="border-style:solid ; border-color: red green blue yellow;">A multicolored border</p>
         <br>
 
-        <div id="wrap-left">
+        <div class="wrap-left">
 
             <h2>The border-left/top/right/bottom Property</h2>
             <p>This property specifies which side of the border to display</p><br>
@@ -89,7 +89,7 @@
             <br>
 
         </div>
-        <div id="wrap-right">
+        <div class="wrap-right">
 
             <h2>The border-radius Property</h2>
             <p>This property specifies how round the border will be to display</p>
@@ -106,7 +106,7 @@
 
     </div>
     <br>
-    <div id="wrap">
+    <div class="wrap">
         <h2>The cursor property</h2>
         <p>This property specifies what cursor your mouse will be to display</p><br>
         <p>Mouse over the words to change the cursor.</p>
@@ -174,10 +174,10 @@
             style="cursor:url('face.png'), auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">custom</label>
     </div>
     <br>
-    <div id="wrap">
+    <div class="wrap">
         <h2>CSS transitions</h2>
         <br>
-        <div id="wrap-left">
+        <div class="wrap-left">
             <h2>The transition property</h2>
             <p>This property makes a transition, Click and hold the shapes to see the transition effect</p>
             <br>
@@ -188,7 +188,7 @@
             <div id="square-to-circle"></div>
             <div id="square-all"></div>
         </div>
-        <div id="wrap-right">
+        <div class="wrap-right">
             <h2>The transition-timing-function property</h2>
             <p>This property defines the timing of the transition</p>
             <br>
@@ -201,7 +201,7 @@
         </div>
     </div>
     <br>
-    <div id="wrap">
+    <div class="wrap">
         <h2>The filter property</h2>
         <p>This property changes the image's look</p>
         <p>Note: The filter property is not supported in Edge 12 or Internet Explorer and the picture may break in other
@@ -334,10 +334,10 @@
             </tr>
             <tr>
                 <td>
-                    <label>Hue-rotate: </label><label id="huerotateAmount">100°</label>
+                    <label>Hue-rotate: </label><label id="huerotateAmount">0°</label>
                 </td>
                 <td>
-                    <input type="range" id="huerotateImage" min="0" max="360" oninput="changeImage()" value="100">
+                    <input type="range" id="huerotateImage" min="0" max="360" oninput="changeImage()" value="0">
                 </td>
                 <td>
                     <label>Invert: </label><label id="invertAmount">0%</label>
@@ -354,10 +354,10 @@
                     <input type="range" id="opacityImage" min="0" max="100" oninput="changeImage()" value="100">
                 </td>
                 <td>
-                    <label>Saturate: </label><label id="saturateAmount">0%</label>
+                    <label>Saturate: </label><label id="saturateAmount">100%</label>
                 </td>
                 <td>
-                    <input type="range" id="saturateImage" min="0" max="250" oninput="changeImage()" value="0">
+                    <input type="range" id="saturateImage" min="0" max="750" oninput="changeImage()" value="100">
                 </td>
             </tr>
             <tr>

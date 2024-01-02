@@ -14,14 +14,14 @@ label {
     text-align: center;
 }
 
-#wrap {
+.wrap {
     margin: auto;
     background: #fff;
     overflow: hidden;
     padding: 15px;
 }
 
-#wrap-left {
+.wrap-left {
     flex: 1;
     width: 49%;
     display: inline-block;
@@ -29,7 +29,7 @@ label {
     vertical-align: top;
 }
 
-#wrap-right {
+.wrap-right {
     flex: 1;
     width: 49%;
     display: inline-block;
@@ -177,9 +177,9 @@ li a:hover {
 }
   
 #square-all:active {
-    transform:rotate(180deg);
-    -ms-transform:rotate(180deg);
-    -webkit-transform:rotate(180deg);
+    transform: rotate(540deg) translateX(-120px);
+    -ms-transform:rotate(540deg) translateX(-120px);
+    -webkit-transform:rotate(540deg) translateX(-120px);
     width: 150px;
     height: 100px;
     border-radius: 50%;

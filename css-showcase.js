@@ -37,6 +37,5 @@ function changeImage() {
         document.getElementById("dropshadowwidthAmount").innerHTML = document.querySelector('#dropshadowwidthImage').value + "px";
         document.getElementById("dropshadowheightAmount").innerHTML = document.querySelector('#dropshadowheightImage').value + "px";
         document.getElementById("dropshadowblurAmount").innerHTML = document.querySelector('#dropshadowblurImage').value + "px";
-        document.getElementById("dropshadowwidthAmount").innerHTML = document.querySelector('#dropshadowwidthImage').value + "px";
         
 }

@@ -39,3 +39,7 @@ function changeImage() {
         document.getElementById("dropshadowblurAmount").innerHTML = document.querySelector('#dropshadowblurImage').value + "px";
         
 }
+
+function resetcustomimage(){
+    
+}

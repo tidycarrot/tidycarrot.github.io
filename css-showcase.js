@@ -21,8 +21,22 @@ function changeImage() {
         'drop-shadow(' + document.querySelector('#dropshadowwidthImage').value + 'px ' +
             document.querySelector('#dropshadowheightImage').value + 'px ' +
             document.querySelector('#dropshadowblurImage').value + 'px ' + 
-            document.querySelector('#dropshadowcolourImage').value + ');';
+            document.querySelector('#dropshadowcolourImage').value + ')';
 
-        //23412341/2341/234/12341/23413/2413/41/3241/2341/324/1324/1234/1234/1324/1/2341/241/2/341/341/234/1234/.1234/1/2341/234
+        /******************************************************************************************************************/
+
         document.getElementById("blurAmount").innerHTML = document.querySelector('#blurImage').value + "px";
+        document.getElementById("brightAmount").innerHTML = document.querySelector('#brightImage').value + "%";
+        document.getElementById("contrastAmount").innerHTML = document.querySelector('#contrastImage').value + "%";
+        document.getElementById("grayscaleAmount").innerHTML = document.querySelector('#grayscaleImage').value + "%";
+        document.getElementById("huerotateAmount").innerHTML = document.querySelector('#huerotateImage').value + "°";
+        document.getElementById("invertAmount").innerHTML = document.querySelector('#invertImage').value + "%";
+        document.getElementById("opacityAmount").innerHTML = document.querySelector('#opacityImage').value + "%";
+        document.getElementById("saturateAmount").innerHTML = document.querySelector('#saturateImage').value + "%";
+        document.getElementById("sepiaAmount").innerHTML = document.querySelector('#sepiaImage').value + "%";
+        document.getElementById("dropshadowwidthAmount").innerHTML = document.querySelector('#dropshadowwidthImage').value + "px";
+        document.getElementById("dropshadowheightAmount").innerHTML = document.querySelector('#dropshadowheightImage').value + "px";
+        document.getElementById("dropshadowblurAmount").innerHTML = document.querySelector('#dropshadowblurImage').value + "px";
+        document.getElementById("dropshadowwidthAmount").innerHTML = document.querySelector('#dropshadowwidthImage').value + "px";
+        
 }

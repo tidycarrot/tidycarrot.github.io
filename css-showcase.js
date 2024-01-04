@@ -41,5 +41,18 @@ function changeImage() {
 }
 
 function resetcustomimage(){
-    
+    document.getElementById("customImage").style.filter = 
+          'blur(0px) brightness(100%) contrast(100%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(100%) sepia(0%) drop-shadow(0px 0px 0px #FFA500)';
+    document.getElementById("blurAmount").innerHTML = '0px';
+    document.getElementById("brightAmount").innerHTML = '100%'
+    document.getElementById("contrastAmount").innerHTML = '100%'
+    document.getElementById("grayscaleAmount").innerHTML = '0%'
+    document.getElementById("huerotateAmount").innerHTML = '0deg'
+    document.getElementById("invertAmount").innerHTML = '0%'
+    document.getElementById("opacityAmount").innerHTML = '100%'
+    document.getElementById("saturateAmount").innerHTML = '100%'
+    document.getElementById("sepiaAmount").innerHTML = '0%'
+    document.getElementById("dropshadowwidthAmount").innerHTML = '0px'
+    document.getElementById("dropshadowheightAmount").innerHTML ='0px' 
+    document.getElementById("dropshadowblurAmount").innerHTML = '0px'
 }

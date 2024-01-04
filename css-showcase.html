@@ -175,30 +175,30 @@
             style="cursor:url('face.png'), auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">custom</label>
     </div>
     <br>
-    <div class="wrap">
-        <h2>CSS transitions</h2>
+    <div class="wrap" class="noselect">
+        <h2 class="noselect">CSS transitions</h2>
         <br>
-        <div class="wrap-left">
-            <h2>The transition property</h2>
-            <p>This property makes a transition, Click and hold the shapes to see the transition effect</p>
+        <div class="wrap-left" class="noselect">
+            <h2 class="noselect">The transition property</h2>
+            <p class="noselect">This property makes a transition, Click and hold the shapes to see the transition effect</p>
             <br>
-            <div id="yellow-green-square-color"></div>
-            <div id="pink-square-rotate"></div>
-            <div id="square-translate"></div>
-            <div id="red-square-width"></div>
-            <div id="square-to-circle"></div>
-            <div id="square-all"></div>
+            <div id="yellow-green-square-color" class="noselect"></div>
+            <div id="pink-square-rotate" class="noselect"></div>
+            <div id="square-translate" class="noselect"></div>
+            <div id="red-square-width" class="noselect"></div>
+            <div id="square-to-circle" class="noselect"></div>
+            <div id="square-all" class="noselect"></div>
         </div>
-        <div class="wrap-right">
+        <div class="wrap-right" class="noselect">
             <h2>The transition-timing-function property</h2>
             <p>This property defines the timing of the transition</p>
             <br>
-            <div id="timing-linear">timing-linear</div>
-            <div id="timing-ease">timing-ease</div>
-            <div id="timing-ease-in">timing-ease-in</div>
-            <div id="timing-ease-out">timing-ease-out</div>
-            <div id="timing-ease-in-out">timing-ease-in-out</div>
-            <div id="timing-custom">Custom timing (cubic-bezier(0.1, 0.7, 1.0, 0.1);)</div>
+            <div id="timing-linear" class="noselect">timing-linear</div>
+            <div id="timing-ease" class="noselect">timing-ease</div>
+            <div id="timing-ease-in" class="noselect">timing-ease-in</div>
+            <div id="timing-ease-out" class="noselect">timing-ease-out</div>
+            <div id="timing-ease-in-out" class="noselect">timing-ease-in-out</div>
+            <div id="timing-custom" class="noselect">Custom timing (cubic-bezier(0.1, 0.7, 1.0, 0.1);)</div>
         </div>
     </div>
     <br>
@@ -395,6 +395,12 @@
                 </td>
                 <td>
                     <input type="color" id="dropshadowcolourImage" oninput="changeImage()" value="#FFA500">
+                </td>
+                <td>
+                    <label>Reset filters:</label>
+                </td>
+                <td>
+                    <button type="button" onclick="resetcustomimage()">Reset filters</button>
                 </td>
             </tr>
         </table>

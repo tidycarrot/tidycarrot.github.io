@@ -2,6 +2,33 @@ function rickroll(){
     window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
 
+function move(){
+  
+  
+    //the script
+      var button = document.getElementById('lol');
+      //todo: mc hammer audio trigger
+  
+  
+      button.style.position = 'absolute';
+      button.style.left = '0px';
+      button.style.top = '0px';
+  
+      button.addEventListener('mouseover', function(event) {
+          var buttonWidth = button.offsetWidth;
+          var buttonHeight = button.offsetHeight;
+  
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+  
+          var randomX = Math.random() * (windowWidth - buttonWidth);
+          var randomY = Math.random() * (windowHeight - buttonHeight);
+  
+          button.style.left = randomX + 'px';
+          button.style.top = randomY + 'px';
+      });
+}
+
 /*
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -42,32 +69,5 @@ lolBtn.on("click", function() {
 });
 
 }
-
-{
-  
-  
-    //the script
-      var button = document.getElementById('myButton');
-      //todo: mc hammer audio trigger
-  
-  
-      button.style.position = 'absolute';
-      button.style.left = '0px';
-      button.style.top = '0px';
-  
-      button.addEventListener('mouseover', function(event) {
-          var buttonWidth = button.offsetWidth;
-          var buttonHeight = button.offsetHeight;
-  
-          var windowWidth = window.innerWidth;
-          var windowHeight = window.innerHeight;
-  
-          var randomX = Math.random() * (windowWidth - buttonWidth);
-          var randomY = Math.random() * (windowHeight - buttonHeight);
-  
-          button.style.left = randomX + 'px';
-          button.style.top = randomY + 'px';
-      });
-  }
 
 */

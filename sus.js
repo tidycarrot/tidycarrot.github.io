@@ -1,3 +1,73 @@
 function rickroll(){
     window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
+
+/*
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+setTimeout(function() {alert('hello');},1250);
+
+function() {
+    var lolBtn = $("#lol"),
+    count = 0;
+
+function randNum(num) {
+    return Math.floor(Math.random() * num);
+}
+
+function resetLolBtn() {
+    $(this).css({
+        position: "static"
+    });
+}
+
+
+lolBtn.on("mouseover", function() {
+    console.log("whoops");
+    count += 1;
+    console.log(count);
+
+    resetLolBtn();
+
+    $(this).css({
+        position: "absolute",
+        top: randNum(90) + "%",
+        left: randNum(90) + "%"
+    });
+});
+lolBtn.on("click", function() {
+    alert("Either there was a glitch in the matrix or you are one sly devil. It took you " + count + " attempts.")
+    alert("Don't forget to comment your number of attempts. I hope you enjoyed this pen. =)");
+    modal.fadeOut(150);
+});
+
+}
+
+{
+  
+  
+    //the script
+      var button = document.getElementById('myButton');
+      //todo: mc hammer audio trigger
+  
+  
+      button.style.position = 'absolute';
+      button.style.left = '0px';
+      button.style.top = '0px';
+  
+      button.addEventListener('mouseover', function(event) {
+          var buttonWidth = button.offsetWidth;
+          var buttonHeight = button.offsetHeight;
+  
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+  
+          var randomX = Math.random() * (windowWidth - buttonWidth);
+          var randomY = Math.random() * (windowHeight - buttonHeight);
+  
+          button.style.left = randomX + 'px';
+          button.style.top = randomY + 'px';
+      });
+  }
+
+*/

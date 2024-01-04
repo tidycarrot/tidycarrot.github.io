@@ -43,16 +43,40 @@ function changeImage() {
 function resetcustomimage(){
     document.getElementById("customImage").style.filter = 
           'blur(0px) brightness(100%) contrast(100%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(100%) sepia(0%) drop-shadow(0px 0px 0px #FFA500)';
+    
     document.getElementById("blurAmount").innerHTML = '0px';
-    document.getElementById("brightAmount").innerHTML = '100%'
-    document.getElementById("contrastAmount").innerHTML = '100%'
-    document.getElementById("grayscaleAmount").innerHTML = '0%'
-    document.getElementById("huerotateAmount").innerHTML = '0deg'
-    document.getElementById("invertAmount").innerHTML = '0%'
-    document.getElementById("opacityAmount").innerHTML = '100%'
-    document.getElementById("saturateAmount").innerHTML = '100%'
-    document.getElementById("sepiaAmount").innerHTML = '0%'
-    document.getElementById("dropshadowwidthAmount").innerHTML = '0px'
-    document.getElementById("dropshadowheightAmount").innerHTML ='0px' 
-    document.getElementById("dropshadowblurAmount").innerHTML = '0px'
+    document.getElementById("brightAmount").innerHTML = '100%';
+    document.getElementById("contrastAmount").innerHTML = '100%';
+    document.getElementById("grayscaleAmount").innerHTML = '0%';
+    document.getElementById("huerotateAmount").innerHTML = '0°';
+    document.getElementById("invertAmount").innerHTML = '0%';
+    document.getElementById("opacityAmount").innerHTML = '100%';
+    document.getElementById("saturateAmount").innerHTML = '100%';
+    document.getElementById("sepiaAmount").innerHTML = '0%';
+    document.getElementById("dropshadowwidthAmount").innerHTML = '0px';
+    document.getElementById("dropshadowheightAmount").innerHTML ='0px'; 
+    document.getElementById("dropshadowblurAmount").innerHTML = '0px';
+
+    document.querySelector('#blurImage').value = '0';
+    document.querySelector('#brightImage').value = '100';
+    document.querySelector('#contrastImage').value = '100';
+    document.querySelector('#grayscaleImage').value = '0';
+    document.querySelector('#huerotateImage').value = '0';
+    document.querySelector('#invertImage').value = '0';
+    document.querySelector('#opacityImage').value = '100';
+    document.querySelector('#saturateImage').value = '100';
+    document.querySelector('#sepiaImage').value = '0';
+    document.querySelector('#dropshadowwidthImage').value = '0';
+    document.querySelector('#dropshadowheightImage').value = '0';
+    document.querySelector('#dropshadowblurImage').value = '0';
+    document.querySelector('#dropshadowcolourImage').value = '#FFA500';
+
+}
+
+function rickrollpopup(){
+    window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+}
+
+function rickroll(){
+    window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_self', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }

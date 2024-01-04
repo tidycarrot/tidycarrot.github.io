@@ -296,7 +296,10 @@
             title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
         <br>
         <br>
+        <br>    
         <label>Change sliders to see the image filters in combinations</label>
+        <br>
+        <label>(Note, that filters are applied left to right, top to down. e.g. blur is applied before brightness.)</label>
         <br>
         <img id="customImage" src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
             style="width: 50%;height: 50%;"
@@ -372,7 +375,7 @@
                     <label>Drop shadow blur: </label><label id="dropshadowblurAmount">0px</label>
                 </td>
                 <td>
-                    <input type="range" id="dropshadowblurImage" min="0" max="50" oninput="changeImage()" value="0">
+                    <input type="range" id="dropshadowblurImage" min="0" max="30" oninput="changeImage()" value="0">
                 </td>
             </tr>
             <tr>
@@ -401,6 +404,20 @@
                 </td>
                 <td>
                     <button type="button" onclick="resetcustomimage()">Reset filters</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
+                </td>
+                <td>
+                    <button type="button" onclick="rickroll()">DO NOT CLICK</button>
+                </td>
+                <td>
+                    <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
+                </td>
+                <td>
+                    <button type="button" onclick="rickroll()">DO NOT CLICK</button>
                 </td>
             </tr>
         </table>

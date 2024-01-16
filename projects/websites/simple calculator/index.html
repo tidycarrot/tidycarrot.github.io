@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>The Calculator</title>
+    <link rel='stylesheet' href='main.css'>
+</head>
+
+<body>
+
+    <h1 style="text-align: center;">Le Calculatrice</h1>
+
+    <div class="calculator">
+
+        <div class="calculator_display">
+            <label class="calculator_output" id="output">0</label>
+        </div>
+
+        <div class="calculator_button_pad">
+            <table class="calculator_button_pad">
+                <tr>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(7)">7</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(8)">8</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(9)">9</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(5)">^</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(6)">%</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(4)">4</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(5)">5</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(6)">6</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(3)">×</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(4)">÷</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(1)">1</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(2)">2</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(3)">3</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(1)">+</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="operators(2)">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="number(0)">0</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="adddecimal()">.</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="changesign()">±</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="backspace()">Del</button>
+                    </td>
+                    <td>
+                        <button type="button" class="calculator_button" onclick="equal()">=</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script src='main.js'></script>
+
+</html>

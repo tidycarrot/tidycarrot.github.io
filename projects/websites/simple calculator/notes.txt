@@ -1,6 +1,0 @@
-Problems:
-    - Delete function not finished.
-
-TODO:
-    - Obviously don't forget to do UI.
-    - Do the M (memory) button functions.

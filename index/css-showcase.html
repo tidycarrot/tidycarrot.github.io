@@ -3,6 +3,7 @@
 
 <head>
     <title>CSS Showcase</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="css-showcase.js"></script>
     <meta charset="UTF-8">
@@ -20,410 +21,416 @@
 
 
     <!------------------------------------------------------------------------------------------>
+    <div class="contents">
 
-    <div class="wrap">
-        <h2>CSS Borders</h2><br>
+        <div class="wrap">
+            <h2>CSS Borders</h2><br>
 
-        <div class="wrap-left">
+            <div class="wrap-left">
 
-            <h2>The border-style Property</h2>
-            <p>This property specifies what kind of border to display:</p>
+                <h2>The border-style Property</h2>
+                <p>This property specifies what kind of border to display:</p>
 
-            <p style="border-style:dotted;">A dotted border.</p>
-            <p style="border-style:dashed;">A dashed border.</p>
-            <p style="border-style:solid;">A solid border.</p>
-            <p style="border-style:double;">A double border.</p>
-            <p style="border-style:groove;">A groove border.</p>
-            <p style="border-style:ridge;">A ridge border.</p>
-            <p style="border-style:inset;">An inset border.</p>
-            <p style="border-style:outset;">An outset border.</p>
-            <p style="border-style:none;">No border.</p>
-            <p style="border-style:hidden;">A hidden border.</p>
-            <p style="border-style:dotted dashed solid double;">A mixed border.</p>
+                <p style="border-style:dotted;">A dotted border.</p>
+                <p style="border-style:dashed;">A dashed border.</p>
+                <p style="border-style:solid;">A solid border.</p>
+                <p style="border-style:double;">A double border.</p>
+                <p style="border-style:groove;">A groove border.</p>
+                <p style="border-style:ridge;">A ridge border.</p>
+                <p style="border-style:inset;">An inset border.</p>
+                <p style="border-style:outset;">An outset border.</p>
+                <p style="border-style:none;">No border.</p>
+                <p style="border-style:hidden;">A hidden border.</p>
+                <p style="border-style:dotted dashed solid double;">A mixed border.</p>
+                <br>
+
+            </div>
+            <div class="wrap-right">
+
+                <h2>The border-width Property</h2>
+                <p>This property specifies the thickness of the border to display:</p>
+
+                <p style="border-style: solid;border-width: 1px;">A 1px border</p>
+                <p style="border-style: solid;border-width: 2px;">A 2px border</p>
+                <p style="border-style: solid;border-width: 3px;">A 3px border</p>
+                <p style="border-style: solid;border-width: 4px;">A 4px border</p>
+                <p style="border-style: solid;border-width: 5px;">A 5px border</p>
+                <p style="border-style: solid;border-width: 8px;">A 8px border</p>
+                <p style="border-style: solid;border-width: 10px;">A 10px border</p>
+                <p style="border-style: solid;border-width: 15px;">A 15px border</p>
+                <p style="border-style: solid;border-width: 20px;">A 20px border</p>
+                <p style="border-style: solid;border-width: 5px 10px 15px 20px;">A border with different widths</p>
+                <br>
+
+            </div>
+
+            <h2>The border-color Property</h2>
+            <p>This property specifies the color of the border to display</p>
+
+            <p style="border-style:solid ; border-color: red">A red border</p>
+            <p style="border-style:solid ; border-color: orange">A orange border</p>
+            <p style="border-style:solid ; border-color: yellow">A yellow border</p>
+            <p style="border-style:solid ; border-color: green">A green border</p>
+            <p style="border-style:solid ; border-color: blue">A blue border</p>
+            <p style="border-style:solid ; border-color: purple">A purple border</p>
+            <p style="border-style:solid ; border-color: violet">A violet border</p>
+            <p style="border-style:solid ; border-color: pink">A pink border</p>
+            <p style="border-style:solid ; border-color: gray">A gray border</p>
+            <p style="border-style:solid ; border-color: black">A black border</p>
+            <p style="border-style:solid ; border-color: red green blue yellow;">A multicolored border</p>
             <br>
 
+            <div class="wrap-left">
+
+                <h2>The border-left/top/right/bottom Property</h2>
+                <p>This property specifies which side of the border to display</p><br>
+
+                <p style="border-left: 6px solid black;">&nbsp;A border on the left</p><br>
+                <p style="border-top: 3px solid black;">&nbsp;A border on the top</p><br>
+                <p style="border-right: 6px solid black;">&nbsp;A border on the right</p><br>
+                <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
+                <br>
+
+            </div>
+            <div class="wrap-right">
+
+                <h2>The border-radius Property</h2>
+                <p>This property specifies how round the border will be to display</p>
+
+                <p style="border-style: solid; border-color: black;">Normal border</p>
+                <p style="border-style: solid; border-radius: 2px; border-color: black;">Barely round border</p>
+                <p style="border-style: solid; border-radius: 4px; border-color: black;">Very Slightly round border</p>
+                <p style="border-style: solid; border-radius: 6px; border-color: black;">Round border</p>
+                <p style="border-style: solid; border-radius: 8px; border-color: black;">Rounder border</p>
+                <p style="border-style: solid; border-radius: 10px; border-color: black;">Very round border</p>
+                <p style="border-style: solid; border-radius: 12px; border-color: black;">Roundest border</p>
+
+            </div>
+
         </div>
-        <div class="wrap-right">
-
-            <h2>The border-width Property</h2>
-            <p>This property specifies the thickness of the border to display:</p>
-
-            <p style="border-style: solid;border-width: 1px;">A 1px border</p>
-            <p style="border-style: solid;border-width: 2px;">A 2px border</p>
-            <p style="border-style: solid;border-width: 3px;">A 3px border</p>
-            <p style="border-style: solid;border-width: 4px;">A 4px border</p>
-            <p style="border-style: solid;border-width: 5px;">A 5px border</p>
-            <p style="border-style: solid;border-width: 8px;">A 8px border</p>
-            <p style="border-style: solid;border-width: 10px;">A 10px border</p>
-            <p style="border-style: solid;border-width: 15px;">A 15px border</p>
-            <p style="border-style: solid;border-width: 20px;">A 20px border</p>
-            <p style="border-style: solid;border-width: 5px 10px 15px 20px;">A border with different widths</p>
+        <br>
+        <div class="wrap">
+            <h2>The cursor property</h2>
+            <p>This property specifies what cursor your mouse will be to display</p><br>
+            <p>Mouse over the words to change the cursor.</p>
+            <label
+                style="cursor: alias;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">alias</label>
+            <label
+                style="cursor:auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">auto</label>
+            <label
+                style="cursor:cell;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">cell</label>
+            <label
+                style="cursor:col-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">col-resize</label>
+            <label
+                style="cursor:copy;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">copy</label>
+            <label
+                style="cursor:crosshair;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">crosshair</label>
+            <label
+                style="cursor:default;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">default</label>
+            <label
+                style="cursor:e-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">e-resize</label>
+            <label
+                style="cursor:grab;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">grab</label>
+            <label
+                style="cursor:grabbing;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">grabbing</label>
+            <label
+                style="cursor:help;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">help</label>
+            <label
+                style="cursor:move;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">move</label>
+            <label
+                style="cursor: none;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">none</label>
+            <label
+                style="cursor: not-allowed;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">not
+                allowed</label>
+            <label
+                style="cursor:n-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">n-resize</label>
+            <label
+                style="cursor:ne-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">ne-resize</label>
+            <label
+                style="cursor:nw-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">nw-resize</label>
+            <label
+                style="cursor:pointer;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">pointer</label>
+            <label
+                style="cursor:progress;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">progress</label>
+            <label
+                style="cursor:row-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">row-resize</label>
+            <label
+                style="cursor:s-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">s-resize</label>
+            <label
+                style="cursor:se-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">se-resize</label>
+            <label
+                style="cursor:sw-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">sw-resize</label>
+            <label
+                style="cursor:text;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">text</label>
+            <label
+                style="cursor:vertical-text;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">vertical
+                text</label>
+            <label
+                style="cursor:w-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">w-resize</label>
+            <label
+                style="cursor:wait;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">wait</label>
+            <label
+                style="cursor:zoom-in;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">zoom-in</label>
+            <label
+                style="cursor:zoom-out;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">zoom-out</label>
+            <label
+                style="cursor:url('face.png'), auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">custom</label>
+        </div>
+        <br>
+        <div class="wrap" class="noselect">
+            <h2 class="noselect">CSS transitions</h2>
             <br>
-
+            <div class="wrap-left" class="noselect">
+                <h2 class="noselect">The transition property</h2>
+                <p class="noselect">This property makes a transition, Click and hold the shapes to see the transition
+                    effect
+                </p>
+                <br>
+                <div id="yellow-green-square-color" class="noselect"></div>
+                <div id="pink-square-rotate" class="noselect"></div>
+                <div id="square-translate" class="noselect"></div>
+                <div id="red-square-width" class="noselect"></div>
+                <div id="square-to-circle" class="noselect"></div>
+                <div id="square-all" class="noselect"></div>
+            </div>
+            <div class="wrap-right" class="noselect">
+                <h2>The transition-timing-function property</h2>
+                <p>This property defines the timing of the transition</p>
+                <br>
+                <div id="timing-linear" class="noselect">timing-linear</div>
+                <div id="timing-ease" class="noselect">timing-ease</div>
+                <div id="timing-ease-in" class="noselect">timing-ease-in</div>
+                <div id="timing-ease-out" class="noselect">timing-ease-out</div>
+                <div id="timing-ease-in-out" class="noselect">timing-ease-in-out</div>
+                <div id="timing-custom" class="noselect">Custom timing (cubic-bezier(0.1, 0.7, 1.0, 0.1);)</div>
+            </div>
         </div>
-
-        <h2>The border-color Property</h2>
-        <p>This property specifies the color of the border to display</p>
-
-        <p style="border-style:solid ; border-color: red">A red border</p>
-        <p style="border-style:solid ; border-color: orange">A orange border</p>
-        <p style="border-style:solid ; border-color: yellow">A yellow border</p>
-        <p style="border-style:solid ; border-color: green">A green border</p>
-        <p style="border-style:solid ; border-color: blue">A blue border</p>
-        <p style="border-style:solid ; border-color: purple">A purple border</p>
-        <p style="border-style:solid ; border-color: violet">A violet border</p>
-        <p style="border-style:solid ; border-color: pink">A pink border</p>
-        <p style="border-style:solid ; border-color: gray">A gray border</p>
-        <p style="border-style:solid ; border-color: black">A black border</p>
-        <p style="border-style:solid ; border-color: red green blue yellow;">A multicolored border</p>
         <br>
-
-        <div class="wrap-left">
-
-            <h2>The border-left/top/right/bottom Property</h2>
-            <p>This property specifies which side of the border to display</p><br>
-
-            <p style="border-left: 6px solid black;">&nbsp;A border on the left</p><br>
-            <p style="border-top: 3px solid black;">&nbsp;A border on the top</p><br>
-            <p style="border-right: 6px solid black;">&nbsp;A border on the right</p><br>
-            <p style="border-bottom: 3px solid black;">&nbsp;A border on the bottom</p><br>
+        <div class="wrap">
+            <h2>The filter property</h2>
+            <p>This property changes the image's look</p>
+            <p>Note: The filter property is not supported in Edge 12 or Internet Explorer and the picture may break in
+                other
+                browsers.</p>
             <br>
-
-        </div>
-        <div class="wrap-right">
-
-            <h2>The border-radius Property</h2>
-            <p>This property specifies how round the border will be to display</p>
-
-            <p style="border-style: solid; border-color: black;">Normal border</p>
-            <p style="border-style: solid; border-radius: 2px; border-color: black;">Barely round border</p>
-            <p style="border-style: solid; border-radius: 4px; border-color: black;">Very Slightly round border</p>
-            <p style="border-style: solid; border-radius: 6px; border-color: black;">Round border</p>
-            <p style="border-style: solid; border-radius: 8px; border-color: black;">Rounder border</p>
-            <p style="border-style: solid; border-radius: 10px; border-color: black;">Very round border</p>
-            <p style="border-style: solid; border-radius: 12px; border-color: black;">Roundest border</p>
-
-        </div>
-
-    </div>
-    <br>
-    <div class="wrap">
-        <h2>The cursor property</h2>
-        <p>This property specifies what cursor your mouse will be to display</p><br>
-        <p>Mouse over the words to change the cursor.</p>
-        <label
-            style="cursor: alias;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">alias</label>
-        <label
-            style="cursor:auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">auto</label>
-        <label
-            style="cursor:cell;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">cell</label>
-        <label
-            style="cursor:col-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">col-resize</label>
-        <label
-            style="cursor:copy;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">copy</label>
-        <label
-            style="cursor:crosshair;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">crosshair</label>
-        <label
-            style="cursor:default;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">default</label>
-        <label
-            style="cursor:e-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">e-resize</label>
-        <label
-            style="cursor:grab;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">grab</label>
-        <label
-            style="cursor:grabbing;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">grabbing</label>
-        <label
-            style="cursor:help;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">help</label>
-        <label
-            style="cursor:move;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">move</label>
-        <label
-            style="cursor: none;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">none</label>
-        <label
-            style="cursor: not-allowed;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">not
-            allowed</label>
-        <label
-            style="cursor:n-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">n-resize</label>
-        <label
-            style="cursor:ne-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">ne-resize</label>
-        <label
-            style="cursor:nw-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">nw-resize</label>
-        <label
-            style="cursor:pointer;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">pointer</label>
-        <label
-            style="cursor:progress;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">progress</label>
-        <label
-            style="cursor:row-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">row-resize</label>
-        <label
-            style="cursor:s-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">s-resize</label>
-        <label
-            style="cursor:se-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">se-resize</label>
-        <label
-            style="cursor:sw-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">sw-resize</label>
-        <label
-            style="cursor:text;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">text</label>
-        <label
-            style="cursor:vertical-text;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">vertical
-            text</label>
-        <label
-            style="cursor:w-resize;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">w-resize</label>
-        <label
-            style="cursor:wait;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">wait</label>
-        <label
-            style="cursor:zoom-in;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">zoom-in</label>
-        <label
-            style="cursor:zoom-out;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">zoom-out</label>
-        <label
-            style="cursor:url('face.png'), auto;border: solid black 1px;padding: 4px 30px;border-radius: 4px;width:20%;display:inline-block;flex: 0 0 auto;">custom</label>
-    </div>
-    <br>
-    <div class="wrap" class="noselect">
-        <h2 class="noselect">CSS transitions</h2>
-        <br>
-        <div class="wrap-left" class="noselect">
-            <h2 class="noselect">The transition property</h2>
-            <p class="noselect">This property makes a transition, Click and hold the shapes to see the transition effect
-            </p>
+            <label>No filters</label>
             <br>
-            <div id="yellow-green-square-color" class="noselect"></div>
-            <div id="pink-square-rotate" class="noselect"></div>
-            <div id="square-translate" class="noselect"></div>
-            <div id="red-square-width" class="noselect"></div>
-            <div id="square-to-circle" class="noselect"></div>
-            <div id="square-all" class="noselect"></div>
-        </div>
-        <div class="wrap-right" class="noselect">
-            <h2>The transition-timing-function property</h2>
-            <p>This property defines the timing of the transition</p>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter:none;width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
             <br>
-            <div id="timing-linear" class="noselect">timing-linear</div>
-            <div id="timing-ease" class="noselect">timing-ease</div>
-            <div id="timing-ease-in" class="noselect">timing-ease-in</div>
-            <div id="timing-ease-out" class="noselect">timing-ease-out</div>
-            <div id="timing-ease-in-out" class="noselect">timing-ease-in-out</div>
-            <div id="timing-custom" class="noselect">Custom timing (cubic-bezier(0.1, 0.7, 1.0, 0.1);)</div>
-        </div>
-    </div>
-    <br>
-    <div class="wrap">
-        <h2>The filter property</h2>
-        <p>This property changes the image's look</p>
-        <p>Note: The filter property is not supported in Edge 12 or Internet Explorer and the picture may break in other
-            browsers.</p>
-        <br>
-        <label>No filters</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:none;width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Blur filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:blur(4px);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Brightness filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:brightness(250%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Contrast filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:contrast(180%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Grayscale filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter:grayscale(100%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Hue-rotate filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: hue-rotate(180deg);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Invert filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: invert(100%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Opacity filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: opacity(50%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Saturate filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: saturate(7);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Sepia filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: sepia(100%);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <label>Drop-shadow filter</label>
-        <br>
-        <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="filter: drop-shadow(8px 8px 10px orange);width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <br>
-        <label>Change sliders to see the image filters in combinations</label>
-        <br>
-        <label>(Note, that filters are applied left to right, top to down. e.g. blur is applied before
-            brightness.)</label>
-        <br>
-        <img id="customImage" src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
-            style="width: 50%;height: 50%;"
-            alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
-            title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
-        <br>
-        <br>
-        <table style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
-            <tr>
-                <td>
-                    <label>Blur: </label><label id="blurAmount">0px</label>
-                </td>
-                <td>
-                    <input type="range" id="blurImage" min="0" max="25" oninput="changeImage()" value="0">
-                </td>
-                <td>
-                    <label> Brightness: </label><label id="brightAmount">100%</label>
-                </td>
-                <td>
-                    <input type="range" id="brightImage" min="0" max="250" oninput="changeImage()" value="100">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Contrast: </label><label id="contrastAmount">100%</label>
-                </td>
-                <td>
-                    <input type="range" id="contrastImage" min="0" max="250" oninput="changeImage()" value="100">
-                </td>
-                <td>
-                    <label>Grayscale: </label><label id="grayscaleAmount">0%</label>
-                </td>
-                <td>
-                    <input type="range" id="grayscaleImage" min="0" max="100" oninput="changeImage()" value="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Hue-rotate: </label><label id="huerotateAmount">0°</label>
-                </td>
-                <td>
-                    <input type="range" id="huerotateImage" min="0" max="360" oninput="changeImage()" value="0">
-                </td>
-                <td>
-                    <label>Invert: </label><label id="invertAmount">0%</label>
-                </td>
-                <td>
-                    <input type="range" id="invertImage" min="0" max="100" oninput="changeImage()" value="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Opacity: </label><label id="opacityAmount">100%</label>
-                </td>
-                <td>
-                    <input type="range" id="opacityImage" min="0" max="100" oninput="changeImage()" value="100">
-                </td>
-                <td>
-                    <label>Saturate: </label><label id="saturateAmount">100%</label>
-                </td>
-                <td>
-                    <input type="range" id="saturateImage" min="0" max="750" oninput="changeImage()" value="100">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Sepia: </label><label id="sepiaAmount">0%</label>
-                </td>
-                <td>
-                    <input type="range" id="sepiaImage" min="0" max="100" oninput="changeImage()" value="0">
-                </td>
-                <td>
-                    <label>Drop shadow blur: </label><label id="dropshadowblurAmount">0px</label>
-                </td>
-                <td>
-                    <input type="range" id="dropshadowblurImage" min="0" max="30" oninput="changeImage()" value="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Drop shadow width: </label><label id="dropshadowwidthAmount">0px</label>
-                </td>
-                <td>
-                    <input type="range" id="dropshadowwidthImage" min="-16" max="16" oninput="changeImage()" value="0">
-                </td>
-                <td>
-                    <label>Drop shadow height: </label><label id="dropshadowheightAmount">0px</label>
-                </td>
-                <td>
-                    <input type="range" id="dropshadowheightImage" min="-16" max="16" oninput="changeImage()" value="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Drop shadow colour: </label>
-                </td>
-                <td>
-                    <input type="color" id="dropshadowcolourImage" oninput="changeImage()" value="#FFA500">
-                </td>
-                <td>
-                    <label>Reset filters:</label>
-                </td>
-                <td>
-                    <button type="button" onclick="resetcustomimage()">Reset filters</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
-                </td>
-                <td>
-                    <button type="button" onclick="rickroll()">DO NOT CLICK</button>
-                </td>
-                <td>
-                    <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
-                </td>
-                <td>
-                    <button type="button" onclick="rickroll()">DO NOT CLICK</button>
-                </td>
-            </tr>
-        </table>
+            <br>
+            <label>Blur filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter:blur(4px);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Brightness filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter:brightness(250%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Contrast filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter:contrast(180%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Grayscale filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter:grayscale(100%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Hue-rotate filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: hue-rotate(180deg);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Invert filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: invert(100%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Opacity filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: opacity(50%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Saturate filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: saturate(7);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Sepia filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: sepia(100%);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <label>Drop-shadow filter</label>
+            <br>
+            <img src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="filter: drop-shadow(8px 8px 10px orange);width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <br>
+            <label>Change sliders to see the image filters in combinations</label>
+            <br>
+            <label>(Note, that filters are applied left to right, top to down. e.g. blur is applied before
+                brightness.)</label>
+            <br>
+            <img id="customImage" src="https://live.staticflickr.com/3754/9140286259_cde394ae7c_b.jpg"
+                style="width: 50%;height: 50%;"
+                alt="Picture of an Orange. Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/"
+                title="Orange by fred_v is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/">
+            <br>
+            <br>
+            <table style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
+                <tr>
+                    <td>
+                        <label>Blur: </label><label id="blurAmount">0px</label>
+                    </td>
+                    <td>
+                        <input type="range" id="blurImage" min="0" max="25" oninput="changeImage()" value="0">
+                    </td>
+                    <td>
+                        <label> Brightness: </label><label id="brightAmount">100%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="brightImage" min="0" max="250" oninput="changeImage()" value="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Contrast: </label><label id="contrastAmount">100%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="contrastImage" min="0" max="250" oninput="changeImage()" value="100">
+                    </td>
+                    <td>
+                        <label>Grayscale: </label><label id="grayscaleAmount">0%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="grayscaleImage" min="0" max="100" oninput="changeImage()" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Hue-rotate: </label><label id="huerotateAmount">0°</label>
+                    </td>
+                    <td>
+                        <input type="range" id="huerotateImage" min="0" max="360" oninput="changeImage()" value="0">
+                    </td>
+                    <td>
+                        <label>Invert: </label><label id="invertAmount">0%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="invertImage" min="0" max="100" oninput="changeImage()" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Opacity: </label><label id="opacityAmount">100%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="opacityImage" min="0" max="100" oninput="changeImage()" value="100">
+                    </td>
+                    <td>
+                        <label>Saturate: </label><label id="saturateAmount">100%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="saturateImage" min="0" max="750" oninput="changeImage()" value="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Sepia: </label><label id="sepiaAmount">0%</label>
+                    </td>
+                    <td>
+                        <input type="range" id="sepiaImage" min="0" max="100" oninput="changeImage()" value="0">
+                    </td>
+                    <td>
+                        <label>Drop shadow blur: </label><label id="dropshadowblurAmount">0px</label>
+                    </td>
+                    <td>
+                        <input type="range" id="dropshadowblurImage" min="0" max="30" oninput="changeImage()" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Drop shadow width: </label><label id="dropshadowwidthAmount">0px</label>
+                    </td>
+                    <td>
+                        <input type="range" id="dropshadowwidthImage" min="-16" max="16" oninput="changeImage()"
+                            value="0">
+                    </td>
+                    <td>
+                        <label>Drop shadow height: </label><label id="dropshadowheightAmount">0px</label>
+                    </td>
+                    <td>
+                        <input type="range" id="dropshadowheightImage" min="-16" max="16" oninput="changeImage()"
+                            value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Drop shadow colour: </label>
+                    </td>
+                    <td>
+                        <input type="color" id="dropshadowcolourImage" oninput="changeImage()" value="#FFA500">
+                    </td>
+                    <td>
+                        <label>Reset filters:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="resetcustomimage()">Reset filters</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="rickroll()">DO NOT CLICK</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="rickrollpopup()">DO NOT CLICK</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="rickroll()">DO NOT CLICK</button>
+                    </td>
+                </tr>
+            </table>
 
+        </div>
     </div>
 
 </body>

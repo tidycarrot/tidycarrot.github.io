@@ -1,14 +1,24 @@
 body {
-    margin: auto;
-    width: 80%;
-    text-align: center;
     margin-top: 10px;
+    margin: auto;
+
+    text-align: center;
+
+    min-width: 400px;
+    width: 80%;
 }
 
 label {
     text-align: center;
 }
 
+.contents {
+    border: 1px solid #333;
+    border-top: none;
+    margin-top: 0;
+    padding: 1em;
+    overflow: auto;
+}
 
 /*Navigation bar*/
 
@@ -21,11 +31,11 @@ ul.navbar {
     background-color: #333;
 }
 
-li {
+.navbar li {
     float: left;
 }
 
-li a {
+.navbar li a {
     display: block;
     color: white;
     text-align: center;
@@ -33,7 +43,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+.navbar li a:hover {
     background-color: #111;
 }
 
@@ -125,7 +135,7 @@ li a:hover {
 #square-to-circle {
     width: 100px;
     height: 100px;
-    background: black;
+    background: #333;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -346,21 +356,35 @@ li a:hover {
     margin-right: auto;
 }
 
-table,
-th,
-td {
-    border: 1px solid black;
-    border-collapse: collapse;
+.project-table,
+.project-table th,
+.project-table td {
+    border: 1px solid #333;
+    /* border-collapse: collapse; */
+    border-radius: 4px;
+    padding: 0.4em;
 }
 
-.project-table_header_name {
+.project-table .header_name {
     width: 250px;
+    background-color: darksalmon;
 }
 
-.project-table_header_files {
+.project-table .header_files {
     width: 250px;
+    background-color: yellowgreen;
 }
 
-.project-table_header_notes {
+.project-table .header_notes {
     width: 250px;
+    background-color: skyblue;
+}
+
+.project-table .header_date {
+    width: 75px;
+    background-color: plum;
+}
+
+.file-list li {
+    text-align: left;
 }

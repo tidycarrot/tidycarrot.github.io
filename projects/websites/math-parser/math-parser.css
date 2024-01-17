@@ -1,0 +1,21 @@
+.contents {
+    margin: auto;
+    text-align: center;
+    width: 80%;
+}
+
+#input {
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+}
+
+#output {
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+}

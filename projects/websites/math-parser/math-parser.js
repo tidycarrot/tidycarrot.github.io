@@ -100,7 +100,7 @@ const operators = {
 function tokenize(equation) {
     let tokens = [];
     let decimal = false;
-    let num;
+    let num = "";
 
     for (let i = 0; i <= equation.length; i++) {
 
@@ -109,27 +109,50 @@ function tokenize(equation) {
             continue;
         let next = nextCharacter(equation, i);
 
+        if (tokens.length > 1){
+            let before = tokens[-1];
+        } else {
+            let before;
+        }
+
         switch (curr) {
 
             case '+':
-            case '-':
             case '/':
             case '*':
-            case ')':
+                if (num !== "" && num !== undefined) {
+                    tokens.push({ type: 'num', data: num });
+                    num = "";
+                }
                 tokens.push({ type: 'op', data: curr });
                 decimal = false;
                 break;
+            case '-':
+                if (before.type == 'op'){
+                    // Do unary minus operator 
+                }
+                break;
+            case ')':
+                if (num !== "" && num !== undefined) {
+                    tokens.push({ type: 'num', data: num });
+                    num = "";
+                }
+                tokens.push({ type: 'right_br', data: curr });
+                decimal = false;
+                break;
             case '(':
-                if (!isNaNtokens[-1]) {
-                    tokens.push({ type: 'num', data: curr });
+                if (num !== "" && num !== undefined) {
+                    tokens.push({ type: 'num', data: num });
+                    tokens.push({ type: 'op', data: '*' });
+                    tokens.push({ type: 'left_br', data: curr });
+                    num = "";
                     decimal = false;
                     break;
                 } else {
-                    tokens.push({ type: 'op', data: curr });
+                    tokens.push({ type: 'left_br', data: curr });
                     decimal = false;
                     break;
                 }
-                break;
             default:
                 if (!isNaN(curr)) {
                     num += curr;
@@ -141,6 +164,8 @@ function tokenize(equation) {
                     else if (decimal) {
                         console.log(`Unexpected at ${i}`)
                     }
+                } else {
+                    console.log
                 }
                 break;
         }

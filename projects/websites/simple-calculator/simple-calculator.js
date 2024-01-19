@@ -67,12 +67,14 @@ function operators(op) {
 function changesign() {
 
     if (operator == null) {
-        num1 = parseFloat(num1);
-        num1 *= -1;
+        if (num1[0] != "-")
+            num1 = "-" + num1;
+        else num1 = num1.slice(1);
     }
     if (operator != null && num2 != null) {
-        num2 = parseFloat(num2);
-        num2 *= -1;
+        if (num2[0] != "-")
+            num2 = "-" + num2;
+        else num2 = num2.slice(1);
     }
 
     display();
@@ -178,19 +180,26 @@ function number(num) {
 }
 
 function backspace() {
-    if (operator != null && num2 != null && num2.length > 1 && num2[-1] != "."){
+    if (num1 != null) {
+        num1 = num1.toString();
+    }
+
+    if (num2 != null) {
+        num2 = num2.toString();
+    }
+    if (operator != null && num2 != null && num2.length > 1 && num2[num2.length - 1] != ".") {
         num2 = num2.slice(0, num2.length - 1);
-    } else if (operator != null && num2 != null && num2.length > 1 && num2[-1] == "."){
+    } else if (operator != null && num2 != null && num2.length > 1 && num2[num2.length - 1] == ".") {
         num2 = num2.slice(0, num2.length - 1);
         decimalplace = false;
-    } else if (operator != null && num2 != null && num2.length == 1){
+    } else if (operator != null && num2 != null && num2.length == 1) {
         num2 = null;
     } else if (operator != null && num2 == null) {
         operator = null;
-    } else if (operator == null && num2 == null && num1.length > 1 && num1[-1] != "."){
+    } else if (operator == null && num2 == null && num1.length > 1 && num1[num1.length - 1] != ".") {
         num1 = num1.slice(0, num1.length - 1);
         afterevaluate = false;
-    } else if (operator == null && num2 == null && num1.length > 1 && num1[-1] == "."){
+    } else if (operator == null && num2 == null && num1.length > 1 && num1[num1.length - 1] == ".") {
         num1 = num1.slice(0, num1.length - 1);
         decimalplace = false;
         afterevaluate = false;

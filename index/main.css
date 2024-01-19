@@ -367,22 +367,22 @@ ul.navbar {
 
 .project-table .header_name {
     width: 250px;
-    background-color: darksalmon;
+    background-color: #ffb3ba;
 }
 
 .project-table .header_files {
     width: 250px;
-    background-color: yellowgreen;
+    background-color: #ffdfba;
 }
 
 .project-table .header_notes {
     width: 250px;
-    background-color: skyblue;
+    background-color: #ffffba;
 }
 
 .project-table .header_date {
     width: 75px;
-    background-color: plum;
+    background-color: #baffc9;
 }
 
 .file-list li {

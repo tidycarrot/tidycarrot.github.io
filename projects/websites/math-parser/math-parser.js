@@ -1,7 +1,9 @@
 // This is just the parser, not the graphing calculator
 
-let input = document.getElementById('input');
-let output = document.getElementById('output');
+let input = document.querySelector("#input");
+let output_token = document.querySelector("#output_token");
+let output_rpn = document.querySelector("#output_rpn");
+let output_answer = document.querySelector("#output_answer");
 
 function isWhitespace(c) {
     return c === ' '
@@ -98,7 +100,7 @@ const operators = {
 };
 
 function tokenize(equation) {
-    let tokens = [];
+    let tokens = [{}];
     let decimal = false;
     let num = "";
 
@@ -109,11 +111,12 @@ function tokenize(equation) {
             continue;
         let next = nextCharacter(equation, i);
 
-        if (tokens.length > 1){
-            let before = tokens[-1];
-        } else {
-            let before;
+
+        let before;
+        if (tokens.length >= 1){
+            before = tokens[tokens.length+1];
         }
+        console.log(before);
 
         switch (curr) {
 
@@ -128,10 +131,11 @@ function tokenize(equation) {
                 decimal = false;
                 break;
             case '-':
-                if (before.type == 'op'){
+                if (before && before.type == 'op'){
                     // Do unary minus operator 
                 }
                 break;
+            
             case ')':
                 if (num !== "" && num !== undefined) {
                     tokens.push({ type: 'num', data: num });
@@ -162,14 +166,23 @@ function tokenize(equation) {
                         decimal = true;
                     }
                     else if (decimal) {
-                        console.log(`Unexpected at ${i}`)
+                        console.log(`Duplicate decimal at ${i}`)
                     }
                 } else {
-                    console.log
+                    console.log(`Unexpected character at ${i}`);
                 }
                 break;
         }
     }
 
     return tokens;
+}
+
+function answer(){
+    let tokenized = tokenize(input);
+    let tokenized_output = "";
+    for (let i = 0; i <= tokenized.length; i++){
+        tokenized_output += tokenized[i].data;
+    }
+    output_token = tokenized_output;
 }

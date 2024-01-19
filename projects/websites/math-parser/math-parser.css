@@ -1,7 +1,7 @@
 .contents {
     margin: auto;
     text-align: center;
-    width: 80%;
+    width: 75vw;
 }
 
 #input {
@@ -12,7 +12,7 @@
     display: block;
 }
 
-#output {
+#output_token {
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;

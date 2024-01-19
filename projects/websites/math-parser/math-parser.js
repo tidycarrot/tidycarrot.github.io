@@ -1,10 +1,5 @@
 // This is just the parser, not the graphing calculator
 
-let input = document.querySelector("#input");
-let output_token = document.querySelector("#output_token");
-let output_rpn = document.querySelector("#output_rpn");
-let output_answer = document.querySelector("#output_answer");
-
 function isWhitespace(c) {
     return c === ' '
         || c === '\n'
@@ -100,7 +95,7 @@ const operators = {
 };
 
 function tokenize(equation) {
-    let tokens = [{}];
+    let tokens = [];
     let decimal = false;
     let num = "";
 
@@ -111,12 +106,10 @@ function tokenize(equation) {
             continue;
         let next = nextCharacter(equation, i);
 
-
         let before;
-        if (tokens.length >= 1){
-            before = tokens[tokens.length+1];
+        if (tokens.length >= 1) {
+            before = tokens[tokens.length - 1];
         }
-        console.log(before);
 
         switch (curr) {
 
@@ -131,11 +124,17 @@ function tokenize(equation) {
                 decimal = false;
                 break;
             case '-':
-                if (before && before.type == 'op'){
-                    // Do unary minus operator 
+                if (before && before.type == 'op') {
+                    tokens.push({ type: 'op', data: '_' });
+                } else {
+                    if (num !== "" && num !== undefined) {
+                        tokens.push({ type: 'num', data: num });
+                        num = "";
+                    }
+                    tokens.push({ type: 'op', data: '-' });
                 }
                 break;
-            
+
             case ')':
                 if (num !== "" && num !== undefined) {
                     tokens.push({ type: 'num', data: num });
@@ -151,12 +150,11 @@ function tokenize(equation) {
                     tokens.push({ type: 'left_br', data: curr });
                     num = "";
                     decimal = false;
-                    break;
                 } else {
                     tokens.push({ type: 'left_br', data: curr });
                     decimal = false;
-                    break;
                 }
+                break;
             default:
                 if (!isNaN(curr)) {
                     num += curr;
@@ -178,11 +176,15 @@ function tokenize(equation) {
     return tokens;
 }
 
-function answer(){
+function answer() {
+    let input = document.getElementById("input").value;
+    let output_token = document.getElementById("output_token").innerHTML;
+    let output_rpn = document.querySelector("#output_rpn");
+    let output_answer = document.querySelector("#output_answer");
     let tokenized = tokenize(input);
     let tokenized_output = "";
-    for (let i = 0; i <= tokenized.length; i++){
-        tokenized_output += tokenized[i].data;
+    for (let i = 0; i < tokenized.length; i++) {
+        tokenized_output += tokenized[i-1].data;
     }
     output_token = tokenized_output;
 }

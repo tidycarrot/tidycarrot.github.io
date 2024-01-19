@@ -1,7 +1,7 @@
 Notes:
 
 Needs fixing:
-    - Fix tokenizer for numbers (floats) ... Fixing
+    - Answer function is not working. Cannot access data property
 
 TODO:
     - Implement unary operators and strings

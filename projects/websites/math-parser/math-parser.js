@@ -99,7 +99,7 @@ function tokenize(equation) {
     let decimal = false;
     let num = "";
 
-    for (let i = 0; i <= equation.length; i++) {
+    for (let i = 0; i < equation.length; i++) {
 
         let curr = equation[i];
         if (isWhitespace(curr))
@@ -115,7 +115,6 @@ function tokenize(equation) {
 
             case '+':
             case '/':
-            case '*':
                 if (num !== "" && num !== undefined) {
                     tokens.push({ type: 'num', data: num });
                     num = "";
@@ -123,8 +122,17 @@ function tokenize(equation) {
                 tokens.push({ type: 'op', data: curr });
                 decimal = false;
                 break;
+            case '*':
+            case '×':
+                if (num !== "" && num !== undefined) {
+                    tokens.push({ type: 'num', data: num });
+                    num = "";
+                }
+                tokens.push({ type: 'op', data: '*' });
+                decimal = false;
+                break;
             case '-':
-                if (before && before.type == 'op') {
+                if (before == undefined || before.type == 'op' || before.type == 'left_br') {
                     tokens.push({ type: 'op', data: '_' });
                 } else {
                     if (num !== "" && num !== undefined) {
@@ -178,13 +186,13 @@ function tokenize(equation) {
 
 function answer() {
     let input = document.getElementById("input").value;
-    let output_token = document.getElementById("output_token").innerHTML;
+    let output_token = document.querySelector("#output_token").innerHTML;
     let output_rpn = document.querySelector("#output_rpn");
     let output_answer = document.querySelector("#output_answer");
     let tokenized = tokenize(input);
     let tokenized_output = "";
-    for (let i = 0; i < tokenized.length; i++) {
-        tokenized_output += tokenized[i-1].data;
+    for (let i = 0; i <= tokenized.length; i++) {
+        tokenized_output += tokenized[i + 1].data;
     }
-    output_token = tokenized_output;
+    console.log(tokenized_output);
 }

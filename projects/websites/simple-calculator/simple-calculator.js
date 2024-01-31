@@ -210,3 +210,38 @@ function backspace() {
 
     display();
 }
+
+window.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+    }
+
+    switch (event.key) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        case "0":
+            number(event.key);
+            break;
+        case "ArrowUp":
+            alert("Arrow up key was pressed");
+            break;
+        case "ArrowLeft":
+            alert("Arrow left key was pressed");
+            break;
+        case "ArrowRight":
+            alert("Arrow right key was pressed");
+            break;
+        default:
+            return; // Quit when this doesn't handle the key event.
+    }
+
+    // Cancel the default action to avoid it being handled twice
+    event.preventDefault();
+}, true);

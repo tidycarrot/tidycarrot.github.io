@@ -229,16 +229,46 @@ window.addEventListener("keydown", function (event) {
         case "0":
             number(event.key);
             break;
-        case "ArrowUp":
-            alert("Arrow up key was pressed");
+        case "+":
+            operators(1);
             break;
-        case "ArrowLeft":
-            alert("Arrow left key was pressed");
+        case "-":
+            operators(2);
             break;
-        case "ArrowRight":
-            alert("Arrow right key was pressed");
+        case "*":
+            operators(3);
+            break;
+        case "/":
+            operators(4);
+            break;
+        case "%":
+            operators(6);
+            break;
+        case "^":
+            operators(5);
+            break;
+        case "=":
+        case "Enter":
+            equal();
+            break;
+        case "Backspace":
+        case "Delete":
+            backspace();
+            break;
+        case ".":
+            adddecimal();
+            break;
+        case "_":
+        case "#":
+        case "$":
+        case "@":
+        case "~":
+        changesign();
+            break;
+        case "Shift":
             break;
         default:
+           alert(`'${event.key}' is not a valid key.`);
             return; // Quit when this doesn't handle the key event.
     }
 

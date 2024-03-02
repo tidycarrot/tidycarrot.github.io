@@ -1,9 +1,12 @@
 Notes:
 
 Needs fixing:
-    - Answer function is not working. Cannot access data property
+    - Answer function is not working
+    - Cannot access data property of tokens
+    - Visible on screen console does not work
 
 TODO:
+    - Make duplicate addition operators do nothing in front of other operators and brackets
     - Implement unary operators and strings
     - Do something for errors
     - Do something when consecutive substraction tokens occur next to each other or brackets

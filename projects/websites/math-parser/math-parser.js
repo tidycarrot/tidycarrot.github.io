@@ -21,12 +21,14 @@ function isWhitespace(c) {
 		|| c === '\ufeff'
 }
 
+/*
 function isLetter(l) {
 	if (l.charCodeAt(0)>=65 && l.charCodeAt(0)<=122){
 		return true;
 	}
 	else return false;
 }
+*/
 
 // Returns next non-whitespace after array[current], or null if none
 function nextCharacter(array, current) {
@@ -53,25 +55,40 @@ function answer() {
 // Some definitions
 const operators = {
 	'+': {
+		type: 'op',
+		data: '+',
 		precedence: 1,
 		associativity: "left",
 		type: "binary",
 	},
 	'-': {
+		type: 'op',
+		data: '-',
 		precedence: 1,
 		associativity: "left",
 		type: "binary",
 	},
 	'/': {
+		type: 'op',
+		data: '/',
 		precedence: 2,
 		associativity: "left",
 		type: "binary",
 	},
 	'*': {
+		type: 'op',
+		data: '*',
 		precedence: 2,
 		associativity: "left",
 		type: "binary",
 	},
+	'_': {
+		type: 'op',
+		data: '_',
+		precedence: 1,
+		associativity: "right",
+		type: "unary",
+	}
 	/*
 	'%':{
 			precendence: 2,
@@ -113,6 +130,10 @@ const operators = {
 			function: Math.abs,
 	}
 	*/
+}
+
+function precedence(operator) {
+	return operators[operator].precedence;
 }
 
 // Tokenizing the equation
@@ -223,21 +244,10 @@ function tokenize(equation) {
 				decimal = false;
 				break;
 
-			// The left bracket, '(', is special because if a number was directly before it, in an algebraic context,
-			// it would multiply with whatever is in the pair of brackets, '(' and ')', and this means that I need to
-			// sneakily insert a multiplication sign between coefficient and the left bracket. I was considering for
-			// this insert of multiplication to have a slighlty higher precedence than multiplication and division
-			// (precedence is the level of importance that an operator has where plus has lowest priority and 
-			// parentheses possess the highest priority, accordingly to BODMAS or PEDMAS) as in an algebraic context,
-			// coefficients next to variables have more precedence that muliplication and division 
-			// (e.g. 5 ÷ 3x is 5 ÷ (3x) rather than (5 ÷ 3) * x) but after some careful contemplations later, I 
-			// decided to not implement this and force the user to add brackets themselves, otherwise, the equation
-			// will break (may differentiate based on their perspective) at their own cost... (fractions are superior
-			// lol)
 			case '(':
 				if (num !== "" && num !== undefined) {
 					tokens.push({ type: 'num', data: num });
-					tokens.push({ type: 'op', data: '*' }); 
+					tokens.push({ type: 'op', data: '*' });
 					tokens.push({ type: 'left_br', data: curr });
 					num = "";
 					decimal = false;
@@ -248,7 +258,7 @@ function tokenize(equation) {
 				break;
 
 			// The default is the final 'else' statement of the switch where if it goes through all the conditions
-			// and not satisfy any of them, it will end up here.
+			// and not satisfy (match) any of them, it will end up here.
 			default:
 				if (!isNaN(curr)) {
 					num += curr;
@@ -275,3 +285,66 @@ function tokenize(equation) {
 
 	return tokens;
 }
+
+function shuntingYard(tokens) {
+	let output = [];
+	let opstack = [];
+	// While there are tokens
+	for (let i = 0; i <= tokens.length; i++) {
+		// Check if the token is a number, if so, push to the output queue 
+		if (tokens[i].type == "num") {
+			output.push(tokens[i]);
+		}
+		// Check if the token is an operator
+		else if (tokens[i].type == "op") {
+			// If the operator stack is empty, 
+			if (opstack.length == 0) {
+				opstack.push(tokens[i]);
+			}
+			else if (precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data)) {
+				while(precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data)){
+
+				}
+			}
+		}
+	}
+}
+
+// Pseudo code logic (stolen from Wikipedia)
+//
+// /* The functions referred to in this algorithm are simple single argument functions such as sine, inverse or factorial. */
+// /* This implementation does not implement composite functions, functions with a variable number of arguments, or unary operators. */
+//
+// while there are tokens to be read:
+//     read a token
+// if the token is:
+// - a number:
+//         put it into the output queue
+// 	- a function:
+// 	push it onto the operator stack
+// 		- an operator o1:
+// while (
+// 	there is an operator o2 at the top of the operator stack which is not a left parenthesis,
+// 		and(o2 has greater precedence than o1 or(o1 and o2 have the same precedence and o1 is left - associative))
+//         ):
+//             pop o2 from the operator stack into the output queue
+//         push o1 onto the operator stack
+// 	- a ",":
+// while the operator at the top of the operator stack is not a left parenthesis:
+//              pop the operator from the operator stack into the output queue
+// 	- a left parenthesis(i.e. "("):
+//         push it onto the operator stack
+// 	- a right parenthesis(i.e. ")"):
+// while the operator at the top of the operator stack is not a left parenthesis:
+// {assert the operator stack is not empty }
+//             /* If the stack runs out without finding a left parenthesis, then there are mismatched parentheses. */
+//             pop the operator from the operator stack into the output queue
+// {assert there is a left parenthesis at the top of the operator stack }
+//         pop the left parenthesis from the operator stack and discard it
+// if there is a function token at the top of the operator stack, then:
+//             pop the function from the operator stack into the output queue
+// /* After the while loop, pop the remaining items from the operator stack into the output queue. */
+// while there are tokens on the operator stack:
+// /* If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses. */
+// {assert the operator on top of the stack is not a(left) parenthesis }
+//     pop the operator from the operator stack onto the output queue

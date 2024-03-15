@@ -136,6 +136,10 @@ function precedence(operator) {
 	return operators[operator].precedence;
 }
 
+function associativity(operator) {
+	return operators[operator].associativity;
+}
+
 // Tokenizing the equation
 
 function tokenize(equation) {
@@ -297,20 +301,54 @@ function shuntingYard(tokens) {
 		}
 		// Check if the token is an operator
 		else if (tokens[i].type == "op") {
-			// If the operator stack is empty, 
-			if (opstack.length == 0) {
-				opstack.push(tokens[i]);
-			}
-			else if (precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data)) {
-				while(precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data)){
 
-				}
+			while (/* Operator stack is not empty */(opstack.length >= 1) && 
+			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data >= precedence(tokens[i].data)) && 
+			/* Check if left associative */(associativity(tokens[i].data) == "left")) 
+			{
+				output.push(opstack.pop());
+			}
+			while (/* Operator stack is not empty */(opstack.length >= 1) && 
+			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data > precedence(tokens[i].data)) && 
+			/* Check if right associative */(associativity(tokens[i].data) == "left")) 
+			{
+				output.push(opstack.pop());
+			}
+			opstack.push(tokens[i]);
+		}
+		// Check if it is a left parentheses '('
+		else if (tokens.type == "left_br") 
+		{
+			opstack.push(tokens[i]);
+		}
+		// Check if it is a right parentheses ')'
+		else if (tokens.type == "right_br"){
+			while (opstack[opstack.length - 1].type != "left_br"){
+				
 			}
 		}
 	}
 }
 
-// Pseudo code logic (stolen from Wikipedia)
+// Pseudocode logic (stolen from Brilliant)
+
+// While there are tokens to be read:
+//       Read a token
+//       If it's a number add it to queue
+//       If it's an operator
+//              While there's an operator on the top of the stack with greater precedence:
+//                      Pop operators from the stack onto the output queue
+//              Push the current operator onto the stack
+//       If it's a left bracket push it onto the stack
+//       If it's a right bracket
+//             While there's not a left bracket at the top of the stack:
+//                     Pop operators from the stack onto the output queue.
+//             Pop the left bracket from the stack and discard it
+// While there are operators on the stack, pop them to the queue
+
+
+
+// Pseudocode logic (stolen from Wikipedia)
 //
 // /* The functions referred to in this algorithm are simple single argument functions such as sine, inverse or factorial. */
 // /* This implementation does not implement composite functions, functions with a variable number of arguments, or unary operators. */
@@ -348,3 +386,4 @@ function shuntingYard(tokens) {
 // /* If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses. */
 // {assert the operator on top of the stack is not a(left) parenthesis }
 //     pop the operator from the operator stack onto the output queue
+//

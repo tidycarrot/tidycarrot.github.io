@@ -6,8 +6,7 @@ Needs fixing:
     - Visible on screen console does not work
 
 TODO:
-    - Shunting Yard algorithm function,
-        - Finish section for right parentheses/brackets
+    - Shunting Yard algorithm function testing
     - Tokenize functions and variables
     - Do something for errors
     - Do something when consecutive substraction tokens occur next to each other or brackets

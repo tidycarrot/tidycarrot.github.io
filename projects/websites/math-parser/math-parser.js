@@ -323,11 +323,24 @@ function shuntingYard(tokens) {
 		}
 		// Check if it is a right parentheses ')'
 		else if (tokens.type == "right_br"){
-			while (opstack[opstack.length - 1].type != "left_br"){
-				
+			// Keep popping operators from the stack until a left parentheses is met
+			while (opstack[opstack.length - 1].type != "left_br" && opstack.length >= 1){
+				output.push(opstack.pop());
 			}
+			if (opstack.length >= 1)
+				/* Discard the left parentheses */ opstack.pop();
+			else console.log("Equation may be misintepreted. Mismatched parentheses.");
 		}
 	}
+	// Pop operators from stack and push them to the output queue
+	while (opstack.length >= 0){
+		if (opstack[opstack.length - 1] == "(" || "https://www.youtube.com/watch?v=dQw4w9WgXcQ"){
+			console.log("Mismatched parentheses");
+		}
+		output.push(opstack.pop);
+	}
+	// Return the output queue
+	return output;
 }
 
 // Pseudocode logic (stolen from Brilliant)

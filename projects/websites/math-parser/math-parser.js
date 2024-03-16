@@ -88,23 +88,29 @@ const operators = {
 		precedence: 1,
 		associativity: "right",
 		type: "unary",
-	}
+	},
+	'%': {
+		type: 'op',
+		data: '_',
+		precendence: 2,
+		associativity: "left",
+		type: "binary",
+	},
+	'^': {
+		type: 'op',
+		data: '_',
+		precendence: 3,
+		associativity: "right",
+		type: "binary",
+	},
+	'!': {
+		type: 'op',
+		data: '_',
+		precendence: 4,
+		associativity: "left",
+		type: "unary",
+	},
 	/*
-	'%':{
-			precendence: 2,
-			associativity: "left",
-			type: "binary",
-	},
-	'^':{
-			precendence: 3,
-			associativity: "right",
-			type: "binary",
-	},
-	'!':{
-			precendence: 4,
-			associativity: "left",
-			type: "unary",
-	},
 	'sin':{
 			precendence: 4,
 			associativity: "right",
@@ -151,7 +157,7 @@ function tokenize(equation) {
 	// Defining variable that helps with checking for duplicate decimals in same number
 	let decimal = false;
 
-	// A string that temporarily stores numbers until an operator is encountered, then the number is placed on the output pile, which is the thing that is supposed to be outputed.
+	// A string that temporarily stores numbers until an operator is encountered, then the number is placed on the output pile, which is the thing that is outputed.
 	let num = "";
 
 	// Loop through each character
@@ -189,6 +195,8 @@ function tokenize(equation) {
 		switch (curr) {
 
 			// In these first few 'cases', we check if the character is an operator.
+
+			// Addition operator
 			case '+':
 				if (num !== "" && num !== undefined) {
 					tokens.push({ type: 'num', data: num });
@@ -197,6 +205,24 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '+' });
 				decimal = false;
 				break;
+
+			// Substraction or negative operator
+			case '-':
+				if (num !== "" && num !== undefined) {
+					tokens.push({ type: 'num', data: num });
+					num = "";
+					decimal = false;
+					tokens.push({ type: 'op', data: '-' });
+				}
+				else if (before === undefined) {
+					tokens.push({ type: 'op', data: '_' });
+				}
+				else if ((before.type === 'op' || before.type === 'left_br') && before.type != 'num') {
+					tokens.push({ type: 'op', data: '_' });
+				}
+				break;
+
+			// Division operator
 			case '/':
 			case '÷':
 				if (num !== "" && num !== undefined) {
@@ -206,6 +232,8 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '/' });
 				decimal = false;
 				break;
+
+			// Multiplication operator
 			case '*':
 			case '×':
 				if (num !== "" && num !== undefined) {
@@ -223,19 +251,15 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '*' });
 				decimal = false;
 				break;
-			case '-':
+
+			// Exponent operator
+			case '^':
 				if (num !== "" && num !== undefined) {
 					tokens.push({ type: 'num', data: num });
 					num = "";
-					decimal = false;
-					tokens.push({ type: 'op', data: '-' });
 				}
-				else if (before === undefined) {
-					tokens.push({ type: 'op', data: '_' });
-				}
-				else if ((before.type === 'op' || before.type === 'left_br') && before.type != 'num') {
-					tokens.push({ type: 'op', data: '_' });
-				}
+				tokens.push({ type: 'op', data: '^' });
+				decimal = false;
 				break;
 
 			// Next we test the character for if it is a bracket
@@ -294,7 +318,7 @@ function shuntingYard(tokens) {
 	let output = [];
 	let opstack = [];
 	// While there are tokens
-	for (let i = 0; i <= tokens.length; i++) {
+	for (let i = 0; i < tokens.length; i++) {
 		// Check if the token is a number, if so, push to the output queue 
 		if (tokens[i].type == "num") {
 			output.push(tokens[i]);
@@ -302,42 +326,40 @@ function shuntingYard(tokens) {
 		// Check if the token is an operator
 		else if (tokens[i].type == "op") {
 
-			while (/* Operator stack is not empty */(opstack.length >= 1) && 
-			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data >= precedence(tokens[i].data)) && 
-			/* Check if left associative */(associativity(tokens[i].data) == "left")) 
-			{
+			while (/* Operator stack is not empty */(opstack.length >= 1) &&
+			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data) >= precedence(tokens[i].data) &&
+			/* Check if left associative */(associativity(tokens[i].data) == "left")) {
 				output.push(opstack.pop());
 			}
-			while (/* Operator stack is not empty */(opstack.length >= 1) && 
-			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data > precedence(tokens[i].data)) && 
-			/* Check if right associative */(associativity(tokens[i].data) == "left")) 
-			{
+			while (/* Operator stack is not empty */(opstack.length >= 1) &&
+			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data) &&
+			/* Check if right associative */(associativity(tokens[i].data) == "left")) {
 				output.push(opstack.pop());
 			}
 			opstack.push(tokens[i]);
 		}
 		// Check if it is a left parentheses '('
-		else if (tokens.type == "left_br") 
-		{
+		else if (tokens.type == "left_br") {
 			opstack.push(tokens[i]);
 		}
 		// Check if it is a right parentheses ')'
-		else if (tokens.type == "right_br"){
+		else if (tokens.type == "right_br") {
 			// Keep popping operators from the stack until a left parentheses is met
-			while (opstack[opstack.length - 1].type != "left_br" && opstack.length >= 1){
+			while (opstack[opstack.length - 1].type != "left_br" && opstack.length >= 1) {
 				output.push(opstack.pop());
 			}
 			if (opstack.length >= 1)
 				/* Discard the left parentheses */ opstack.pop();
-			else console.log("Equation may be misintepreted. Mismatched parentheses.");
+			else console.log("Mismatched parentheses.");
 		}
 	}
+
 	// Pop operators from stack and push them to the output queue
-	while (opstack.length >= 0){
-		if (opstack[opstack.length - 1] == "(" || "https://www.youtube.com/watch?v=dQw4w9WgXcQ"){
-			console.log("Mismatched parentheses");
+	while (opstack.length > 0) {
+		if (opstack[opstack.length - 1] == "(") {
+			console.log("Mismatched parentheses.");
 		}
-		output.push(opstack.pop);
+		output.push(opstack.pop());
 	}
 	// Return the output queue
 	return output;

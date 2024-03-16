@@ -40,18 +40,6 @@ function nextCharacter(array, current) {
 	return null;
 }
 
-// Answer funtion
-function answer() {
-	let input = document.getElementById("input").value;
-	let output_token = document.querySelector("#output_token").innerHTML;
-	let output_rpn = document.querySelector("#output_rpn");
-	let output_answer = document.querySelector("#output_answer");
-	let tokenized = tokenize(input);
-	let tokenized_output = "";
-	tokenized_output += tokenized[4].data;
-	output_token = tokenized_output;
-}
-
 // Some definitions
 const operators = {
 	'+': {
@@ -363,6 +351,23 @@ function shuntingYard(tokens) {
 	}
 	// Return the output queue
 	return output;
+}
+
+function evaluate(){
+	
+}
+
+// Answer funtion
+function answer() {
+	let input = document.getElementById("input").value;
+	let output_rpn = document.querySelector("#output_rpn");
+	let output_answer = document.querySelector("#output_answer");
+	let tokenized = tokenize(input);
+	let tokenized_output = "";
+	for (let i in tokenized){
+		tokenized_output += tokenized[i].data;
+	}
+	document.getElementById("output_token").innerHTML = tokenized_output;
 }
 
 // Pseudocode logic (stolen from Brilliant)

@@ -6,19 +6,22 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Math Parser</title>
     <link rel='stylesheet' href='math-parser.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@300&family=Open+Sans:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="contents">
         <h1>Math Expression Parser</h1>
-        <input id="input" placeholder="Type an expression" onchange="answer()">
+        <input id="input" placeholder="Type an expression" oninput="answer()">
         <div>
-            <p>Tokenized output</p>
-            <p id="output_token"></p>
-            <p>Shunting Yard algorithm output</p>
+            <p>Tokenizer output</p>
+            <p id="output_token" class="output"></p>
+            <p>Shunting Yard algorithm output (in RPN form)</p>
+            <p id="output_rpn" class="output"></p>
         </div>
     </div>
-    <div id="debugDiv"></div>
 </body>
 <script src='math-parser.js'></script>
 

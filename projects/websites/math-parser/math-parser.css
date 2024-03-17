@@ -1,3 +1,8 @@
+*{
+    font-family: "Open Sans", sans-serif;
+    word-wrap: break-word;
+}
+
 .contents {
     margin: auto;
     text-align: center;
@@ -12,7 +17,7 @@
     display: block;
 }
 
-#output_token {
+.output {
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;

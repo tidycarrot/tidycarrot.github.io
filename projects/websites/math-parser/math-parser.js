@@ -134,6 +134,9 @@ function associativity(operator) {
 	return operators[operator].associativity;
 }
 
+function opType(operator) {
+	return operators[operator].type;
+}
 // Tokenizing the equation
 
 function tokenize(equation) {
@@ -353,21 +356,57 @@ function shuntingYard(tokens) {
 	return output;
 }
 
-function evaluate(){
-	
+function evaluate(rpn){
+	let output = [];
+	for (var i; i < rpn.length; i++){
+		// If it is a number, push it into the output stack
+		if(rpn[i].type == "num"){
+			output.push(rpn[i]);
+		} else if(rpn[i].type == "op"){
+			if(opType(rpn[i].data) == "binary"){
+				switch (rpn[i].data){
+					case '+':
+						output.push(output.pop() + output.pop());
+					break;
+					case '-':
+						output.push(output.pop() - output.pop());
+					break;
+					case '*':
+						output.push(output.pop() * output.pop());
+					break;
+					case '/':
+						output.push(output.pop() / output.pop());
+					break;
+					case '^':
+						output.push(Math.pow(output.pop(), output.pop()))
+					break;
+				}
+			}
+		}
+	}
+	return output;
 }
 
 // Answer funtion
 function answer() {
 	let input = document.getElementById("input").value;
-	let output_rpn = document.querySelector("#output_rpn");
 	let output_answer = document.querySelector("#output_answer");
+
 	let tokenized = tokenize(input);
 	let tokenized_output = "";
 	for (let i in tokenized){
 		tokenized_output += tokenized[i].data;
 	}
+
+	let rpn = shuntingYard(tokenized);
+	let rpn_output = "";
+	for (let i in rpn){
+		rpn_output += rpn[i].data;
+		rpn_output += " ";
+	}
+
 	document.getElementById("output_token").innerHTML = tokenized_output;
+	document.getElementById("output_rpn").innerHTML = rpn_output;
 }
 
 // Pseudocode logic (stolen from Brilliant)

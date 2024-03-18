@@ -356,30 +356,35 @@ function shuntingYard(tokens) {
 	return output;
 }
 
-function evaluate(rpn){
+function evaluate(rpn) {
 	let output = [];
-	for (var i; i < rpn.length; i++){
+	for (let i = 0; i < rpn.length; i++) {
 		// If it is a number, push it into the output stack
-		if(rpn[i].type == "num"){
+		if (rpn[i].type == "num") {
 			output.push(rpn[i]);
-		} else if(rpn[i].type == "op"){
-			if(opType(rpn[i].data) == "binary"){
-				switch (rpn[i].data){
+		}
+		// If it is an operator 
+		else if (rpn[i].type == "op") {
+			if (opType(rpn[i].data) == "binary") {
+				let lhs = parseFloat(output.pop().data);
+				let rhs = parseFloat(output.pop().data);
+
+				switch (rpn[i].data) {
 					case '+':
-						output.push(output.pop() + output.pop());
-					break;
+						output.push({ type: "num", data: `${lhs + rhs}` });
+						break;
 					case '-':
-						output.push(output.pop() - output.pop());
-					break;
+						output.push({ type: "num", data: `${lhs - rhs}` });
+						break;
 					case '*':
-						output.push(output.pop() * output.pop());
-					break;
+						output.push({ type: "num", data: `${lhs * rhs}` });
+						break;
 					case '/':
-						output.push(output.pop() / output.pop());
-					break;
+						output.push({ type: "num", data: `${lhs / rhs}` });
+						break;
 					case '^':
-						output.push(Math.pow(output.pop(), output.pop()))
-					break;
+						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` })
+						break;
 				}
 			}
 		}
@@ -394,19 +399,23 @@ function answer() {
 
 	let tokenized = tokenize(input);
 	let tokenized_output = "";
-	for (let i in tokenized){
+	for (let i in tokenized) {
 		tokenized_output += tokenized[i].data;
 	}
 
 	let rpn = shuntingYard(tokenized);
 	let rpn_output = "";
-	for (let i in rpn){
+	for (let i in rpn) {
 		rpn_output += rpn[i].data;
 		rpn_output += " ";
 	}
 
+	let answer = evaluate(rpn);
+	let answer_output = answer[0].data;
+
 	document.getElementById("output_token").innerHTML = tokenized_output;
 	document.getElementById("output_rpn").innerHTML = rpn_output;
+	document.getElementById("output_answer").innerHTML = answer_output
 }
 
 // Pseudocode logic (stolen from Brilliant)

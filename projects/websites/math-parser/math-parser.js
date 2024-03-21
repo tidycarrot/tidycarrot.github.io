@@ -1,4 +1,4 @@
-// This is a math parser using a LR algorithm called the Shunting Yard algorithm.
+// This is a math parser using a LR algorithm called the Shunting Yard algorithm. 
 
 // Function definitons
 
@@ -43,56 +43,48 @@ function nextCharacter(array, current) {
 // Some definitions
 const operators = {
 	'+': {
-		type: 'op',
 		data: '+',
 		precedence: 1,
 		associativity: "left",
 		type: "binary",
 	},
 	'-': {
-		type: 'op',
 		data: '-',
 		precedence: 1,
 		associativity: "left",
 		type: "binary",
 	},
 	'/': {
-		type: 'op',
 		data: '/',
 		precedence: 2,
 		associativity: "left",
 		type: "binary",
 	},
 	'*': {
-		type: 'op',
 		data: '*',
 		precedence: 2,
 		associativity: "left",
 		type: "binary",
 	},
 	'_': {
-		type: 'op',
 		data: '_',
 		precedence: 1,
 		associativity: "right",
 		type: "unary",
 	},
 	'%': {
-		type: 'op',
 		data: '_',
 		precendence: 2,
 		associativity: "left",
 		type: "binary",
 	},
 	'^': {
-		type: 'op',
 		data: '_',
 		precendence: 3,
 		associativity: "right",
 		type: "binary",
 	},
 	'!': {
-		type: 'op',
 		data: '_',
 		precendence: 4,
 		associativity: "left",
@@ -124,6 +116,11 @@ const operators = {
 			function: Math.abs,
 	}
 	*/
+	'(': {
+		type: 'left_br',
+		precedence: 0,
+		associativity: "food"
+	}
 }
 
 function precedence(operator) {
@@ -308,44 +305,48 @@ function tokenize(equation) {
 function shuntingYard(tokens) {
 	let output = [];
 	let opstack = [];
-	// While there are tokens
-	for (let i = 0; i < tokens.length; i++) {
-		// Check if the token is a number, if so, push to the output queue 
-		if (tokens[i].type == "num") {
-			output.push(tokens[i]);
-		}
-		// Check if the token is an operator
-		else if (tokens[i].type == "op") {
 
-			while (/* Operator stack is not empty */(opstack.length >= 1) &&
-			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data) >= precedence(tokens[i].data) &&
-			/* Check if left associative */(associativity(tokens[i].data) == "left")) {
+	for (let i = 0; i < tokens.length; i++) {
+		let currToken = tokens[i];
+
+		if (currToken.type == "num") {
+			output.push(currToken);
+		}
+		else if (currToken.type == "op") {
+			while (
+				opstack.length != 0 &&
+				precedence(opstack[opstack.length - 1].data) >= precedence(currToken.data) &&
+				associativity(currToken.data) == "left"
+			) {
 				output.push(opstack.pop());
 			}
-			while (/* Operator stack is not empty */(opstack.length >= 1) &&
-			/* Compare precedence of current operator and operator at top of stack */precedence(opstack[opstack.length - 1].data) > precedence(tokens[i].data) &&
-			/* Check if right associative */(associativity(tokens[i].data) == "left")) {
+			while (
+				opstack.length >= 1 &&
+				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data) &&
+				associativity(currToken.data) == "right"
+			) {
 				output.push(opstack.pop());
 			}
-			opstack.push(tokens[i]);
+
+			opstack.push(currToken);
 		}
 		// Check if it is a left parentheses '('
-		else if (tokens.type == "left_br") {
-			opstack.push(tokens[i]);
+		else if (currToken.type == "left_br") {
+			opstack.push(currToken);
 		}
 		// Check if it is a right parentheses ')'
-		else if (tokens.type == "right_br") {
+		else if (currToken.type == "right_br") {
 			// Keep popping operators from the stack until a left parentheses is met
-			while (opstack[opstack.length - 1].type != "left_br" && opstack.length >= 1) {
+			while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
 				output.push(opstack.pop());
 			}
-			if (opstack.length >= 1)
+			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
 			else console.log("Mismatched parentheses.");
 		}
 	}
 
-	// Pop operators from stack and push them to the output queue
+	// Pop operators from stack and push them to the output queueleft
 	while (opstack.length > 0) {
 		if (opstack[opstack.length - 1] == "(") {
 			console.log("Mismatched parentheses.");
@@ -374,7 +375,7 @@ function evaluate(rpn) {
 						output.push({ type: "num", data: `${lhs + rhs}` });
 						break;
 					case '-':
-						output.push({ type: "num", data: `${lhs - rhs}` });
+						output.push({ type: "num", data: `${rhs - lhs}` });
 						break;
 					case '*':
 						output.push({ type: "num", data: `${lhs * rhs}` });
@@ -383,7 +384,7 @@ function evaluate(rpn) {
 						output.push({ type: "num", data: `${lhs / rhs}` });
 						break;
 					case '^':
-						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` })
+						output.push({ type: "num", data: `${Math.pow(rhs, lhs)}` })
 						break;
 				}
 			}
@@ -433,8 +434,6 @@ function answer() {
 //                     Pop operators from the stack onto the output queue.
 //             Pop the left bracket from the stack and discard it
 // While there are operators on the stack, pop them to the queue
-
-
 
 // Pseudocode logic (stolen from Wikipedia)
 //

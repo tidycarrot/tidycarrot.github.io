@@ -73,19 +73,19 @@ const operators = {
 		type: "unary",
 	},
 	'%': {
-		data: '_',
+		data: '%',
 		precendence: 2,
 		associativity: "left",
 		type: "binary",
 	},
 	'^': {
-		data: '_',
+		data: '^',
 		precendence: 3,
 		associativity: "right",
 		type: "binary",
 	},
 	'!': {
-		data: '_',
+		data: '!',
 		precendence: 4,
 		associativity: "left",
 		type: "unary",
@@ -220,7 +220,14 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '/' });
 				decimal = false;
 				break;
-
+			case '%':
+				if (num !== "" && num !== undefined) {
+					tokens.push({ type: 'num', data: num });
+					num = "";
+				}
+				tokens.push({ type: 'op', data: '%' });
+				decimal = false;
+				break;
 			// Multiplication operator
 			case '*':
 			case '×':
@@ -366,7 +373,8 @@ function evaluate(rpn) {
 		}
 		// If it is an operator 
 		else if (rpn[i].type == "op") {
-			if (opType(rpn[i].data) == "binary") {
+
+			if (opType(rpn[i].data) == "binary" && output.length >= 2) {
 				let lhs = parseFloat(output.pop().data);
 				let rhs = parseFloat(output.pop().data);
 
@@ -383,8 +391,19 @@ function evaluate(rpn) {
 					case '/':
 						output.push({ type: "num", data: `${lhs / rhs}` });
 						break;
+					case '%':
+						output.push({ type: "num", data: `${rhs % lhs}` });
+						break;
 					case '^':
 						output.push({ type: "num", data: `${Math.pow(rhs, lhs)}` })
+						break;
+				}
+			}
+			else if (opType(rpn[i].data) == "unary") {
+				let num = parseFloat(output.pop().data);
+				switch (rpn[i].data) {
+					case '_':
+						output.push({ type: "num", data: `${num * -1}` });
 						break;
 				}
 			}
@@ -400,16 +419,17 @@ function answer() {
 
 	let tokenized = tokenize(input);
 	let tokenized_output = "";
-	for (let i in tokenized) {
+	for (let i = 0; i < tokenized.length - 1; i++) {
 		tokenized_output += tokenized[i].data;
-	}
+		tokenized_output += " ";
+	} tokenized_output += tokenized[tokenized.length - 1].data;
 
 	let rpn = shuntingYard(tokenized);
 	let rpn_output = "";
-	for (let i in rpn) {
+	for (let i = 0; i < rpn.length - 1; i++) {
 		rpn_output += rpn[i].data;
 		rpn_output += " ";
-	}
+	} rpn_output += rpn[rpn.length - 1].data;
 
 	let answer = evaluate(rpn);
 	let answer_output = answer[0].data;

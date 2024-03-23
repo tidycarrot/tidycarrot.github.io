@@ -1,16 +1,17 @@
 *{
     font-family: "Open Sans", sans-serif;
     word-wrap: break-word;
+    text-align: center;
 }
 
 .contents {
     margin: auto;
-    text-align: center;
     width: 75vw;
 }
 
 #input {
-    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;
     width: 100%;
@@ -18,7 +19,8 @@
 }
 
 .output {
-    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;
     width: 100%;

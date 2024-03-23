@@ -1,7 +1,6 @@
 Notes:
 
 Needs fixing:
-    - Shunting Yard for right associativity operators
 
 TODO:
     - Unary operators tokenized, handled and evaluated

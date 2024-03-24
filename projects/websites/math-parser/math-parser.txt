@@ -3,7 +3,6 @@ Notes:
 Needs fixing:
 
 TODO:
-    - Unary operators tokenized, handled and evaluated
     - Variables and functions tokenized, substituted and evaluated
     - Tokenize functions and variables
     - Do something for errors

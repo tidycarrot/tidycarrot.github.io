@@ -19,7 +19,7 @@ function isWhitespace(c) {
 		|| c === '\u205f'
 		|| c === '\u3000'
 		|| c === '\ufeff'
-}
+};
 
 /*
 function isLetter(l) {
@@ -40,84 +40,94 @@ function nextCharacter(array, current) {
 	return null;
 }
 
+function factorial(num) {
+	var result = 1;
+	if (num < 1 || Number.isInteger(num) == false) { return undefined; }
+	for (var i = 1; i <= num; i++) {
+		result *= i;
+	}
+	return result;
+}
+
 // Some definitions
 const operators = {
 	'+': {
 		data: '+',
 		precedence: 1,
 		associativity: "left",
-		type: "binary",
+		opType: "binary",
 	},
 	'-': {
 		data: '-',
 		precedence: 1,
 		associativity: "left",
-		type: "binary",
+		opType: "binary",
 	},
 	'/': {
 		data: '/',
 		precedence: 2,
 		associativity: "left",
-		type: "binary",
+		opType: "binary",
 	},
 	'*': {
 		data: '*',
 		precedence: 2,
 		associativity: "left",
-		type: "binary",
+		opType: "binary",
 	},
 	'_': {
 		data: '_',
 		precedence: 1,
 		associativity: "right",
-		type: "unary",
+		opType: "unary",
 	},
 	'%': {
 		data: '%',
 		precendence: 2,
 		associativity: "left",
-		type: "binary",
+		opType: "binary",
 	},
 	'^': {
 		data: '^',
 		precendence: 3,
 		associativity: "right",
-		type: "binary",
+		opType: "binary",
 	},
 	'!': {
 		data: '!',
 		precendence: 4,
-		associativity: "left",
-		type: "unary",
+		associativity: "right",
+		opType: "unary", // Factorial is special because it is the only unary operator that operates on the number 
+		// on the left of it and so it can be treated as a binary operator.
 	},
 	/*
 	'sin':{
 			precendence: 4,
 			associativity: "right",
-			type: "unary",
+			opType: "unary",
 			function: Math.sin,
 	},
 	'cos':{
 			precendence: 4,
 			associativity: "right",
-			type: "unary",
+			opType: "unary",
 			function: Math.cos,
 	},
 	'tan':{
 			precendence: 4,
 			associativity: "right",
-			type: "unary",
+			opType: "unary",
 			function: Math.tan,
 	},
 	'abs':{
 			precedence: 4,
 			associativity: "right",
-			type: "unary",
+			opType: "unary",
 			function: Math.abs,
 	}
 	*/
 	'(': {
-		type: 'left_br',
+		opType: 'left_br',
 		precedence: 0,
 		associativity: "food"
 	}
@@ -132,7 +142,7 @@ function associativity(operator) {
 }
 
 function opType(operator) {
-	return operators[operator].type;
+	return operators[operator].opType;
 }
 // Tokenizing the equation
 
@@ -177,9 +187,8 @@ function tokenize(equation) {
 		// its argument (which is like a paremeter, in a way) is true, the code after the 'if' statement is run. Sometimes, after this 
 		// conditional code is run, there is an 'else' statement which is quite self explanatory, the code below the 'else' statement is
 		// run when the condition of the 'if' statement is not met. In the else statement, you can put another if statement in it,
-		// consequently, creating a block of code that checks through things. (e.g. You have a banana. You check if it is a apple, if it
-		// is, you bite it. If it is a blueberry, you eat the whole thing. Lastly, if it is a banana, you peel it and eat it.) Therefore,
-		// the 'switch' statement is a shorthand of this syntax instead of programming this mess of code.
+		// consequently, creating a block of code that checks through things. Therefore,
+		// the 'switch' statement is a shorthand of this syntax instead of programming a mess.
 		switch (curr) {
 
 			// In these first few 'cases', we check if the character is an operator.
@@ -220,17 +229,11 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '/' });
 				decimal = false;
 				break;
-			case '%':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'op', data: '%' });
-				decimal = false;
-				break;
+
 			// Multiplication operator
 			case '*':
 			case '×':
+			case 'x':
 				if (num !== "" && num !== undefined) {
 					tokens.push({ type: 'num', data: num });
 					num = "";
@@ -254,6 +257,26 @@ function tokenize(equation) {
 					num = "";
 				}
 				tokens.push({ type: 'op', data: '^' });
+				decimal = false;
+				break;
+
+			// Modulo operator
+			case '%':
+				if (num !== "" && num !== undefined) {
+					tokens.push({ type: 'num', data: num });
+					num = "";
+				}
+				tokens.push({ type: 'op', data: '%' });
+				decimal = false;
+				break;
+
+			// Factorial operator
+			case '!':
+				if (num !== "" && num !== undefined) {
+					tokens.push({ type: 'num', data: num });
+					num = "";
+				}
+				tokens.push({ type: 'fac', data: '!' });
 				decimal = false;
 				break;
 
@@ -304,6 +327,12 @@ function tokenize(equation) {
 				}
 				break;
 		}
+
+	}
+	if (num != "") {
+		tokens.push({ type: 'num', data: num });
+		num = "";
+		decimal = false;
 	}
 
 	return tokens;
@@ -336,6 +365,9 @@ function shuntingYard(tokens) {
 			}
 
 			opstack.push(currToken);
+		}
+		else if (currToken.type == "fac") {
+			output.push({ type: "fac", data: "!" });
 		}
 		// Check if it is a left parentheses '('
 		else if (currToken.type == "left_br") {
@@ -372,18 +404,18 @@ function evaluate(rpn) {
 			output.push(rpn[i]);
 		}
 		// If it is an operator 
-		else if (rpn[i].type == "op") {
+		else if (rpn[i].type == "op" || rpn[i].type == "fac") {
 
 			if (opType(rpn[i].data) == "binary" && output.length >= 2) {
-				let lhs = parseFloat(output.pop().data);
 				let rhs = parseFloat(output.pop().data);
+				let lhs = parseFloat(output.pop().data);
 
 				switch (rpn[i].data) {
 					case '+':
 						output.push({ type: "num", data: `${lhs + rhs}` });
 						break;
 					case '-':
-						output.push({ type: "num", data: `${rhs - lhs}` });
+						output.push({ type: "num", data: `${lhs - rhs}` });
 						break;
 					case '*':
 						output.push({ type: "num", data: `${lhs * rhs}` });
@@ -392,18 +424,22 @@ function evaluate(rpn) {
 						output.push({ type: "num", data: `${lhs / rhs}` });
 						break;
 					case '%':
-						output.push({ type: "num", data: `${rhs % lhs}` });
+						output.push({ type: "num", data: `${lhs % rhs}` });
 						break;
 					case '^':
-						output.push({ type: "num", data: `${Math.pow(rhs, lhs)}` })
+						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` })
 						break;
 				}
 			}
 			else if (opType(rpn[i].data) == "unary") {
 				let num = parseFloat(output.pop().data);
+
 				switch (rpn[i].data) {
 					case '_':
 						output.push({ type: "num", data: `${num * -1}` });
+						break;
+					case '!':
+						output.push({ type: "num", data: `${factorial(num)}` })
 						break;
 				}
 			}

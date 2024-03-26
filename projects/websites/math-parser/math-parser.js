@@ -529,4 +529,3 @@ function answer() {
 // /* If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses. */
 // {assert the operator on top of the stack is not a(left) parenthesis }
 //     pop the operator from the operator stack onto the output queue
-//

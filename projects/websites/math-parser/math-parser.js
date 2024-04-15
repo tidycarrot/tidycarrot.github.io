@@ -21,14 +21,12 @@ function isWhitespace(c) {
 		|| c === '\ufeff'
 };
 
-/*
 function isLetter(l) {
 	if (l.charCodeAt(0)>=65 && l.charCodeAt(0)<=122){
 		return true;
 	}
 	else return false;
 }
-*/
 
 // Returns next non-whitespace after array[current], or null if none
 function nextCharacter(array, current) {
@@ -77,7 +75,7 @@ const operators = {
 	},
 	'_': {
 		data: '_',
-		precedence: 1,
+		precedence: 100,
 		associativity: "right",
 		opType: "unary",
 	},
@@ -209,14 +207,16 @@ function tokenize(equation) {
 					tokens.push({ type: 'num', data: num });
 					num = "";
 					decimal = false;
-					tokens.push({ type: 'op', data: '-' });
 				}
 				else if (before === undefined) {
 					tokens.push({ type: 'op', data: '_' });
+					break;
 				}
 				else if ((before.type === 'op' || before.type === 'left_br') && before.type != 'num') {
 					tokens.push({ type: 'op', data: '_' });
+					break;
 				}
+				tokens.push({ type: 'op', data: '-' });
 				break;
 
 			// Division operator

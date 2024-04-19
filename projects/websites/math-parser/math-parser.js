@@ -22,7 +22,7 @@ function isWhitespace(c) {
 };
 
 function isLetter(l) {
-	if (l.charCodeAt(0)>=65 && l.charCodeAt(0)<=122){
+	if (l.charCodeAt(0) >= 65 && l.charCodeAt(0) <= 122) {
 		return true;
 	}
 	else return false;
@@ -75,7 +75,7 @@ const operators = {
 	},
 	'_': {
 		data: '_',
-		precedence: 100,
+		precedence: 2.5,
 		associativity: "right",
 		opType: "unary",
 	},
@@ -95,8 +95,7 @@ const operators = {
 		data: '!',
 		precendence: 4,
 		associativity: "right",
-		opType: "unary", // Factorial is special because it is the only unary operator that operates on the number 
-		// on the left of it and so it can be treated as a binary operator.
+		opType: "unary",
 	},
 	/*
 	'sin':{
@@ -142,6 +141,17 @@ function associativity(operator) {
 function opType(operator) {
 	return operators[operator].opType;
 }
+
+function checkNum(tokens, num) {
+	if (num !== "" && num !== undefined) {
+		tokens.push({ type: 'num', data: num });
+		decimal = false;
+		return "";
+	}
+	else {
+		return num;
+	}
+}
 // Tokenizing the equation
 
 function tokenize(equation) {
@@ -165,7 +175,7 @@ function tokenize(equation) {
 		let curr = equation[i];
 
 		// Checking if the character is a whitespace, characters that are empty like the space, enter and tab characters 
-		// (yes, they are indeed considered a character) If the character is a whitespace, skip through it until some content in the equation is found
+		// If the character is a whitespace, skip through it until some content in the equation is found
 		if (isWhitespace(curr))
 			continue;
 
@@ -191,24 +201,26 @@ function tokenize(equation) {
 
 			// In these first few 'cases', we check if the character is an operator.
 
-			// Addition operator
-			case '+':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'op', data: '+' });
-				decimal = false;
+			
+			case '+': // Addition operator
+			case '/': // Division operator
+			case '^': // Exponent operator
+			case '%': // Modulo operator
+			case '*': // Multiplication operator
+				num = checkNum(tokens, num);
+				tokens.push({ type: 'op', data: curr });
+				break;
+
+			// Factorial operator
+			case '!':
+				num = checkNum(tokens, num);
+				tokens.push({ type: 'fac', data: '!' });
 				break;
 
 			// Substraction or negative operator
 			case '-':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-					decimal = false;
-				}
-				else if (before === undefined) {
+				num = checkNum(tokens, num);
+				if (before === undefined) {
 					tokens.push({ type: 'op', data: '_' });
 					break;
 				}
@@ -219,75 +231,10 @@ function tokenize(equation) {
 				tokens.push({ type: 'op', data: '-' });
 				break;
 
-			// Division operator
-			case '/':
-			case '÷':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'op', data: '/' });
-				decimal = false;
-				break;
-
-			// Multiplication operator
-			case '*':
-			case '×':
-			case 'x':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				else if (before === undefined) {
-					console.log(`Operator error at ${i}`)
-					break;
-				}
-				else if ((before.type === 'op' || before.type === 'left_br') && before.type != 'num') {
-					console.log(`Operator error at ${i}`)
-					break;
-				}
-				tokens.push({ type: 'op', data: '*' });
-				decimal = false;
-				break;
-
-			// Exponent operator
-			case '^':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'op', data: '^' });
-				decimal = false;
-				break;
-
-			// Modulo operator
-			case '%':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'op', data: '%' });
-				decimal = false;
-				break;
-
-			// Factorial operator
-			case '!':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
-				tokens.push({ type: 'fac', data: '!' });
-				decimal = false;
-				break;
-
 			// Next we test the character for if it is a bracket
 			case ')':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					num = "";
-				}
+				num = checkNum(tokens, num);
 				tokens.push({ type: 'right_br', data: curr });
-				decimal = false;
 				break;
 
 			case '(':
@@ -303,19 +250,21 @@ function tokenize(equation) {
 				}
 				break;
 
+			case '.':
+				num += '.';
+				if (!decimal) {
+					decimal = true;
+				}
+				else if (decimal) {
+					console.log(`Duplicate decimal at ${i}`)
+				}
+				break;
+
 			// The default is the final 'else' statement of the switch where if it goes through all the conditions
 			// and not satisfy (match) any of them, it will end up here.
 			default:
 				if (!isNaN(curr)) {
 					num += curr;
-				} else if (curr === '.') {
-					num += '.';
-					if (!decimal) {
-						decimal = true;
-					}
-					else if (decimal) {
-						console.log(`Duplicate decimal at ${i}`)
-					}
 				} else {
 					console.log(`Unexpected character at ${i}`);
 				}
@@ -329,11 +278,7 @@ function tokenize(equation) {
 		}
 
 	}
-	if (num != "") {
-		tokens.push({ type: 'num', data: num });
-		num = "";
-		decimal = false;
-	}
+	num = checkNum(tokens, num);
 
 	return tokens;
 }
@@ -343,6 +288,7 @@ function shuntingYard(tokens) {
 	let opstack = [];
 
 	for (let i = 0; i < tokens.length; i++) {
+
 		let currToken = tokens[i];
 
 		if (currToken.type == "num") {
@@ -351,14 +297,14 @@ function shuntingYard(tokens) {
 		else if (currToken.type == "op") {
 			while (
 				opstack.length != 0 &&
-				precedence(opstack[opstack.length - 1].data) >= precedence(currToken.data) &&
+				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data) &&
 				associativity(currToken.data) == "left"
 			) {
 				output.push(opstack.pop());
 			}
 			while (
-				opstack.length >= 1 &&
-				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data) &&
+				opstack.length != 0 &&
+				precedence(opstack[opstack.length - 1].data) >= precedence(currToken.data) &&
 				associativity(currToken.data) == "right"
 			) {
 				output.push(opstack.pop());
@@ -383,6 +329,8 @@ function shuntingYard(tokens) {
 				/* Discard the left parentheses */ opstack.pop();
 			else console.log("Mismatched parentheses.");
 		}
+		console.log(output);
+		console.log(opstack);
 	}
 
 	// Pop operators from stack and push them to the output queueleft

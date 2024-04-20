@@ -88,7 +88,7 @@ const operators = {
 	'^': {
 		data: '^',
 		precendence: 3,
-		associativity: "right",
+		associativity: "left",
 		opType: "binary",
 	},
 	'!': {
@@ -201,7 +201,7 @@ function tokenize(equation) {
 
 			// In these first few 'cases', we check if the character is an operator.
 
-			
+
 			case '+': // Addition operator
 			case '/': // Division operator
 			case '^': // Exponent operator
@@ -238,16 +238,13 @@ function tokenize(equation) {
 				break;
 
 			case '(':
-				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
-					tokens.push({ type: 'op', data: '*' });
+				if (before == undefined || before.type == 'op') {
 					tokens.push({ type: 'left_br', data: curr });
-					num = "";
-					decimal = false;
-				} else {
-					tokens.push({ type: 'left_br', data: curr });
-					decimal = false;
+					break;
 				}
+				num = checkNum(tokens, num);
+				tokens.push({ type: 'op', data: '*' });
+				tokens.push({ type: 'left_br', data: curr });
 				break;
 
 			case '.':
@@ -398,8 +395,7 @@ function evaluate(rpn) {
 
 // Answer funtion
 function answer() {
-	let input = document.getElementById("input").value;
-	let output_answer = document.querySelector("#output_answer");
+	let input = document.getElementById("infix").value;
 
 	let tokenized = tokenize(input);
 	let tokenized_output = "";
@@ -418,9 +414,9 @@ function answer() {
 	let answer = evaluate(rpn);
 	let answer_output = answer[0].data;
 
-	document.getElementById("output_token").innerHTML = tokenized_output;
-	document.getElementById("output_rpn").innerHTML = rpn_output;
-	document.getElementById("output_answer").innerHTML = answer_output
+	document.getElementById("token").innerHTML = tokenized_output;
+	document.getElementById("rpn").innerHTML = rpn_output;
+	document.getElementById("answer").innerHTML = answer_output
 }
 
 // Pseudocode logic (stolen from Brilliant)

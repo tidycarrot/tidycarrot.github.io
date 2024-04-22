@@ -87,8 +87,8 @@ const operators = {
 	},
 	'^': {
 		data: '^',
-		precendence: 3,
-		associativity: "left",
+		precedence: 3,
+		associativity: "right",
 		opType: "binary",
 	},
 	'!': {
@@ -293,14 +293,14 @@ function shuntingYard(tokens) {
 		}
 		else if (currToken.type == "op") {
 			while (
-				opstack.length != 0 &&
+				opstack.length >= 1 &&
 				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data) &&
 				associativity(currToken.data) == "left"
 			) {
 				output.push(opstack.pop());
 			}
 			while (
-				opstack.length != 0 &&
+				opstack.length >= 0 &&
 				precedence(opstack[opstack.length - 1].data) >= precedence(currToken.data) &&
 				associativity(currToken.data) == "right"
 			) {

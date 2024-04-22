@@ -1,7 +1,7 @@
 Notes:
 
 Needs fixing:
-    - Order of operations is broken again
+
 TODO:
     - Variables and functions tokenized, substituted and evaluated
     - Tokenize functions and variables

@@ -81,7 +81,7 @@ const operators = {
 	},
 	'%': {
 		data: '%',
-		precendence: 2,
+		precedence: 2,
 		associativity: "left",
 		opType: "binary",
 	},
@@ -93,31 +93,31 @@ const operators = {
 	},
 	'!': {
 		data: '!',
-		precendence: 4,
+		precedence: 4,
 		associativity: "right",
 		opType: "unary",
 	},
 	/*
 	'sin':{
-			precendence: 4,
+			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.sin,
 	},
 	'cos':{
-			precendence: 4,
+			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.cos,
 	},
 	'tan':{
-			precendence: 4,
+			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.tan,
 	},
 	'abs':{
-			precedence: 4,
+			precedence: 4,	
 			associativity: "right",
 			opType: "unary",
 			function: Math.abs,
@@ -219,16 +219,20 @@ function tokenize(equation) {
 
 			// Substraction or negative operator
 			case '-':
-				num = checkNum(tokens, num);
-				if (before === undefined) {
+				if (num !== "" && num !== undefined) {
+					tokens.push({ type: 'num', data: num });
+					num = "";
+					decimal = false;
+					tokens.push({ type: 'op', data: '-' });
+				}
+				else if (before === undefined) {
 					tokens.push({ type: 'op', data: '_' });
 					break;
 				}
-				else if ((before.type === 'op' || before.type === 'left_br') && before.type != 'num') {
+				else if ((before.type == 'op' || before.type == 'left_br') && before.type != 'num') {
 					tokens.push({ type: 'op', data: '_' });
 					break;
 				}
-				tokens.push({ type: 'op', data: '-' });
 				break;
 
 			// Next we test the character for if it is a bracket
@@ -294,19 +298,10 @@ function shuntingYard(tokens) {
 		else if (currToken.type == "op") {
 			while (
 				opstack.length >= 1 &&
-				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data) &&
-				associativity(currToken.data) == "left"
+				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
 			) {
 				output.push(opstack.pop());
 			}
-			while (
-				opstack.length >= 0 &&
-				precedence(opstack[opstack.length - 1].data) >= precedence(currToken.data) &&
-				associativity(currToken.data) == "right"
-			) {
-				output.push(opstack.pop());
-			}
-
 			opstack.push(currToken);
 		}
 		else if (currToken.type == "fac") {
@@ -372,7 +367,7 @@ function evaluate(rpn) {
 						output.push({ type: "num", data: `${lhs % rhs}` });
 						break;
 					case '^':
-						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` })
+						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` });
 						break;
 				}
 			}

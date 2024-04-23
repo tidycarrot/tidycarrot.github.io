@@ -3,22 +3,22 @@
 // Function definitons
 
 function isWhitespace(c) {
-	return c === ' '
-		|| c === '\n'
-		|| c === '\t'
-		|| c === '\r'
-		|| c === '\f'
-		|| c === '\v'
-		|| c === '\u00a0'
-		|| c === '\u1680'
-		|| c === '\u2000'
-		|| c === '\u200a'
-		|| c === '\u2028'
-		|| c === '\u2029'
-		|| c === '\u202f'
-		|| c === '\u205f'
-		|| c === '\u3000'
-		|| c === '\ufeff'
+	return c === " "
+		|| c === "\n"
+		|| c === "\t"
+		|| c === "\r"
+		|| c === "\f"
+		|| c === "\v"
+		|| c === "\u00a0"
+		|| c === "\u1680"
+		|| c === "\u2000"
+		|| c === "\u200a"
+		|| c === "\u2028"
+		|| c === "\u2029"
+		|| c === "\u202f"
+		|| c === "\u205f"
+		|| c === "\u3000"
+		|| c === "\ufeff"
 };
 
 function isLetter(l) {
@@ -49,82 +49,82 @@ function factorial(num) {
 
 // Some definitions
 const operators = {
-	'+': {
-		data: '+',
+	"+": {
+		data: "+",
 		precedence: 1,
 		associativity: "left",
 		opType: "binary",
 	},
-	'-': {
-		data: '-',
+	"-": {
+		data: "-",
 		precedence: 1,
 		associativity: "left",
 		opType: "binary",
 	},
-	'/': {
-		data: '/',
+	"/": {
+		data: "/",
 		precedence: 2,
 		associativity: "left",
 		opType: "binary",
 	},
-	'*': {
-		data: '*',
+	"*": {
+		data: "*",
 		precedence: 2,
 		associativity: "left",
 		opType: "binary",
 	},
-	'_': {
-		data: '_',
+	"_": {
+		data: "_",
 		precedence: 2.5,
 		associativity: "right",
 		opType: "unary",
 	},
-	'%': {
-		data: '%',
+	"%": {
+		data: "%",
 		precedence: 2,
 		associativity: "left",
 		opType: "binary",
 	},
-	'^': {
-		data: '^',
+	"^": {
+		data: "^",
 		precedence: 3,
 		associativity: "right",
 		opType: "binary",
 	},
-	'!': {
-		data: '!',
+	"!": {
+		data: "!",
 		precedence: 4,
 		associativity: "right",
 		opType: "unary",
 	},
 	/*
-	'sin':{
+	"sin":{
 			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.sin,
 	},
-	'cos':{
+	"cos":{
 			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.cos,
 	},
-	'tan':{
+	"tan":{
 			precedence: 4,
 			associativity: "right",
 			opType: "unary",
 			function: Math.tan,
 	},
-	'abs':{
+	"abs":{
 			precedence: 4,	
 			associativity: "right",
 			opType: "unary",
 			function: Math.abs,
 	}
 	*/
-	'(': {
-		opType: 'left_br',
+	"(": {
+		opType: "left_br",
 		precedence: 0,
 		associativity: "food"
 	}
@@ -144,7 +144,7 @@ function opType(operator) {
 
 function checkNum(tokens, num) {
 	if (num !== "" && num !== undefined) {
-		tokens.push({ type: 'num', data: num });
+		tokens.push({ type: "num", data: num });
 		decimal = false;
 		return "";
 	}
@@ -190,69 +190,69 @@ function tokenize(equation) {
 			before = tokens[tokens.length - 1];
 		}
 
-		// A switch in programming is basically a lot of 'if' and 'else' statements neatly bundled in a convenient in-built function.
-		// A 'if' statement is a piece of code that helps with the run of the code. It works like this: if the equation or thing inside
-		// its argument (which is like a paremeter, in a way) is true, the code after the 'if' statement is run. Sometimes, after this 
-		// conditional code is run, there is an 'else' statement which is quite self explanatory, the code below the 'else' statement is
-		// run when the condition of the 'if' statement is not met. In the else statement, you can put another if statement in it,
+		// A switch in programming is basically a lot of "if" and "else" statements neatly bundled in a convenient in-built function.
+		// A "if" statement is a piece of code that helps with the run of the code. It works like this: if the equation or thing inside
+		// its argument (which is like a paremeter, in a way) is true, the code after the "if" statement is run. Sometimes, after this 
+		// conditional code is run, there is an "else" statement which is quite self explanatory, the code below the "else" statement is
+		// run when the condition of the "if" statement is not met. In the else statement, you can put another if statement in it,
 		// consequently, creating a block of code that checks through things. Therefore,
-		// the 'switch' statement is a shorthand of this syntax instead of programming a mess.
+		// the "switch" statement is a shorthand of this syntax instead of programming a mess.
 		switch (curr) {
 
-			// In these first few 'cases', we check if the character is an operator.
+			// In these first few "cases", we check if the character is an operator.
 
 
-			case '+': // Addition operator
-			case '/': // Division operator
-			case '^': // Exponent operator
-			case '%': // Modulo operator
-			case '*': // Multiplication operator
+			case "+": // Addition operator
+			case "/": // Division operator
+			case "^": // Exponent operator
+			case "%": // Modulo operator
+			case "*": // Multiplication operator
 				num = checkNum(tokens, num);
-				tokens.push({ type: 'op', data: curr });
+				tokens.push({ type: "op", data: curr });
 				break;
 
 			// Factorial operator
-			case '!':
+			case "!":
 				num = checkNum(tokens, num);
-				tokens.push({ type: 'fac', data: '!' });
+				tokens.push({ type: "fac", data: "!" });
 				break;
 
 			// Substraction or negative operator
-			case '-':
+			case "-":
 				if (num !== "" && num !== undefined) {
-					tokens.push({ type: 'num', data: num });
+					tokens.push({ type: "num", data: num });
 					num = "";
 					decimal = false;
-					tokens.push({ type: 'op', data: '-' });
+					tokens.push({ type: "op", data: "-" });
 				}
 				else if (before === undefined) {
-					tokens.push({ type: 'op', data: '_' });
+					tokens.push({ type: "op", data: "_" });
 					break;
 				}
-				else if ((before.type == 'op' || before.type == 'left_br') && before.type != 'num') {
-					tokens.push({ type: 'op', data: '_' });
+				else if ((before.type == "op" || before.type == "left_br") && before.type != "num") {
+					tokens.push({ type: "op", data: "_" });
 					break;
 				}
 				break;
 
 			// Next we test the character for if it is a bracket
-			case ')':
+			case ")":
 				num = checkNum(tokens, num);
-				tokens.push({ type: 'right_br', data: curr });
+				tokens.push({ type: "right_br", data: curr });
 				break;
 
-			case '(':
-				if (before == undefined || before.type == 'op') {
-					tokens.push({ type: 'left_br', data: curr });
+			case "(":
+				if (before == undefined || before.type == "op") {
+					tokens.push({ type: "left_br", data: curr });
 					break;
 				}
 				num = checkNum(tokens, num);
-				tokens.push({ type: 'op', data: '*' });
-				tokens.push({ type: 'left_br', data: curr });
+				tokens.push({ type: "op", data: "*" });
+				tokens.push({ type: "left_br", data: curr });
 				break;
 
-			case '.':
-				num += '.';
+			case ".":
+				num += ".";
 				if (!decimal) {
 					decimal = true;
 				}
@@ -261,171 +261,183 @@ function tokenize(equation) {
 				}
 				break;
 
-			// The default is the final 'else' statement of the switch where if it goes through all the conditions
+			// The default is the final "else" statement of the switch where if it goes through all the conditions
 			// and not satisfy (match) any of them, it will end up here.
 			default:
 				if (!isNaN(curr)) {
 					num += curr;
-				} else {
+				}
+				else if (isLetter(curr)) {
+					if (before != undefined && before.type == "num") {
+						tokens.push({ type: "num", data: num });
+						num = "";
+						decimal = false;
+						tokens.push({ type: "op", data: "*" });
+					} else if (before != undefined && before.type == "right_br" || before.type == "var") {
+						tokens.push({ type: "op", data: "*"})
+					}
+					tokens.push( {type: "var", data: curr} );
+				}
+				else {
 					console.log(`Unexpected character at ${i}`);
 				}
 
 				if (i == equation.length - 1) {
-					tokens.push({ type: 'num', data: num });
+					tokens.push({ type: "num", data: num });
 					num = "";
 					decimal = false;
 				}
 				break;
+
 		}
+		num = checkNum(tokens, num);
 
+		return tokens;
 	}
-	num = checkNum(tokens, num);
-
-	return tokens;
 }
 
-function shuntingYard(tokens) {
-	let output = [];
-	let opstack = [];
+	function shuntingYard(tokens) {
+		let output = [];
+		let opstack = [];
 
-	for (let i = 0; i < tokens.length; i++) {
+		for (let i = 0; i < tokens.length; i++) {
 
-		let currToken = tokens[i];
+			let currToken = tokens[i];
 
-		if (currToken.type == "num") {
-			output.push(currToken);
-		}
-		else if (currToken.type == "op") {
-			while (
-				opstack.length >= 1 &&
-				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
-			) {
-				output.push(opstack.pop());
+			if (currToken.type == "num") {
+				output.push(currToken);
 			}
-			opstack.push(currToken);
-		}
-		else if (currToken.type == "fac") {
-			output.push({ type: "fac", data: "!" });
-		}
-		// Check if it is a left parentheses '('
-		else if (currToken.type == "left_br") {
-			opstack.push(currToken);
-		}
-		// Check if it is a right parentheses ')'
-		else if (currToken.type == "right_br") {
-			// Keep popping operators from the stack until a left parentheses is met
-			while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
-				output.push(opstack.pop());
+			else if (currToken.type == "op") {
+				while (
+					opstack.length >= 1 &&
+					precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
+				) {
+					output.push(opstack.pop());
+				}
+				opstack.push(currToken);
 			}
-			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
+			else if (currToken.type == "fac") {
+				output.push({ type: "fac", data: "!" });
+			}
+			// Check if it is a left parentheses "("
+			else if (currToken.type == "left_br") {
+				opstack.push(currToken);
+			}
+			// Check if it is a right parentheses ")"
+			else if (currToken.type == "right_br") {
+				// Keep popping operators from the stack until a left parentheses is met
+				while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
+					output.push(opstack.pop());
+				}
+				if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
-			else console.log("Mismatched parentheses.");
+				else console.log("Mismatched parentheses.");
+			}
+			console.log(output);
+			console.log(opstack);
 		}
-		console.log(output);
-		console.log(opstack);
+
+		// Pop operators from stack and push them to the output queueleft
+		while (opstack.length > 0) {
+			if (opstack[opstack.length - 1] == "(") {
+				console.log("Mismatched parentheses.");
+			}
+			output.push(opstack.pop());
+		}
+		// Return the output queue
+		return output;
 	}
 
-	// Pop operators from stack and push them to the output queueleft
-	while (opstack.length > 0) {
-		if (opstack[opstack.length - 1] == "(") {
-			console.log("Mismatched parentheses.");
-		}
-		output.push(opstack.pop());
-	}
-	// Return the output queue
-	return output;
-}
+	function evaluate(rpn) {
+		let output = [];
+		for (let i = 0; i < rpn.length; i++) {
+			// If it is a number, push it into the output stack
+			if (rpn[i].type == "num") {
+				output.push(rpn[i]);
+			}
+			// If it is an operator 
+			else if (rpn[i].type == "op" || rpn[i].type == "fac") {
 
-function evaluate(rpn) {
-	let output = [];
-	for (let i = 0; i < rpn.length; i++) {
-		// If it is a number, push it into the output stack
-		if (rpn[i].type == "num") {
-			output.push(rpn[i]);
-		}
-		// If it is an operator 
-		else if (rpn[i].type == "op" || rpn[i].type == "fac") {
+				if (opType(rpn[i].data) == "binary" && output.length >= 2) {
+					let rhs = parseFloat(output.pop().data);
+					let lhs = parseFloat(output.pop().data);
 
-			if (opType(rpn[i].data) == "binary" && output.length >= 2) {
-				let rhs = parseFloat(output.pop().data);
-				let lhs = parseFloat(output.pop().data);
+					switch (rpn[i].data) {
+						case "+":
+							output.push({ type: "num", data: `${lhs + rhs}` });
+							break;
+						case "-":
+							output.push({ type: "num", data: `${lhs - rhs}` });
+							break;
+						case "*":
+							output.push({ type: "num", data: `${lhs * rhs}` });
+							break;
+						case "/":
+							output.push({ type: "num", data: `${lhs / rhs}` });
+							break;
+						case "%":
+							output.push({ type: "num", data: `${lhs % rhs}` });
+							break;
+						case "^":
+							output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` });
+							break;
+					}
+				}
+				else if (opType(rpn[i].data) == "unary") {
+					let num = parseFloat(output.pop().data);
 
-				switch (rpn[i].data) {
-					case '+':
-						output.push({ type: "num", data: `${lhs + rhs}` });
-						break;
-					case '-':
-						output.push({ type: "num", data: `${lhs - rhs}` });
-						break;
-					case '*':
-						output.push({ type: "num", data: `${lhs * rhs}` });
-						break;
-					case '/':
-						output.push({ type: "num", data: `${lhs / rhs}` });
-						break;
-					case '%':
-						output.push({ type: "num", data: `${lhs % rhs}` });
-						break;
-					case '^':
-						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` });
-						break;
+					switch (rpn[i].data) {
+						case "_":
+							output.push({ type: "num", data: `${num * -1}` });
+							break;
+						case "!":
+							output.push({ type: "num", data: `${factorial(num)}` })
+							break;
+					}
 				}
 			}
-			else if (opType(rpn[i].data) == "unary") {
-				let num = parseFloat(output.pop().data);
-
-				switch (rpn[i].data) {
-					case '_':
-						output.push({ type: "num", data: `${num * -1}` });
-						break;
-					case '!':
-						output.push({ type: "num", data: `${factorial(num)}` })
-						break;
-				}
-			}
 		}
+		return output;
 	}
-	return output;
-}
 
-// Answer funtion
-function answer() {
-	let input = document.getElementById("infix").value;
+	// Answer funtion
+	function answer() {
+		let input = document.getElementById("infix").value;
 
-	let tokenized = tokenize(input);
-	let tokenized_output = "";
-	for (let i = 0; i < tokenized.length - 1; i++) {
-		tokenized_output += tokenized[i].data;
-		tokenized_output += " ";
-	} tokenized_output += tokenized[tokenized.length - 1].data;
+		let tokenized = tokenize(input);
+		let tokenized_output = "";
+		for (let i = 0; i < tokenized.length - 1; i++) {
+			tokenized_output += tokenized[i].data;
+			tokenized_output += " ";
+		} tokenized_output += tokenized[tokenized.length - 1].data;
 
-	let rpn = shuntingYard(tokenized);
-	let rpn_output = "";
-	for (let i = 0; i < rpn.length - 1; i++) {
-		rpn_output += rpn[i].data;
-		rpn_output += " ";
-	} rpn_output += rpn[rpn.length - 1].data;
+		let rpn = shuntingYard(tokenized);
+		let rpn_output = "";
+		for (let i = 0; i < rpn.length - 1; i++) {
+			rpn_output += rpn[i].data;
+			rpn_output += " ";
+		} rpn_output += rpn[rpn.length - 1].data;
 
-	let answer = evaluate(rpn);
-	let answer_output = answer[0].data;
+		let answer = evaluate(rpn);
+		let answer_output = answer[0].data;
 
-	document.getElementById("token").innerHTML = tokenized_output;
-	document.getElementById("rpn").innerHTML = rpn_output;
-	document.getElementById("answer").innerHTML = answer_output
-}
+		document.getElementById("token").innerHTML = tokenized_output;
+		document.getElementById("rpn").innerHTML = rpn_output;
+		document.getElementById("answer").innerHTML = answer_output
+	}
 
 // Pseudocode logic (stolen from Brilliant)
 
 // While there are tokens to be read:
 //       Read a token
-//       If it's a number add it to queue
-//       If it's an operator
-//              While there's an operator on the top of the stack with greater precedence:
+//       If it"s a number add it to queue
+//       If it"s an operator
+//              While there"s an operator on the top of the stack with greater precedence:
 //                      Pop operators from the stack onto the output queue
 //              Push the current operator onto the stack
-//       If it's a left bracket push it onto the stack
-//       If it's a right bracket
-//             While there's not a left bracket at the top of the stack:
+//       If it"s a left bracket push it onto the stack
+//       If it"s a right bracket
+//             While there"s not a left bracket at the top of the stack:
 //                     Pop operators from the stack onto the output queue.
 //             Pop the left bracket from the stack and discard it
 // While there are operators on the stack, pop them to the queue

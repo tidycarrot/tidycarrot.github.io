@@ -1,5 +1,3 @@
-// This is a math parser using a LR algorithm called the Shunting Yard algorithm. 
-
 // Function definitons
 
 function isWhitespace(c) {
@@ -22,7 +20,7 @@ function isWhitespace(c) {
 };
 
 function isLetter(l) {
-	if (l.charCodeAt(0) >= 65 && l.charCodeAt(0) <= 122) {
+	if ((l.charCodeAt(0) >= 65 && l.charCodeAt(0) <= 90) || (l.charCodeAt(0) >= 97 && l.charCodeAt(0) <= 122)) {
 		return true;
 	}
 	else return false;
@@ -268,15 +266,13 @@ function tokenize(equation) {
 					num += curr;
 				}
 				else if (isLetter(curr)) {
+					num = checkNum(tokens, num);
 					if (before != undefined && before.type == "num") {
-						tokens.push({ type: "num", data: num });
-						num = "";
-						decimal = false;
 						tokens.push({ type: "op", data: "*" });
-					} else if (before != undefined && before.type == "right_br" || before.type == "var") {
-						tokens.push({ type: "op", data: "*"})
+					} else if (before != undefined && (before.type == "right_br" || before.type == "var")) {
+						tokens.push({ type: "op", data: "*" })
 					}
-					tokens.push( {type: "var", data: curr} );
+					tokens.push({ type: "var", data: curr });
 				}
 				else {
 					console.log(`Unexpected character at ${i}`);
@@ -288,143 +284,142 @@ function tokenize(equation) {
 					decimal = false;
 				}
 				break;
-
 		}
-		num = checkNum(tokens, num);
-
-		return tokens;
 	}
+	num = checkNum(tokens, num);
+
+	return tokens;
 }
 
-	function shuntingYard(tokens) {
-		let output = [];
-		let opstack = [];
+function shuntingYard(tokens) {
+	let output = [];
+	let opstack = [];
 
-		for (let i = 0; i < tokens.length; i++) {
+	for (let i = 0; i < tokens.length; i++) {
 
-			let currToken = tokens[i];
+		let currToken = tokens[i];
 
-			if (currToken.type == "num") {
-				output.push(currToken);
+		if (currToken.type == "num") {
+			output.push(currToken);
+		}
+		else if (currToken.type == "op") {
+			while (
+				opstack.length >= 1 &&
+				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
+			) {
+				output.push(opstack.pop());
 			}
-			else if (currToken.type == "op") {
-				while (
-					opstack.length >= 1 &&
-					precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
-				) {
-					output.push(opstack.pop());
-				}
-				opstack.push(currToken);
+			opstack.push(currToken);
+		}
+		else if (currToken.type == "fac") {
+			output.push({ type: "fac", data: "!" });
+		}
+		// Check if it is a left parentheses "("
+		else if (currToken.type == "left_br") {
+			opstack.push(currToken);
+		}
+		// Check if it is a right parentheses ")"
+		else if (currToken.type == "right_br") {
+			// Keep popping operators from the stack until a left parentheses is met
+			while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
+				output.push(opstack.pop());
 			}
-			else if (currToken.type == "fac") {
-				output.push({ type: "fac", data: "!" });
-			}
-			// Check if it is a left parentheses "("
-			else if (currToken.type == "left_br") {
-				opstack.push(currToken);
-			}
-			// Check if it is a right parentheses ")"
-			else if (currToken.type == "right_br") {
-				// Keep popping operators from the stack until a left parentheses is met
-				while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
-					output.push(opstack.pop());
-				}
-				if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
+			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
-				else console.log("Mismatched parentheses.");
-			}
-			console.log(output);
-			console.log(opstack);
+			else console.log("Mismatched parentheses.");
 		}
-
-		// Pop operators from stack and push them to the output queueleft
-		while (opstack.length > 0) {
-			if (opstack[opstack.length - 1] == "(") {
-				console.log("Mismatched parentheses.");
-			}
-			output.push(opstack.pop());
-		}
-		// Return the output queue
-		return output;
+		console.log(output);
+		console.log(opstack);
 	}
 
-	function evaluate(rpn) {
-		let output = [];
-		for (let i = 0; i < rpn.length; i++) {
-			// If it is a number, push it into the output stack
-			if (rpn[i].type == "num") {
-				output.push(rpn[i]);
-			}
-			// If it is an operator 
-			else if (rpn[i].type == "op" || rpn[i].type == "fac") {
+	// Pop operators from stack and push them to the output queueleft
+	while (opstack.length > 0) {
+		if (opstack[opstack.length - 1].data == "(") {
+			console.log("Mismatched parentheses.");
+		}
+		output.push(opstack.pop());
+	}
+	// Return the output queue
+	return output;
+}
 
-				if (opType(rpn[i].data) == "binary" && output.length >= 2) {
-					let rhs = parseFloat(output.pop().data);
-					let lhs = parseFloat(output.pop().data);
+function evaluate(rpn) {
+	let output = [];
+	for (let i = 0; i < rpn.length; i++) {
+		// If it is a number, push it into the output stack
+		if (rpn[i].type == "num") {
+			output.push(rpn[i]);
+		}
+		// If it is an operator 
+		else if (rpn[i].type == "op" || rpn[i].type == "fac") {
 
-					switch (rpn[i].data) {
-						case "+":
-							output.push({ type: "num", data: `${lhs + rhs}` });
-							break;
-						case "-":
-							output.push({ type: "num", data: `${lhs - rhs}` });
-							break;
-						case "*":
-							output.push({ type: "num", data: `${lhs * rhs}` });
-							break;
-						case "/":
-							output.push({ type: "num", data: `${lhs / rhs}` });
-							break;
-						case "%":
-							output.push({ type: "num", data: `${lhs % rhs}` });
-							break;
-						case "^":
-							output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` });
-							break;
-					}
-				}
-				else if (opType(rpn[i].data) == "unary") {
-					let num = parseFloat(output.pop().data);
+			if (opType(rpn[i].data) == "binary" && output.length >= 2) {
+				let rhs = parseFloat(output.pop().data);
+				let lhs = parseFloat(output.pop().data);
 
-					switch (rpn[i].data) {
-						case "_":
-							output.push({ type: "num", data: `${num * -1}` });
-							break;
-						case "!":
-							output.push({ type: "num", data: `${factorial(num)}` })
-							break;
-					}
+				switch (rpn[i].data) {
+					case "+":
+						output.push({ type: "num", data: `${lhs + rhs}` });
+						break;
+					case "-":
+						output.push({ type: "num", data: `${lhs - rhs}` });
+						break;
+					case "*":
+						output.push({ type: "num", data: `${lhs * rhs}` });
+						break;
+					case "/":
+						output.push({ type: "num", data: `${lhs / rhs}` });
+						break;
+					case "%":
+						output.push({ type: "num", data: `${lhs % rhs}` });
+						break;
+					case "^":
+						output.push({ type: "num", data: `${Math.pow(lhs, rhs)}` });
+						break;
 				}
 			}
+			else if (opType(rpn[i].data) == "unary") {
+				let num = parseFloat(output.pop().data);
+
+				switch (rpn[i].data) {
+					case "_":
+						output.push({ type: "num", data: `${num * -1}` });
+						break;
+					case "!":
+						output.push({ type: "num", data: `${factorial(num)}` })
+						break;
+				}
+			}
 		}
-		return output;
 	}
+	return output;
+}
 
-	// Answer funtion
-	function answer() {
-		let input = document.getElementById("infix").value;
+// Answer funtion
+function answer() {
+	let input = document.getElementById("infix").value;
 
-		let tokenized = tokenize(input);
-		let tokenized_output = "";
-		for (let i = 0; i < tokenized.length - 1; i++) {
-			tokenized_output += tokenized[i].data;
-			tokenized_output += " ";
-		} tokenized_output += tokenized[tokenized.length - 1].data;
+	let tokenized = tokenize(input);
+	let tokenized_output = "";
+	for (let i = 0; i < tokenized.length - 1; i++) {
+		tokenized_output += tokenized[i].data;
+		tokenized_output += " ";
+	} tokenized_output += tokenized[tokenized.length - 1].data;
 
-		let rpn = shuntingYard(tokenized);
-		let rpn_output = "";
-		for (let i = 0; i < rpn.length - 1; i++) {
-			rpn_output += rpn[i].data;
-			rpn_output += " ";
-		} rpn_output += rpn[rpn.length - 1].data;
+	// let rpn = shuntingYard(tokenized);
+	// let rpn_output = "";
+	// for (let i = 0; i < rpn.length - 1; i++) {
+	// 	rpn_output += rpn[i].data;
+	// 	rpn_output += " ";
+	// } rpn_output += rpn[rpn.length - 1].data;
 
-		let answer = evaluate(rpn);
-		let answer_output = answer[0].data;
+	// let answer = evaluate(rpn);
+	// let answer_output = answer[0].data;
 
-		document.getElementById("token").innerHTML = tokenized_output;
-		document.getElementById("rpn").innerHTML = rpn_output;
-		document.getElementById("answer").innerHTML = answer_output
-	}
+	document.getElementById("token").innerHTML = tokenized_output;
+	// document.getElementById("rpn").innerHTML = rpn_output;
+	// document.getElementById("answer").innerHTML = answer_output
+}
 
 // Pseudocode logic (stolen from Brilliant)
 

@@ -95,32 +95,6 @@ const operators = {
 		associativity: "right",
 		opType: "unary",
 	},
-	/*
-	"sin":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.sin,
-	},
-	"cos":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.cos,
-	},
-	"tan":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.tan,
-	},
-	"abs":{
-			precedence: 4,	
-			associativity: "right",
-			opType: "unary",
-			function: Math.abs,
-	}
-	*/
 	"(": {
 		opType: "left_br",
 		precedence: 0,
@@ -265,19 +239,6 @@ function tokenize(equation) {
 				if (!isNaN(curr)) { // Check if it is not a number then if it is not, it is a number
 					num += curr;
 				}
-				else if (isLetter(curr)) { // Check if it is a letter, right now I am only implementing single letter variables
-					if (num != "" && num != undefined) {
-						tokens.push({ type: "num", data: num });
-						decimal = false;
-						num = "";
-						tokens.push({ type: "op", data: "*" });
-					}
-
-					if (before != undefined && (before.type == "right_br" || before.type == "var")) {
-						tokens.push({ type: "op", data: "*" });
-					}
-					tokens.push({ type: "var", data: curr });
-				}
 				else {
 					console.log(`Unexpected character at ${i}`);
 				}
@@ -327,8 +288,6 @@ function shuntingYard(tokens) {
 				/* Discard the left parentheses */ opstack.pop();
 			else console.log("Mismatched parentheses.");
 		}
-		console.log(output);
-		console.log(opstack);
 	}
 
 	// Pop operators from stack and push them to the output queueleft
@@ -405,19 +364,19 @@ function answer() {
 		tokenized_output += " ";
 	} tokenized_output += tokenized[tokenized.length - 1].data;
 
-	// let rpn = shuntingYard(tokenized);
-	// let rpn_output = "";
-	// for (let i = 0; i < rpn.length - 1; i++) {
-	// 	rpn_output += rpn[i].data;
-	// 	rpn_output += " ";
-	// } rpn_output += rpn[rpn.length - 1].data;
+	let rpn = shuntingYard(tokenized);
+	let rpn_output = "";
+	for (let i = 0; i < rpn.length - 1; i++) {
+		rpn_output += rpn[i].data;
+		rpn_output += " ";
+	} rpn_output += rpn[rpn.length - 1].data;
 
-	// let answer = evaluate(rpn);
-	// let answer_output = answer[0].data;
+	let answer = evaluate(rpn);
+	let answer_output = answer[0].data;
 
 	document.getElementById("token").innerHTML = tokenized_output;
-	// document.getElementById("rpn").innerHTML = rpn_output;
-	// document.getElementById("answer").innerHTML = answer_output
+	document.getElementById("rpn").innerHTML = rpn_output;
+	document.getElementById("answer").innerHTML = answer_output
 }
 
 // Pseudocode logic (stolen from Brilliant)

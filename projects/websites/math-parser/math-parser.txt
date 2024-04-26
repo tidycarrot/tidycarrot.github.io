@@ -1,7 +1,6 @@
 Notes:
 
 Needs fixing:
-    - Coefficient next to single letter variable doesn't multiply with the variable.
 
 TODO:
     - Additional testing:
@@ -10,7 +9,7 @@ TODO:
             {'+','-','/','*','%','!','^','(',')'}, with positive and negative rational numbers that do 
             not necessarily integers. Output the math expressions in plain ascii text format and not 
             rendered latex as this will test a math parser and it cannot accept latex or uncommon unicode symbols.
-    - Variables and functions tokenized, substituted and evaluated
-    - Tokenize functions and variables
+    - Functions tokenized, substituted and evaluated
+    - Tokenize functions.
     - Do something for errors
     - UI

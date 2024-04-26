@@ -141,7 +141,7 @@ function opType(operator) {
 }
 
 function checkNum(tokens, num) {
-	if (num !== "" && num !== undefined) {
+	if (num != "" && num != undefined) {
 		tokens.push({ type: "num", data: num });
 		decimal = false;
 		return "";
@@ -262,15 +262,19 @@ function tokenize(equation) {
 			// The default is the final "else" statement of the switch where if it goes through all the conditions
 			// and not satisfy (match) any of them, it will end up here.
 			default:
-				if (!isNaN(curr)) {
+				if (!isNaN(curr)) { // Check if it is not a number then if it is not, it is a number
 					num += curr;
 				}
-				else if (isLetter(curr)) {
-					num = checkNum(tokens, num);
-					if (before != undefined && before.type == "num") {
+				else if (isLetter(curr)) { // Check if it is a letter, right now I am only implementing single letter variables
+					if (num != "" && num != undefined) {
+						tokens.push({ type: "num", data: num });
+						decimal = false;
+						num = "";
 						tokens.push({ type: "op", data: "*" });
-					} else if (before != undefined && (before.type == "right_br" || before.type == "var")) {
-						tokens.push({ type: "op", data: "*" })
+					}
+
+					if (before != undefined && (before.type == "right_br" || before.type == "var")) {
+						tokens.push({ type: "op", data: "*" });
 					}
 					tokens.push({ type: "var", data: curr });
 				}
@@ -278,11 +282,6 @@ function tokenize(equation) {
 					console.log(`Unexpected character at ${i}`);
 				}
 
-				if (i == equation.length - 1) {
-					tokens.push({ type: "num", data: num });
-					num = "";
-					decimal = false;
-				}
 				break;
 		}
 	}

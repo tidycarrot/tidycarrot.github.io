@@ -1,0 +1,28 @@
+*{
+    font-family: "Open Sans", sans-serif;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.contents {
+    margin: auto;
+    width: 75vw;
+}
+
+#infix {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+}
+
+.output {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+}

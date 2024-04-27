@@ -1,10 +1,14 @@
+* {
+    align-content: center;
+}
+
 body {
     margin-top: 10px;
     margin: auto;
 
     text-align: center;
 
-    min-width: 400px;
+    min-width: 70%px;
     width: 80%;
 }
 
@@ -76,7 +80,7 @@ ul.navbar {
 #red-square-width {
     width: 100px;
     height: 100px;
-    background: red;
+    background: lime;
     margin-right: auto;
     margin-left: auto;
     display: inline-block;
@@ -95,7 +99,7 @@ ul.navbar {
 #yellow-green-square-color {
     width: 100px;
     height: 100px;
-    background: yellow;
+    background: orangered;
     margin-right: auto;
     margin-left: auto;
     display: inline-block;
@@ -108,13 +112,13 @@ ul.navbar {
 }
 
 #yellow-green-square-color:active {
-    background-color: green;
+    background-color: moccasin;
 }
 
 #pink-square-rotate {
     width: 100px;
     height: 100px;
-    background: pink;
+    background: orange;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -135,7 +139,7 @@ ul.navbar {
 #square-to-circle {
     width: 100px;
     height: 100px;
-    background: #333;
+    background: aqua;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -156,7 +160,7 @@ ul.navbar {
 #square-translate {
     width: 100px;
     height: 100px;
-    background: peru;
+    background: yellow;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -172,10 +176,29 @@ ul.navbar {
     transform: translateX(-50px);
 }
 
+#square-skew {
+    width: 100px;
+    height: 100px;
+    background: mediumorchid;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#square-skew:active {
+    transform: skew(-0.01turn, 140deg);
+}
+
 #square-all {
     width: 100px;
     height: 100px;
-    background: blue;
+    background: magenta;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -188,13 +211,13 @@ ul.navbar {
 }
 
 #square-all:active {
-    transform: rotate(540deg) translateX(-120px);
-    -ms-transform: rotate(540deg) translateX(-120px);
-    -webkit-transform: rotate(540deg) translateX(-120px);
+    transform: rotate(540deg) translateX(-40px) skew(-0.01turn, 1400deg) translateY(5em);
+    -ms-transform: rotate(540deg) translateX(-40px) skew(-0.01turn, 1400deg) translateY(5em);
+    -webkit-transform: rotate(-1200deg) translateX(-40px) skew(-0.01turn, 1400deg) translateY(5em);
     width: 150px;
     height: 100px;
     border-radius: 50%;
-    background-color: green;
+    background-color: yellow;
 }
 
 #timing-linear {
@@ -387,4 +410,53 @@ ul.navbar {
 
 .file-list li {
     text-align: left;
+}
+
+.color-table {
+    border: none;
+    padding: 0.4em;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.color-cell {
+    height: 2em;
+    width: 25%;
+}
+
+.tooltip {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #5B5B5BDD;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 7px;
+    padding: 3px 0;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:active .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(2em);
 }

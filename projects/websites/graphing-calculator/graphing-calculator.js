@@ -95,6 +95,11 @@ const operators = {
 		associativity: "right",
 		opType: "unary",
 	},
+	"(": {
+		opType: "left_br",
+		precedence: 0,
+		associativity: "food"
+	},
 	/*
 	"sin":{
 			precedence: 4,
@@ -121,11 +126,6 @@ const operators = {
 			function: Math.abs,
 	}
 	*/
-	"(": {
-		opType: "left_br",
-		precedence: 0,
-		associativity: "food"
-	}
 }
 
 function precedence(operator) {
@@ -298,7 +298,7 @@ function shuntingYard(tokens) {
 
 		let currToken = tokens[i];
 
-		if (currToken.type == "num") {
+		if (currToken.type == "num" || currToken.type == "var") {
 			output.push(currToken);
 		}
 		else if (currToken.type == "op") {
@@ -325,10 +325,10 @@ function shuntingYard(tokens) {
 			}
 			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
-			else console.log("Mismatched parentheses.");
+			else {
+				console.log("Mismatched parentheses.");
+			}
 		}
-		console.log(output);
-		console.log(opstack);
 	}
 
 	// Pop operators from stack and push them to the output queueleft
@@ -400,77 +400,46 @@ function answer() {
 
 	let tokenized = tokenize(input);
 	let tokenized_output = "";
-	for (let i = 0; i < tokenized.length - 1; i++) {
+	for (let i = 0; i < tokenized.length; i++) {
 		tokenized_output += tokenized[i].data;
 		tokenized_output += " ";
-	} tokenized_output += tokenized[tokenized.length - 1].data;
+	}
 
-	// let rpn = shuntingYard(tokenized);
-	// let rpn_output = "";
-	// for (let i = 0; i < rpn.length - 1; i++) {
-	// 	rpn_output += rpn[i].data;
-	// 	rpn_output += " ";
-	// } rpn_output += rpn[rpn.length - 1].data;
+	let rpn = shuntingYard(tokenized);
+	let rpn_output = "";
+	for (let i = 0; i < rpn.length; i++) {
+		rpn_output += rpn[i].data;
+		rpn_output += " ";
+	}
 
 	// let answer = evaluate(rpn);
-	// let answer_output = answer[0].data;
+	// let answer_output = "Error.";
+	// answer_output = answer[0].data;
 
 	document.getElementById("token").innerHTML = tokenized_output;
-	// document.getElementById("rpn").innerHTML = rpn_output;
-	// document.getElementById("answer").innerHTML = answer_output
+	document.getElementById("rpn").innerHTML = rpn_output;
+	// document.getElementById("answer").innerHTML = answer_output;
+
+	console.log("\n")
+	console.log(`Input: ${input}`)
+	console.log(`Tokenized: ${tokenized_output}`);
+	console.log(`RPN: ${rpn_output}`);
+	// console.log(`Answer: ${answer_output}`);
 }
 
-// Pseudocode logic (stolen from Brilliant)
+function plotPoint(x, y, size = 1, color = "black") {
+	const canvas = document.getElementById("canvas-graph");
+	const ctx = canvas.getContext("2d");
+	ctx.beginPath();
+	ctx.arc(x, y, size, 0, 2 * Math.PI);
+	ctx.fillStyle = color;
+	ctx.fill();
+	ctx.stroke();
+}
 
-// While there are tokens to be read:
-//       Read a token
-//       If it"s a number add it to queue
-//       If it"s an operator
-//              While there"s an operator on the top of the stack with greater precedence:
-//                      Pop operators from the stack onto the output queue
-//              Push the current operator onto the stack
-//       If it"s a left bracket push it onto the stack
-//       If it"s a right bracket
-//             While there"s not a left bracket at the top of the stack:
-//                     Pop operators from the stack onto the output queue.
-//             Pop the left bracket from the stack and discard it
-// While there are operators on the stack, pop them to the queue
-
-// Pseudocode logic (stolen from Wikipedia)
-//
-// /* The functions referred to in this algorithm are simple single argument functions such as sine, inverse or factorial. */
-// /* This implementation does not implement composite functions, functions with a variable number of arguments, or unary operators. */
-//
-// while there are tokens to be read:
-//     read a token
-// if the token is:
-// - a number:
-//         put it into the output queue
-// 	- a function:
-// 	push it onto the operator stack
-// 		- an operator o1:
-// while (
-// 	there is an operator o2 at the top of the operator stack which is not a left parenthesis,
-// 		and(o2 has greater precedence than o1 or(o1 and o2 have the same precedence and o1 is left - associative))
-//         ):
-//             pop o2 from the operator stack into the output queue
-//         push o1 onto the operator stack
-// 	- a ",":
-// while the operator at the top of the operator stack is not a left parenthesis:
-//              pop the operator from the operator stack into the output queue
-// 	- a left parenthesis(i.e. "("):
-//         push it onto the operator stack
-// 	- a right parenthesis(i.e. ")"):
-// while the operator at the top of the operator stack is not a left parenthesis:
-// {assert the operator stack is not empty }
-//             /* If the stack runs out without finding a left parenthesis, then there are mismatched parentheses. */
-//             pop the operator from the operator stack into the output queue
-// {assert there is a left parenthesis at the top of the operator stack }
-//         pop the left parenthesis from the operator stack and discard it
-// if there is a function token at the top of the operator stack, then:
-//             pop the function from the operator stack into the output queue
-// /* After the while loop, pop the remaining items from the operator stack into the output queue. */
-// while there are tokens on the operator stack:
-// /* If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses. */
-// {assert the operator on top of the stack is not a(left) parenthesis }
-//     pop the operator from the operator stack onto the output queue
+function resize() {
+	document.getElementById("canvas-graph").width = window.innerWidth * 0.8;
+	document.getElementById("canvas-graph").height = window.innerHeight * 0.4;
+}
+document.addEventListener("DOMContentLoaded", resize);
+window.addEventListener('resize', resize);

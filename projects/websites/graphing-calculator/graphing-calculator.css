@@ -14,8 +14,9 @@
     padding-bottom: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
+    width: 80%;
     display: block;
+    margin: auto;
 }
 
 .output {
@@ -23,6 +24,15 @@
     padding-bottom: 1em;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
     display: block;
+    width: 80%;
+    margin: auto;
+}
+
+#canvas-graph {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    margin: 25px;
 }

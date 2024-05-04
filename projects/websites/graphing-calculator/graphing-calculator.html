@@ -5,26 +5,30 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Math Parser</title>
-    <link rel='stylesheet' href='math-parser.css'>
+    <link rel='stylesheet' href='graphing-calculator.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@300&family=Open+Sans:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@300&family=Open+Sans:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div class="contents">
-        <h1>Math Expression Parser</h1>
-        <input id="infix" placeholder="Type an expression" oninput="answer()">
-        <div>
-            <p>Tokenizer output</p>
-            <p id="token" class="output"></p>
-            <p>Shunting Yard algorithm output (in RPN form)</p>
-            <p id="rpn" class="output"></p>
-            <p>Answer</p>
-            <p id="answer" class="output"></p>
-        </div>
+
+    <h1>Math Expression Parser</h1>
+    <input id="infix" placeholder="Type an expression" oninput="answer()">
+    <div>
+        <p>Tokenizer output</p>
+        <p id="token" class="output"></p>
+        <p>Shunting Yard algorithm output (in RPN form)</p>
+        <p id="rpn" class="output"></p>
+        <p>Answer</p>
+        <p id="answer" class="output"></p>
+        <canvas id="canvas-graph">
+        </canvas>
     </div>
+
 </body>
-<script src='math-parser.js'></script>
+<script src='graphing-calculator.js'></script>
 
 </html>

@@ -342,6 +342,20 @@ function shuntingYard(tokens) {
 	return output;
 }
 
+function substitute(tokens, variable, value) {
+	let output = [];
+	if (tokens.length != 0) {
+		for (let i = 0; i < tokens.length; i++) {
+			if (tokens[i].type == "var" && tokens[i].data == variable) {
+				output.push({ type: "num", data: value.toString() })
+			} else {
+				output.push(tokens[i])
+			}
+		}
+	}
+	return output;
+}
+
 function evaluate(rpn) {
 	let output = [];
 	for (let i = 0; i < rpn.length; i++) {
@@ -442,4 +456,4 @@ function resize() {
 	document.getElementById("canvas-graph").height = window.innerHeight * 0.4;
 }
 document.addEventListener("DOMContentLoaded", resize);
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);

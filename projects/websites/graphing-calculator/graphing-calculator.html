@@ -16,16 +16,15 @@
 <body>
 
     <h1>Math Expression Parser</h1>
-    <input id="infix" placeholder="Type an expression" oninput="answer()">
+    <input id="infix" placeholder="Type an expression" oninput="answer()" autofocus>
+    <label>Zoom: </label>
+    <input type="number" id="zoom" value="1" oninput="answer()" min="0.0001", max="10000">
     <div>
+        <canvas id="canvas-graph">A graph representing equations</canvas>
         <p>Tokenizer output</p>
         <p id="token" class="output"></p>
         <p>Shunting Yard algorithm output (in RPN form)</p>
         <p id="rpn" class="output"></p>
-        <p>Answer</p>
-        <p id="answer" class="output"></p>
-        <canvas id="canvas-graph">
-        </canvas>
     </div>
 
 </body>

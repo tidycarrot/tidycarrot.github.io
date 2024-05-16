@@ -343,16 +343,19 @@ function shuntingYard(tokens) {
 }
 
 function substitute(tokens, variable, value) {
+	if (tokens.length == 0)
+		return [];
+
 	let output = [];
-	if (tokens.length != 0) {
-		for (let i = 0; i < tokens.length; i++) {
-			if (tokens[i].type == "var" && tokens[i].data == variable) {
-				output.push({ type: "num", data: value.toString() })
-			} else {
-				output.push(tokens[i])
-			}
+
+	for (let i = 0; i < tokens.length; i++) {
+		if (tokens[i].type == "var" && tokens[i].data == variable) {
+			output.push({ type: "num", data: value.toString() })
+		} else {
+			output.push(tokens[i])
 		}
 	}
+
 	return output;
 }
 
@@ -405,7 +408,7 @@ function evaluate(rpn) {
 			}
 		}
 	}
-	return output;
+	return output[0].data;
 }
 
 // Answer funtion
@@ -426,22 +429,39 @@ function answer() {
 		rpn_output += " ";
 	}
 
-	// let answer = evaluate(rpn);
-	// let answer_output = "Error.";
-	// answer_output = answer[0].data;
+	clearCanvas();
+	drawAxis();
+	let dimensions = getCanvasDimensions();
+	let ctx = getCanvasCtx();
+	let zoom = document.getElementById('zoom').value;
+	ctx.strokeStyle = "black";
+
+	function transform(x, y) {
+		return { x: x * zoom + dimensions.x / 2, y: -y * zoom + dimensions.y / 2 };
+	}
+
+	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
+	let prevPoint = transform(x, y);
+	for (var x = dimensions.x / -2/zoom + 1/zoom; x < dimensions.x / 2/zoom; x += 1/zoom) {
+		y = evaluate(substitute(rpn, 'x', x));
+		let point = transform(x, y);
+
+		plotLine(prevPoint, point);
+		// plotPoint(point.x, point.y);
+
+		prevPoint = point;
+	}
 
 	document.getElementById("token").innerHTML = tokenized_output;
 	document.getElementById("rpn").innerHTML = rpn_output;
-	// document.getElementById("answer").innerHTML = answer_output;
 
 	console.log("\n")
 	console.log(`Input: ${input}`)
 	console.log(`Tokenized: ${tokenized_output}`);
 	console.log(`RPN: ${rpn_output}`);
-	// console.log(`Answer: ${answer_output}`);
 }
 
-function plotPoint(x, y, size = 1, color = "black") {
+function plotPoint(x, y, size = 0.1, color = "black") {
 	const canvas = document.getElementById("canvas-graph");
 	const ctx = canvas.getContext("2d");
 	ctx.beginPath();
@@ -451,9 +471,49 @@ function plotPoint(x, y, size = 1, color = "black") {
 	ctx.stroke();
 }
 
+function plotLine(prevPoint, point) {
+	let ctx = getCanvasCtx();
+	ctx.beginPath();
+	ctx.moveTo(prevPoint.x, prevPoint.y);
+	ctx.lineTo(point.x, point.y);
+	ctx.stroke();
+	ctx.closePath();
+}
+
+function getCanvasCtx() {
+	const canvas = document.getElementById("canvas-graph");
+	const ctx = canvas.getContext("2d");
+	return ctx;
+}
+
+function getCanvasDimensions() {
+	const canvas = document.getElementById("canvas-graph");
+	return { x: canvas.width, y: canvas.height };
+}
+
+function clearCanvas() {
+	const canvas = document.getElementById("canvas-graph");
+	const ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawAxis(x = 0, y = 0) {
+	let ctx = getCanvasCtx();
+	ctx.beginPath();
+	let dimensions = getCanvasDimensions();
+	ctx.strokeStyle = "orange";
+	ctx.moveTo(dimensions.x / 2, 0);
+	ctx.lineTo(dimensions.x / 2, dimensions.y)
+	ctx.stroke();
+	ctx.moveTo(0, dimensions.y / 2);
+	ctx.lineTo(dimensions.x, dimensions.y / 2)
+	ctx.stroke();
+	ctx.closePath();
+}
+
 function resize() {
 	document.getElementById("canvas-graph").width = window.innerWidth * 0.8;
-	document.getElementById("canvas-graph").height = window.innerHeight * 0.4;
+	document.getElementById("canvas-graph").height = window.innerHeight * 0.8;
 }
-document.addEventListener("DOMContentLoaded", resize);
-window.addEventListener("resize", resize);
+window.addEventListener("load", () => { resize(); drawAxis(); answer(); });
+window.addEventListener("resize", () => { resize(); drawAxis(); });

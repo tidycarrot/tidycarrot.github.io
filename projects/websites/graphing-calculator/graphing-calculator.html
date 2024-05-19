@@ -18,7 +18,9 @@
     <h1>Math Expression Parser</h1>
     <input id="infix" placeholder="Type an expression" oninput="answer()" onchange="answer()" autofocus>
     <label>Zoom: </label>
-    <input type="text" id="zoom" value="1" oninput="answer()" onchange="answer()" min="0.0001", max="10000">
+    <input type="text" id="zoom" value="1" oninput="answer()" onchange="answer()">
+    <label>Resolution: </label>
+    <input type="text" id="res" value="1" oninput="answer()" onchange="answer()">
     <div>
         <canvas id="canvas-graph">A graph representing equations</canvas>
         <p>Tokenizer output</p>

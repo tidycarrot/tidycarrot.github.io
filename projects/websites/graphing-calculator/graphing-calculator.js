@@ -73,7 +73,7 @@ const operators = {
 	},
 	"_": {
 		data: "_",
-		precedence: 2.5,
+		precedence: 3,
 		associativity: "right",
 		opType: "unary",
 	},
@@ -436,6 +436,7 @@ function answer() {
 	let dimensions = getCanvasDimensions();
 	let ctx = getCanvasCtx();
 	let zoom = document.getElementById('zoom').value;
+	let res = document.getElementById('res').value;
 	ctx.strokeStyle = "black";
 
 	function transform(x, y) {
@@ -444,7 +445,7 @@ function answer() {
 
 	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
 	let prevPoint = transform(x, y);
-	for (var x = dimensions.x / -2/zoom + 1/zoom; x < dimensions.x / 2/zoom; x += 1/zoom) {
+	for (var x = dimensions.x / -2/zoom + 1/zoom; x < dimensions.x / 2/zoom; x += 1/(res * zoom)) {
 		y = evaluate(substitute(rpn, 'x', x));
 		let point = transform(x, y);
 

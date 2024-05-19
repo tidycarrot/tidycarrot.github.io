@@ -215,12 +215,12 @@ function tokenize(equation) {
 				break;
 
 			case "(":
-				if (before == undefined || before.type == "op") {
-					tokens.push({ type: "left_br", data: curr });
-					break;
+				if (num != "" && num != undefined) {
+					tokens.push({ type: "num", data: num });
+					decimal = false;
+					num = "";
+					tokens.push({ type: "op", data: "*" });
 				}
-				num = checkNum(tokens, num);
-				tokens.push({ type: "op", data: "*" });
 				tokens.push({ type: "left_br", data: curr });
 				break;
 

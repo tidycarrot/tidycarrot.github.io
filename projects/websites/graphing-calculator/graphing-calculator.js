@@ -140,19 +140,21 @@ function opType(operator) {
 	return operators[operator].opType;
 }
 
-function checkNum(tokens, num) {
-	if (num != "" && num != undefined) {
-		tokens.push({ type: "num", data: num });
-		decimal = false;
-		return "";
-	}
-	else {
-		return num;
-	}
-}
 // Tokenizing the equation
 
 function tokenize(equation) {
+
+	function checkNum(tokens, num) {
+		if (num != "" && num != undefined) {
+			tokens.push({ type: "num", data: num });
+			decimal = false;
+			before = tokens[tokens.length - 1];
+			return "";
+		}
+		else {
+			return num;
+		}
+	}
 
 	// Defining variable for output
 	// A variable is like a container that stores numbers, words, letters, true/false ect.
@@ -240,12 +242,12 @@ function tokenize(equation) {
 				break;
 
 			case "(":
-				if (before == undefined || before.type == "op") {
-					tokens.push({ type: "left_br", data: curr });
-					break;
+				if (num != "" && num != undefined) {
+					tokens.push({ type: "num", data: num });
+					decimal = false;
+					num = "";
+					tokens.push({ type: "op", data: "*" });
 				}
-				num = checkNum(tokens, num);
-				tokens.push({ type: "op", data: "*" });
 				tokens.push({ type: "left_br", data: curr });
 				break;
 
@@ -513,7 +515,7 @@ function drawAxis(x = 0, y = 0) {
 
 function resize() {
 	document.getElementById("canvas-graph").width = window.innerWidth * 0.8;
-	document.getElementById("canvas-graph").height = window.innerHeight * 0.8;
+	document.getElementById("canvas-graph").height = window.innerHeight * 0.6;
 }
 window.addEventListener("load", () => { resize(); drawAxis(); answer(); });
-window.addEventListener("resize", () => { resize(); drawAxis(); });
+window.addEventListener("resize", () => { resize(); drawAxis(); answer(); });

@@ -114,19 +114,20 @@ function opType(operator) {
 	return operators[operator].opType;
 }
 
-function checkNum(tokens, num) {
-	if (num != "" && num != undefined) {
-		tokens.push({ type: "num", data: num });
-		decimal = false;
-		return "";
-	}
-	else {
-		return num;
-	}
-}
 // Tokenizing the equation
 
 function tokenize(equation) {
+
+	function checkNum(tokens, num) {
+		if (num != "" && num != undefined) {
+			tokens.push({ type: "num", data: num });
+			decimal = false;
+			return "";
+		}
+		else {
+			return num;
+		}
+	}
 
 	// Defining variable for output
 	// A variable is like a container that stores numbers, words, letters, true/false ect.

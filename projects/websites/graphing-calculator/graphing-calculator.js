@@ -212,7 +212,7 @@ function tokenize(equation) {
 					num = "";
 					decimal = false;
 					tokens.push({ type: "op", data: "-" });
-				} else if (before.type == "var"){
+				} else if (before.type == "var") {
 					tokens.push({ type: "op", data: "-" });
 				}
 				else {
@@ -428,6 +428,8 @@ function answer() {
 		return { x: x * zoom + dimensions.x / 2, y: -y * zoom + dimensions.y / 2 };
 	}
 
+	drawAxisLabels(zoom, dimensions);
+
 	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
 	let prevPoint = transform(x, y);
 	for (var x = dimensions.x / -2 / zoom + 1 / zoom; x < dimensions.x / 2 / zoom; x += 1 / (res * zoom)) {
@@ -469,9 +471,10 @@ function plotLine(prevPoint, point) {
 }
 
 function getCanvasCtx() {
-	const canvas = document.getElementById("canvas-graph");
-	const ctx = canvas.getContext("2d");
-	return ctx;
+	return document.getElementById("canvas-graph").getContext("2d");
+	// const canvas = document.getElementById("canvas-graph");
+	// const ctx = canvas.getContext("2d");
+	// return ctx;
 }
 
 function getCanvasDimensions() {
@@ -499,9 +502,25 @@ function drawAxis(x = 0, y = 0) {
 	ctx.closePath();
 }
 
+function drawAxisLabels(zoom, dimensions, amount = 4) {
+	let ctx = getCanvasCtx();
+	for (let i = 0; i <= dimensions.x / 2; i += /*Math.round*/((dimensions.x / amount / 2) /*/ 10*/)/* * 10*/) {
+		let number = i / zoom;
+		if (String(number).length > 5) number = number.toExponential(4);
+		ctx.fillText(`${number}`, i + dimensions.x / 2, dimensions.y / 2);
+		ctx.fillText(`${-number}`, -i + dimensions.x / 2, dimensions.y / 2);
+	}
+	for (let i = 0; i <= dimensions.y / 2; i += /*Math.round*/((dimensions.y / amount / 2) /*/ 10*/)/* * 10*/) {
+		let number = i / zoom;
+		if (String(number).length > 5) number = number.toExponential(4);
+		ctx.fillText(`${-number}`, dimensions.x / 2, i + dimensions.y / 2);
+		ctx.fillText(`${number}`, dimensions.x / 2, -i + dimensions.y / 2);
+	}
+}
+
 function resize() {
 	document.getElementById("canvas-graph").width = window.innerWidth * 0.8;
 	document.getElementById("canvas-graph").height = window.innerHeight * 0.6;
 }
-window.addEventListener("load", () => { resize(); drawAxis(); answer(); });
-window.addEventListener("resize", () => { resize(); drawAxis(); answer(); });
+window.addEventListener("load", () => { resize(); answer(); });
+window.addEventListener("resize", () => { resize(); answer(); });

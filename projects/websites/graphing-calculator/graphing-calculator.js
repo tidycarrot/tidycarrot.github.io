@@ -38,7 +38,7 @@ function nextCharacter(array, current) {
 
 function factorial(num) {
 	var result = 1;
-	if (num < 1 || Number.isInteger(num) == false) { return undefined; }
+	if (num < 1 || Number.isInteger(num) == false) return undefined;
 	for (var i = 1; i <= num; i++) {
 		result *= i;
 	}
@@ -145,7 +145,7 @@ function opType(operator) {
 function tokenize(equation) {
 
 	function checkNum(tokens, num) {
-		if (num != "" && num != undefined) {
+		if (num != "") {
 			tokens.push({ type: "num", data: num });
 			decimal = false;
 			before = tokens[tokens.length - 1];
@@ -166,9 +166,6 @@ function tokenize(equation) {
 	// A string that temporarily stores numbers until an operator is encountered, then the number is placed on the output pile, which is the thing that is outputed.
 	let num = "";
 
-	// Loop through each character
-	// A character is a single letter, number, special character or space. They are all represented 
-	// by numerical values that are rendered by your device so you can read it 
 	for (let i = 0; i < equation.length; i++) {
 
 		// Defining a variable to retrieve the current character in the equation
@@ -179,8 +176,8 @@ function tokenize(equation) {
 		if (isWhitespace(curr))
 			continue;
 
-		// Defining a variable that is the next character in the equation
-		let next = nextCharacter(equation, i);
+		// // Defining a variable that is the next character in the equation
+		// let next = nextCharacter(equation, i);
 
 		// Initialising a variable that is supposed to contain the previous, non-whitespace character. Initialisation means to create the variable,
 		// but not to put anything in it so it is left empty. This can be useful to leave the variable empty as it can be a way to handle errors,
@@ -188,19 +185,10 @@ function tokenize(equation) {
 		let before;
 		if (tokens.length >= 1) {
 			before = tokens[tokens.length - 1];
-		}
+		} else
+			before = { type: "null", data: null };
 
-		// A switch in programming is basically a lot of "if" and "else" statements neatly bundled in a convenient in-built function.
-		// A "if" statement is a piece of code that helps with the run of the code. It works like this: if the equation or thing inside
-		// its argument (which is like a paremeter, in a way) is true, the code after the "if" statement is run. Sometimes, after this 
-		// conditional code is run, there is an "else" statement which is quite self explanatory, the code below the "else" statement is
-		// run when the condition of the "if" statement is not met. In the else statement, you can put another if statement in it,
-		// consequently, creating a block of code that checks through things. Therefore,
-		// the "switch" statement is a shorthand of this syntax instead of programming a mess.
 		switch (curr) {
-
-			// In these first few "cases", we check if the character is an operator.
-
 
 			case "+": // Addition operator
 			case "/": // Division operator
@@ -219,19 +207,16 @@ function tokenize(equation) {
 
 			// Substraction or negative operator
 			case "-":
-				if (num !== "" && num !== undefined) {
+				if (num != "") {
 					tokens.push({ type: "num", data: num });
 					num = "";
 					decimal = false;
 					tokens.push({ type: "op", data: "-" });
+				} else if (before.type == "var"){
+					tokens.push({ type: "op", data: "-" });
 				}
-				else if (before === undefined) {
+				else {
 					tokens.push({ type: "op", data: "_" });
-					break;
-				}
-				else if ((before.type == "op" || before.type == "left_br") && before.type != "num") {
-					tokens.push({ type: "op", data: "_" });
-					break;
 				}
 				break;
 
@@ -242,7 +227,7 @@ function tokenize(equation) {
 				break;
 
 			case "(":
-				if (num != "" && num != undefined) {
+				if (num != "") {
 					tokens.push({ type: "num", data: num });
 					decimal = false;
 					num = "";
@@ -268,14 +253,14 @@ function tokenize(equation) {
 					num += curr;
 				}
 				else if (isLetter(curr)) { // Check if it is a letter, right now I am only implementing single letter variables
-					if (num != "" && num != undefined) {
+					if (num != "") {
 						tokens.push({ type: "num", data: num });
 						decimal = false;
 						num = "";
 						tokens.push({ type: "op", data: "*" });
 					}
 
-					if (before != undefined && (before.type == "right_br" || before.type == "var")) {
+					if (before.type != "null" && (before.type == "right_br" || before.type == "var")) {
 						tokens.push({ type: "op", data: "*" });
 					}
 					tokens.push({ type: "var", data: curr });
@@ -445,7 +430,7 @@ function answer() {
 
 	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
 	let prevPoint = transform(x, y);
-	for (var x = dimensions.x / -2/zoom + 1/zoom; x < dimensions.x / 2/zoom; x += 1/(res * zoom)) {
+	for (var x = dimensions.x / -2 / zoom + 1 / zoom; x < dimensions.x / 2 / zoom; x += 1 / (res * zoom)) {
 		y = evaluate(substitute(rpn, 'x', x));
 		let point = transform(x, y);
 

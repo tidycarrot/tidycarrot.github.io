@@ -45,7 +45,6 @@ function factorial(num) {
 	return result;
 }
 
-// Some definitions
 const operators = {
 	"+": {
 		data: "+",
@@ -156,32 +155,21 @@ function tokenize(equation) {
 		}
 	}
 
-	// Defining variable for output
-	// A variable is like a container that stores numbers, words, letters, true/false ect.
 	let tokens = [];
 
-	// Defining variable that helps with checking for duplicate decimals in same number
 	let decimal = false;
 
-	// A string that temporarily stores numbers until an operator is encountered, then the number is placed on the output pile, which is the thing that is outputed.
 	let num = "";
 
 	for (let i = 0; i < equation.length; i++) {
 
-		// Defining a variable to retrieve the current character in the equation
 		let curr = equation[i];
 
-		// Checking if the character is a whitespace, characters that are empty like the space, enter and tab characters 
-		// If the character is a whitespace, skip through it until some content in the equation is found
 		if (isWhitespace(curr))
 			continue;
 
-		// // Defining a variable that is the next character in the equation
 		// let next = nextCharacter(equation, i);
 
-		// Initialising a variable that is supposed to contain the previous, non-whitespace character. Initialisation means to create the variable,
-		// but not to put anything in it so it is left empty. This can be useful to leave the variable empty as it can be a way to handle errors,
-		// where it is impossible to have a value, so you can check for the error.
 		let before;
 		if (tokens.length >= 1) {
 			before = tokens[tokens.length - 1];
@@ -220,12 +208,13 @@ function tokenize(equation) {
 				}
 				break;
 
-			// Next we test the character for if it is a bracket
+			// Right bracket
 			case ")":
 				num = checkNum(tokens, num);
 				tokens.push({ type: "right_br", data: curr });
 				break;
 
+			// Left bracket
 			case "(":
 				if (num != "") {
 					tokens.push({ type: "num", data: num });
@@ -246,13 +235,11 @@ function tokenize(equation) {
 				}
 				break;
 
-			// The default is the final "else" statement of the switch where if it goes through all the conditions
-			// and not satisfy (match) any of them, it will end up here.
 			default:
-				if (!isNaN(curr)) { // Check if it is not a number then if it is not, it is a number
+				if (!isNaN(curr)) {
 					num += curr;
 				}
-				else if (isLetter(curr)) { // Check if it is a letter, right now I am only implementing single letter variables
+				else if (isLetter(curr)) {
 					if (num != "") {
 						tokens.push({ type: "num", data: num });
 						decimal = false;
@@ -472,9 +459,6 @@ function plotLine(prevPoint, point) {
 
 function getCanvasCtx() {
 	return document.getElementById("canvas-graph").getContext("2d");
-	// const canvas = document.getElementById("canvas-graph");
-	// const ctx = canvas.getContext("2d");
-	// return ctx;
 }
 
 function getCanvasDimensions() {

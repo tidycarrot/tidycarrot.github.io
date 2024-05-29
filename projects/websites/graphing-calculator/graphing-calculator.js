@@ -37,9 +37,9 @@ function nextCharacter(array, current) {
 }
 
 function factorial(num) {
-	var result = 1;
+	let result = 1;
 	if (num < 1 || Number.isInteger(num) == false) return undefined;
-	for (var i = 1; i <= num; i++) {
+	for (let i = 1; i <= num; i++) {
 		result *= i;
 	}
 	return result;
@@ -99,32 +99,168 @@ const operators = {
 		precedence: 0,
 		associativity: "food"
 	},
-	/*
-	"sin":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.sin,
+	"sin": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.sin,
 	},
-	"cos":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.cos,
+	"cos": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.cos,
 	},
-	"tan":{
-			precedence: 4,
-			associativity: "right",
-			opType: "unary",
-			function: Math.tan,
+	"tan": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.tan,
 	},
-	"abs":{
-			precedence: 4,	
-			associativity: "right",
-			opType: "unary",
-			function: Math.abs,
+	"cot": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.tan(x) },
+	},
+	"sec": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.cos(x) },
+	},
+	"csc": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.sin(x) },
+	},
+	"arcsin": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.asin,
+	},
+	"arccos": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.acos,
+	},
+	"arctan": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.atan,
+	},
+	"arccot": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.PI / 2 - Math.atan(x); },
+	},
+	"arcsec": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.acos(1 / x); },
+	},
+	"arccsc": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.asin(1 / x); },
+	},
+	"sinh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.sinh,
+	},
+	"cosh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.cosh,
+	},
+	"tanh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.tanh,
+	},
+	"coth": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.tanh(x); },
+	},
+	"sech": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.cosh(x); },
+	},
+	"csch": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return 1 / Math.sinh(x); },
+	},
+	"arcsinh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.asinh(x); },
+	},
+	"arccosh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.acosh(x); },
+	},
+	"arctanh": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.atanh(x); },
+	},
+	"arccoth": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.atanh(1 / x); },
+	},
+	"arcsech": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.acosh(1 / x); },
+	},
+	"arccsch": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: function (x) { return Math.asinh(1 / x); },
+	},
+	"sqrt": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.sqrt,
+	},
+	"cbrt": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.cbrt,
+	},
+	"abs": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.abs,
 	}
-	*/
 }
 
 function precedence(operator) {
@@ -155,18 +291,39 @@ function tokenize(equation) {
 		}
 	}
 
+	function lookFunc(tokens, letters) {
+		if (letters) {
+			if (letters in operators) {
+
+				tokens.push({ type: "fun", data: letters })
+
+				return "";
+			} else {
+				for (let i = 0; i < letters.length - 2; i++) {
+					tokens.push({ type: "var", data: letters[i] })
+					tokens.push({ type: "op", data: "*" })
+				} tokens.push({ type: "var", data: letters[letters.length - 1] })
+				return "";
+			}
+		} else return "";
+	}
+
 	let tokens = [];
 
 	let decimal = false;
 
 	let num = "";
 
+	let letters = "";
+
 	for (let i = 0; i < equation.length; i++) {
 
 		let curr = equation[i];
 
-		if (isWhitespace(curr))
-			continue;
+		if (isWhitespace(curr)) {
+			letters = lookFunc(tokens, letters);
+			continue
+		}
 
 		// let next = nextCharacter(equation, i);
 
@@ -184,12 +341,14 @@ function tokenize(equation) {
 			case "%": // Modulo operator
 			case "*": // Multiplication operator
 				num = checkNum(tokens, num);
+				letters = lookFunc(tokens, letters);
 				tokens.push({ type: "op", data: curr });
 				break;
 
 			// Factorial operator
 			case "!":
 				num = checkNum(tokens, num);
+				letters = lookFunc(tokens, letters);
 				tokens.push({ type: "fac", data: "!" });
 				break;
 
@@ -200,7 +359,7 @@ function tokenize(equation) {
 					num = "";
 					decimal = false;
 					tokens.push({ type: "op", data: "-" });
-				} else if (before.type == "var") {
+				} else if (before.type == "var" || before.type == "fun") {
 					tokens.push({ type: "op", data: "-" });
 				}
 				else {
@@ -211,6 +370,7 @@ function tokenize(equation) {
 			// Right bracket
 			case ")":
 				num = checkNum(tokens, num);
+				letters = lookFunc(tokens, letters);
 				tokens.push({ type: "right_br", data: curr });
 				break;
 
@@ -220,6 +380,10 @@ function tokenize(equation) {
 					tokens.push({ type: "num", data: num });
 					decimal = false;
 					num = "";
+					tokens.push({ type: "op", data: "*" });
+				}
+				letters = lookFunc(tokens, letters);
+				if (tokens[tokens.length - 1].type == "var") {
 					tokens.push({ type: "op", data: "*" });
 				}
 				tokens.push({ type: "left_br", data: curr });
@@ -237,6 +401,7 @@ function tokenize(equation) {
 
 			default:
 				if (!isNaN(curr)) {
+					letters = lookFunc(tokens, letters);
 					num += curr;
 				}
 				else if (isLetter(curr)) {
@@ -250,7 +415,8 @@ function tokenize(equation) {
 					if (before.type != "null" && (before.type == "right_br" || before.type == "var")) {
 						tokens.push({ type: "op", data: "*" });
 					}
-					tokens.push({ type: "var", data: curr });
+					letters += curr;
+					// tokens.push({ type: "var", data: curr });
 				}
 				else {
 					console.log(`Unexpected character at ${i}`);
@@ -260,6 +426,7 @@ function tokenize(equation) {
 		}
 	}
 	num = checkNum(tokens, num);
+	letters = lookFunc(tokens, letters);
 
 	return tokens;
 }

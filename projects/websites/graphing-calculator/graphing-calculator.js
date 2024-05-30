@@ -508,7 +508,7 @@ function evaluate(rpn) {
 			output.push(rpn[i]);
 		}
 		// If it is an operator 
-		else if (rpn[i].type == "op" || rpn[i].type == "fac") {
+		else if (rpn[i].type == "op" || rpn[i].type == "fac" || rpn[i].type == "fun") {
 
 			if (opType(rpn[i].data) == "binary" && output.length >= 2) {
 				let rhs = parseFloat(output.pop().data);
@@ -544,6 +544,11 @@ function evaluate(rpn) {
 						break;
 					case "!":
 						output.push({ type: "num", data: `${factorial(num)}` })
+						break;
+					default:
+						if (rpn[i].type == "fun") {
+							output.push({ type: "num", data: `${operators[rpn[i].data].func(num)}`})
+						}
 						break;
 				}
 			}

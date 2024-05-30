@@ -359,7 +359,7 @@ function tokenize(equation) {
 					num = "";
 					decimal = false;
 					tokens.push({ type: "op", data: "-" });
-				} else if (before.type == "var" || before.type == "fun") {
+				} else if (before.type == "var" || before.type == "fun" || before.type == "right_br") {
 					tokens.push({ type: "op", data: "-" });
 				}
 				else {
@@ -442,7 +442,7 @@ function shuntingYard(tokens) {
 		if (currToken.type == "num" || currToken.type == "var") {
 			output.push(currToken);
 		}
-		else if (currToken.type == "op") {
+		else if (currToken.type == "op" || currToken.type == "fun") {
 			while (
 				opstack.length >= 1 &&
 				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)

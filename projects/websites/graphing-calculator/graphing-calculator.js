@@ -260,6 +260,18 @@ const operators = {
 		associativity: "right",
 		opType: "unary",
 		func: Math.abs,
+	},
+	"log": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.log10,
+	},
+	"ln": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.log,
 	}
 }
 
@@ -297,15 +309,15 @@ function tokenize(equation) {
 
 				tokens.push({ type: "fun", data: letters })
 
-				return "";
 			} else {
 				for (let i = 0; i < letters.length - 2; i++) {
 					tokens.push({ type: "var", data: letters[i] })
 					tokens.push({ type: "op", data: "*" })
 				} tokens.push({ type: "var", data: letters[letters.length - 1] })
-				return "";
 			}
-		} else return "";
+			before = tokens[tokens.length - 1];
+		} 
+		return "";
 	}
 
 	let tokens = [];
@@ -383,7 +395,7 @@ function tokenize(equation) {
 					tokens.push({ type: "op", data: "*" });
 				}
 				letters = lookFunc(tokens, letters);
-				if (tokens[tokens.length - 1].type == "var") {
+				if (before == "var") {
 					tokens.push({ type: "op", data: "*" });
 				}
 				tokens.push({ type: "left_br", data: curr });
@@ -547,7 +559,7 @@ function evaluate(rpn) {
 						break;
 					default:
 						if (rpn[i].type == "fun") {
-							output.push({ type: "num", data: `${operators[rpn[i].data].func(num)}`})
+							output.push({ type: "num", data: `${operators[rpn[i].data].func(num)}` })
 						}
 						break;
 				}

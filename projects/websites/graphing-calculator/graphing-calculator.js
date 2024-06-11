@@ -272,6 +272,30 @@ const operators = {
 		associativity: "right",
 		opType: "unary",
 		func: Math.log,
+	},
+	"sign": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.sign,
+	},
+	"floor": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.floor,
+	},
+	"ceil": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.ceil,
+	},
+	"round": {
+		precedence: 4,
+		associativity: "right",
+		opType: "unary",
+		func: Math.round,
 	}
 }
 
@@ -316,7 +340,7 @@ function tokenize(equation) {
 				} tokens.push({ type: "var", data: letters[letters.length - 1] })
 			}
 			before = tokens[tokens.length - 1];
-		} 
+		}
 		return "";
 	}
 
@@ -328,6 +352,8 @@ function tokenize(equation) {
 
 	let letters = "";
 
+	let before = { type: "null", data: null };
+
 	for (let i = 0; i < equation.length; i++) {
 
 		let curr = equation[i];
@@ -338,12 +364,6 @@ function tokenize(equation) {
 		}
 
 		// let next = nextCharacter(equation, i);
-
-		let before;
-		if (tokens.length >= 1) {
-			before = tokens[tokens.length - 1];
-		} else
-			before = { type: "null", data: null };
 
 		switch (curr) {
 
@@ -366,6 +386,7 @@ function tokenize(equation) {
 
 			// Substraction or negative operator
 			case "-":
+				letters = lookFunc(tokens, letters);
 				if (num != "") {
 					tokens.push({ type: "num", data: num });
 					num = "";
@@ -435,6 +456,9 @@ function tokenize(equation) {
 				}
 
 				break;
+		}
+		if (tokens.length >= 1) {
+			before = tokens[tokens.length - 1];
 		}
 	}
 	num = checkNum(tokens, num);

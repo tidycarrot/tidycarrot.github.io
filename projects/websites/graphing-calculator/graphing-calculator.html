@@ -23,7 +23,27 @@
     <label>Resolution: </label>
     <input type="text" id="res" value="1" oninput="answer()" onchange="answer()">
     <div>
-        <canvas id="canvas-graph">A graph representing equations</canvas>
+        <canvas id="canvas-graph">A graph representing an equation</canvas>
+        <h2>Instructions: </h2>
+        <label>Write an equation in terms of 'x' (case sensitive). <br><br>
+            The operators that can be used in the equation are: <br>
+            Addition: '+', <br>
+            Substraction: '-', (note that the negative minus sign is the same e.g. -7), <br>
+            Multiplication: '*', <br>
+            Division: '/', <br>
+            Exponentation: '^', <br>
+            Left parentheses: '(', <br>
+            Right parentheses: ')', <br>
+            Modulo: '%', <br>
+            Factorial: '!' <br><br>
+        Available functions (note that all functions are case sensitive and require a space between each function name): <br>
+        sin, cos, tan, cot, sec, csc, <br>
+        arcsin, arccos, arccot, arcsec, arccsc, <br>
+        sinh, cosh, tanh, sech, csch, <br>
+        arcsinh, arccosh, arctanh, arcsech, arccsch, <br>
+        sqrt, cbrt, log (base-10 log), ln (natural logarithm), <br>
+        abs, round, floor, ceil, sign <br>
+        </label>
         <p>Tokenizer output</p>
         <p id="token" class="output"></p>
         <p>Shunting Yard algorithm output (in RPN form)</p>

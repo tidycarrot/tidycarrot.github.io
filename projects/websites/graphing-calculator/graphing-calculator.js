@@ -416,7 +416,10 @@ function tokenize(equation) {
 					tokens.push({ type: "op", data: "*" });
 				}
 				letters = lookFunc(tokens, letters);
-				if (before == "var") {
+				if (before.type == "var") {
+					tokens.push({ type: "op", data: "*" });
+				}
+				if (before.type == "right_br") {
 					tokens.push({ type: "op", data: "*" });
 				}
 				tokens.push({ type: "left_br", data: curr });
@@ -452,7 +455,7 @@ function tokenize(equation) {
 					// tokens.push({ type: "var", data: curr });
 				}
 				else {
-					console.log(`Unexpected character at ${i}`);
+					console.log(`Unexpected character, "${curr}", at ${i}`);
 				}
 
 				break;
@@ -480,9 +483,19 @@ function shuntingYard(tokens) {
 		}
 		else if (currToken.type == "op" || currToken.type == "fun") {
 			while (
-				opstack.length >= 1 &&
-				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
-			) {
+				opstack.length >= 1 && (
+				(precedence(opstack[opstack.length - 1].data) >= 
+					precedence(currToken.data) &&
+					associativity(currToken.data) == "left"
+				) ||
+				(precedence(opstack[opstack.length - 1].data) > 
+					precedence(currToken.data) &&
+					associativity(currToken.data) == "right"
+
+				)
+				)
+			)
+			{
 				output.push(opstack.pop());
 			}
 			opstack.push(currToken);
@@ -537,6 +550,9 @@ function substitute(tokens, variable, value) {
 }
 
 function evaluate(rpn) {
+	if (!rpn || rpn.length === 0) { 
+		return NaN
+	};
 	let output = [];
 	for (let i = 0; i < rpn.length; i++) {
 		// If it is a number, push it into the output stack
@@ -571,7 +587,11 @@ function evaluate(rpn) {
 						break;
 				}
 			}
-			else if (opType(rpn[i].data) == "unary") {
+			else if (opType(rpn[i].data) == "unary") { 
+				if (output.length < 1) {
+					console.log("Unary operator missing value")
+					return NaN
+				};
 				let num = parseFloat(output.pop().data);
 
 				switch (rpn[i].data) {
@@ -590,6 +610,7 @@ function evaluate(rpn) {
 			}
 		}
 	}
+	if (output.length < 1) return NaN;
 	return output[0].data;
 }
 
@@ -626,6 +647,9 @@ function answer() {
 	drawAxisLabels(zoom, dimensions);
 
 	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
+	if (isNaN(y)) {
+		return 0
+	};
 	let prevPoint = transform(x, y);
 	for (var x = dimensions.x / -2 / zoom + 1 / zoom; x < dimensions.x / 2 / zoom; x += 1 / (res * zoom)) {
 		y = evaluate(substitute(rpn, 'x', x));
@@ -696,13 +720,13 @@ function drawAxis(x = 0, y = 0) {
 
 function drawAxisLabels(zoom, dimensions, amount = 4) {
 	let ctx = getCanvasCtx();
-	for (let i = 0; i <= dimensions.x / 2; i += /*Math.round*/((dimensions.x / amount / 2) /*/ 10*/)/* * 10*/) {
+	for (let i = 0; i <= dimensions.x / 2; i += Math.round((dimensions.x / amount / 2) /*/ 10*/)/* * 10*/) {
 		let number = i / zoom;
 		if (String(number).length > 5) number = number.toExponential(4);
 		ctx.fillText(`${number}`, i + dimensions.x / 2, dimensions.y / 2);
 		ctx.fillText(`${-number}`, -i + dimensions.x / 2, dimensions.y / 2);
 	}
-	for (let i = 0; i <= dimensions.y / 2; i += /*Math.round*/((dimensions.y / amount / 2) /*/ 10*/)/* * 10*/) {
+	for (let i = 0; i <= dimensions.y / 2; i += Math.round((dimensions.y / amount / 2) /*/ 10*/)/* * 10*/) {
 		let number = i / zoom;
 		if (String(number).length > 5) number = number.toExponential(4);
 		ctx.fillText(`${-number}`, dimensions.x / 2, i + dimensions.y / 2);

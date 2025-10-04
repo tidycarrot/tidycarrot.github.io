@@ -477,6 +477,7 @@ function shuntingYard(tokens) {
 	for (let i = 0; i < tokens.length; i++) {
 
 		let currToken = tokens[i];
+		let top = opstack[opstack.length - 1]
 
 		if (currToken.type == "num" || currToken.type == "var") {
 			output.push(currToken);
@@ -484,11 +485,11 @@ function shuntingYard(tokens) {
 		else if (currToken.type == "op" || currToken.type == "fun") {
 			while (
 				opstack.length >= 1 && (
-				(precedence(opstack[opstack.length - 1].data) >= 
+				(precedence(top.data) >= 
 					precedence(currToken.data) &&
 					associativity(currToken.data) == "left"
 				) ||
-				(precedence(opstack[opstack.length - 1].data) > 
+				(precedence(top.data) > 
 					precedence(currToken.data) &&
 					associativity(currToken.data) == "right"
 
@@ -510,10 +511,10 @@ function shuntingYard(tokens) {
 		// Check if it is a right parentheses ")"
 		else if (currToken.type == "right_br") {
 			// Keep popping operators from the stack until a left parentheses is met
-			while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
+			while (opstack.length >= 1 && top.type != "left_br") {
 				output.push(opstack.pop());
 			}
-			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
+			if (opstack.length >= 1 && top.type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
 			else {
 				console.log("Mismatched parentheses.");

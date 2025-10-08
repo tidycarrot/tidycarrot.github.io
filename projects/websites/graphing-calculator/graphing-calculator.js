@@ -477,7 +477,6 @@ function shuntingYard(tokens) {
 	for (let i = 0; i < tokens.length; i++) {
 
 		let currToken = tokens[i];
-		let top = opstack[opstack.length - 1]
 
 		if (currToken.type == "num" || currToken.type == "var") {
 			output.push(currToken);
@@ -485,18 +484,17 @@ function shuntingYard(tokens) {
 		else if (currToken.type == "op" || currToken.type == "fun") {
 			while (
 				opstack.length >= 1 && (
-				(precedence(top.data) >= 
-					precedence(currToken.data) &&
-					associativity(currToken.data) == "left"
-				) ||
-				(precedence(top.data) > 
-					precedence(currToken.data) &&
-					associativity(currToken.data) == "right"
+					(precedence(opstack[opstack.length - 1].data) >=
+						precedence(currToken.data) &&
+						associativity(currToken.data) == "left"
+					) ||
+					(precedence(opstack[opstack.length - 1].data) >
+						precedence(currToken.data) &&
+						associativity(currToken.data) == "right"
 
+					)
 				)
-				)
-			)
-			{
+			) {
 				output.push(opstack.pop());
 			}
 			opstack.push(currToken);
@@ -511,10 +509,10 @@ function shuntingYard(tokens) {
 		// Check if it is a right parentheses ")"
 		else if (currToken.type == "right_br") {
 			// Keep popping operators from the stack until a left parentheses is met
-			while (opstack.length >= 1 && top.type != "left_br") {
+			while (opstack.length >= 1 && opstack[opstack.length - 1].type != "left_br") {
 				output.push(opstack.pop());
 			}
-			if (opstack.length >= 1 && top.type == "left_br")
+			if (opstack.length >= 1 && opstack[opstack.length - 1].type == "left_br")
 				/* Discard the left parentheses */ opstack.pop();
 			else {
 				console.log("Mismatched parentheses.");
@@ -551,8 +549,8 @@ function substitute(tokens, variable, value) {
 }
 
 function evaluate(rpn) {
-	if (!rpn || rpn.length === 0) { 
-		return NaN
+	if (!rpn || rpn.length === 0) {
+		return;
 	};
 	let output = [];
 	for (let i = 0; i < rpn.length; i++) {
@@ -588,10 +586,9 @@ function evaluate(rpn) {
 						break;
 				}
 			}
-			else if (opType(rpn[i].data) == "unary") { 
+			else if (opType(rpn[i].data) == "unary") {
 				if (output.length < 1) {
-					console.log("Unary operator missing value")
-					return NaN
+					return;
 				};
 				let num = parseFloat(output.pop().data);
 
@@ -648,16 +645,20 @@ function answer() {
 	drawAxisLabels(zoom, dimensions);
 
 	let y = evaluate(substitute(rpn, 'x', dimensions.x / -2));
-	if (isNaN(y)) {
-		return 0
-	};
+
 	let prevPoint = transform(x, y);
 	for (var x = dimensions.x / -2 / zoom + 1 / zoom; x < dimensions.x / 2 / zoom; x += 1 / (res * zoom)) {
 		y = evaluate(substitute(rpn, 'x', x));
+		if (isNaN(y) || !isFinite(y) || Math.abs(y) > dimensions.x / zoom ) {
+			prevPoint = null;
+			continue;
+		}
 		let point = transform(x, y);
 
-		plotLine(prevPoint, point);
-		// plotPoint(point.x, point.y);
+
+		if (prevPoint) {
+			plotLine(prevPoint, point);
+		}
 
 		prevPoint = point;
 	}
@@ -741,3 +742,9 @@ function resize() {
 }
 window.addEventListener("load", () => { resize(); answer(); });
 window.addEventListener("resize", () => { resize(); answer(); });
+
+let tokenized = tokenize("sqrt(4)");
+console.log(tokenized.map(t => `${t.type}:${t.data}`).join(" "));
+let rpn = shuntingYard(tokenized);
+console.log(rpn.map(t => `${t.type}:${t.data}`).join(" "));
+console.log(evaluate(rpn));

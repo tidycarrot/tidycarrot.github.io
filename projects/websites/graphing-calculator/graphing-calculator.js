@@ -742,9 +742,3 @@ function resize() {
 }
 window.addEventListener("load", () => { resize(); answer(); });
 window.addEventListener("resize", () => { resize(); answer(); });
-
-let tokenized = tokenize("sqrt(4)");
-console.log(tokenized.map(t => `${t.type}:${t.data}`).join(" "));
-let rpn = shuntingYard(tokenized);
-console.log(rpn.map(t => `${t.type}:${t.data}`).join(" "));
-console.log(evaluate(rpn));

@@ -649,7 +649,7 @@ function answer() {
 	let prevPoint = transform(x, y);
 	for (var x = dimensions.x / -2 / zoom + 1 / zoom; x < dimensions.x / 2 / zoom; x += 1 / (res * zoom)) {
 		y = evaluate(substitute(rpn, 'x', x));
-		if (isNaN(y) || !isFinite(y) || Math.abs(y) > dimensions.x / zoom ) {
+		if (isNaN(y) || !isFinite(y) || Math.abs(y) > dimensions.x / zoom) {
 			prevPoint = null;
 			continue;
 		}

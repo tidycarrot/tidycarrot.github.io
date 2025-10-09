@@ -155,25 +155,15 @@ function tokenize(equation) {
 		// Defining a variable that is the next character in the equation
 		let next = nextCharacter(equation, i);
 
-		// Initialising a variable that is supposed to contain the previous, non-whitespace character. Initialisation means to create the variable,
-		// but not to put anything in it so it is left empty. This can be useful to leave the variable empty as it can be a way to handle errors,
-		// where it is impossible to have a value, so you can check for the error.
+		// Initialising a variable that is supposed to contain the previous, non-whitespace character. 
 		let before;
 		if (tokens.length >= 1) {
 			before = tokens[tokens.length - 1];
 		}
 
-		// A switch in programming is basically a lot of "if" and "else" statements neatly bundled in a convenient in-built function.
-		// A "if" statement is a piece of code that helps with the run of the code. It works like this: if the equation or thing inside
-		// its argument (which is like a paremeter, in a way) is true, the code after the "if" statement is run. Sometimes, after this 
-		// conditional code is run, there is an "else" statement which is quite self explanatory, the code below the "else" statement is
-		// run when the condition of the "if" statement is not met. In the else statement, you can put another if statement in it,
-		// consequently, creating a block of code that checks through things. Therefore,
-		// the "switch" statement is a shorthand of this syntax instead of programming a mess.
 		switch (curr) {
 
 			// In these first few "cases", we check if the character is an operator.
-
 
 			case "+": // Addition operator
 			case "/": // Division operator
@@ -267,8 +257,17 @@ function shuntingYard(tokens) {
 		}
 		else if (currToken.type == "op") {
 			while (
-				opstack.length >= 1 &&
-				precedence(opstack[opstack.length - 1].data) > precedence(currToken.data)
+				opstack.length >= 1 && (
+					(precedence(opstack[opstack.length - 1].data) >=
+						precedence(currToken.data) &&
+						associativity(currToken.data) == "left"
+					) ||
+					(precedence(opstack[opstack.length - 1].data) >
+						precedence(currToken.data) &&
+						associativity(currToken.data) == "right"
+
+					)
+				)
 			) {
 				output.push(opstack.pop());
 			}

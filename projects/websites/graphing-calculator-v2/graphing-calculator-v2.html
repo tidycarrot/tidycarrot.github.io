@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Graphing calculator</title>
+    <link rel='stylesheet' href='graphing-calculator-v2.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@300&family=Open+Sans:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Graphing calculator</h1>
+    <label>f(x) = </label>
+    <input id="infix" placeholder="Type an expression" oninput="answer()" onchange="answer()" autofocus>
+    <label>Zoom: </label>
+    <input type="text" id="zoom" value="50" oninput="answer()" onchange="answer()">
+    <label>Resolution: </label>
+    <input type="text" id="res" value="10" oninput="answer()" onchange="answer()">
+    <div>
+        <canvas id="canvas-graph">A graph representing an equation</canvas>
+        <h2>Instructions: </h2>
+        <label>Write an equation in terms of 'x' (case sensitive). <br><br>
+            The operators that can be used in the equation are: <br>
+            Addition: '+', <br>
+            Substraction: '-', (note that the negative minus sign is the same e.g. -7), <br>
+            Multiplication: '*', <br>
+            Division: '/', <br>
+            Exponentation: '^', <br>
+            Left parentheses: '(', <br>
+            Right parentheses: ')', <br>
+            Modulo: '%', <br>
+            Factorial: '!' <br><br>
+        Available functions (note that all functions are case sensitive and require a space between each function name): <br>
+        sin, cos, tan, cot, sec, csc, <br>
+        arcsin, arccos, arccot, arcsec, arccsc, <br>
+        sinh, cosh, tanh, sech, csch, <br>
+        arcsinh, arccosh, arctanh, arcsech, arccsch, <br>
+        sqrt, cbrt, log (base-10 log), ln (natural logarithm), <br>
+        abs, round, floor, ceil, sign <br>
+        </label>
+        <p>Tokenizer output</p>
+        <p id="token" class="output"></p>
+        <p>Shunting Yard algorithm output (in RPN form)</p>
+        <p id="rpn" class="output"></p>
+    </div>
+
+</body>
+<script src='graphing-calculator-v2.js'></script>
+
+</html>

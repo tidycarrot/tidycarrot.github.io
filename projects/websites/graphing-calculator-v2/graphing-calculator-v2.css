@@ -1,0 +1,42 @@
+*{
+    font-family: "Open Sans", sans-serif;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.contents {
+    margin: auto;
+    width: 75vw;
+}
+
+#infix {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+
+.output {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: block;
+    width: 80%;
+    margin: auto;
+}
+
+#canvas-graph {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    margin: 25px;
+}
+
+#zoom, #res {
+    width: 5em;
+}

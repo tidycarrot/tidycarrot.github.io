@@ -1,0 +1,40 @@
+/*Projects.html*/
+
+.project-table {
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-table,
+.project-table th,
+.project-table td {
+    border: 1px solid #333;
+    /* border-collapse: collapse; */
+    border-radius: 4px;
+    padding: 0.4em;
+}
+
+.project-table .header_name {
+    width: 250px;
+    background-color: #ffb3ba;
+}
+
+.project-table .header_files {
+    width: 250px;
+    background-color: #ffdfba;
+}
+
+.project-table .header_notes {
+    width: 250px;
+    background-color: #ffffba;
+}
+
+.project-table .header_date {
+    width: 75px;
+    background-color: #baffc9;
+}
+
+.file-list li {
+    text-align: left;
+}

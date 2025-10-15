@@ -72,11 +72,3 @@ function resetcustomimage() {
     document.querySelector('#dropshadowcolourImage').value = '#FFA500';
 
 }
-
-function rickrollpopup() {
-    window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-}
-
-function rickroll() {
-    window.open("https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ", '_self', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-}
